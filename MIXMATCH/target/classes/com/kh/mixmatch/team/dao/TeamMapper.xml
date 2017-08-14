@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="com.kh.mixmatch.team.dao.TeamMapper"> 
+	<select id="listRank" parameterType="map" resultType="TeamCommand">
+		SELECT * FROM (SELECT a.*, rownum rnum, rownum status FROM (SELECT * FROM g_team 
+					
+						<where>
+							<if test="keyword != '' and keyfield =='teamtype' and order=='t_win'">
+							t_type like '%' || #{keyword} || '%' ORDER BY  t_win  DESC)a)
+							</if>
+							<if test="keyword != '' and keyfield =='teamtype' and order=='t_draw'">
+							t_type like '%' || #{keyword} || '%' ORDER BY  t_draw  DESC)a)
+							</if>
+							<if test="keyword != '' and keyfield =='teamtype' and order=='t_lose'">
+							t_type like '%' || #{keyword} || '%' ORDER BY  t_lose DESC)a)
+							</if>
+						</where>
+						<![CDATA[ WHERE rnum>=#{start} AND rnum<=#{end} ]]>	
+	</select>
+	 
+	<select id="getTeamCount" parameterType="map" resultType="integer">
+		SELECT COUNT(*) FROM g_team 
+					<where>
+						<if test="keyword != '' and keyfield =='teamname'">
+							t_name like '%' || #{keyword} || '%'
+						</if>
+						<if test="keyword != '' and keyfield =='teamtype'">
+							t_type like '%' || #{keyword} || '%'
+						</if>
+					</where>
+	</select>
+	
+	<select id="list" parameterType="map" resultType="teamCommand">
+		SELECT * FROM (SELECT a.*, rownum rnum FROM
+		(SELECT b.* FROM g_team b 
+					<where>
+						<if test="keyword != ''">
+							b.t_type=#{keyword}
+						</if>
+					</where> 
+					ORDER BY b.t_regdate DESC)a) 
+					<![CDATA[ WHERE rnum>=#{start} AND rnum<=#{end} ]]>
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

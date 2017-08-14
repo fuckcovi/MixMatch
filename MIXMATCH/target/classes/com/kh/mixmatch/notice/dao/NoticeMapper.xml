@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.kh.mixmatch.notice.dao.NoticeMapper">  
+	<select id="getRowCount" parameterType="map" resultType="integer">
+		SELECT COUNT(*) FROM g_notice 
+					<where>
+						<if test="keyword != '' and keyfield =='gn_title'">
+							gn_title like '%' || #{keyword} || '%'
+						</if>
+						<if test="keyword != '' and keyfield =='gn_content'">
+							gn_content like '%' || #{keyword} || '%'
+						</if>
+						<if test="keyword != '' and keyfield =='all'">
+							gn_title like '%' || #{keyword} || '%' or
+							gn_content like '%' || #{keyword} || '%'
+						</if>
+					</where>
+	</select>
+	
+	<select id="noticeList" parameterType="map" resultType="noticeCommand">
+		SELECT * FROM (SELECT a.*, rownum rnum FROM(SELECT b.gn_seq, 
+			<![CDATA[ REPLACE(REPLACE(b.gn_title,'<','&lt;'),'>','&gt;') gn_title, ]]>
+			b.gn_hit, b.gn_regdate, b.id,b.ip, r.reply_cnt  FROM g_notice b
+			LEFT JOIN (SELECT gnre_no,count(*) reply_cnt FROM g_notice_re GROUP BY gnre_no)r ON b.gn_seq = r.gnre_no
+					<where>
+						<if test="keyword != '' and keyfield =='gn_title'">
+							b.gn_title like '%' || #{keyword} || '%'
+						</if>
+						<if test="keyword != '' and keyfield =='gn_content'">
+							b.gn_content like '%' || #{keyword} || '%'
+						</if>
+						<if test="keyword != '' and keyfield =='all'">
+							b.gn_title like '%' || #{keyword} || '%' or
+							b.gn_content like '%' || #{keyword} || '%'
+						</if>
+					</where>
+					ORDER BY b.gn_seq DESC)a) 
+					<![CDATA[ WHERE rnum>=#{start} AND rnum<=#{end} ]]>
+	</select>
+	
+	<select id="listReply" parameterType="map" resultType="noticeReplyCommand">
+		SELECT 
+			gnre_no, 
+			gnre_content, 
+			to_char(gnre_date,'YYYY-MM-DD HH24:MI:SS') gnre_date, 
+			gn_seq, 
+			id
+		FROM 
+			(SELECT 
+				a.*, 
+				rownum rnum 
+			  FROM 
+			  	(SELECT 
+			  		* 
+			  	FROM 
+			  		g_notice_re 
+			  	WHERE 
+			  		gn_seq = #{gn_seq} 
+			  	ORDER BY 
+			  		gnre_no DESC
+			  	)a 
+			  )
+		<![CDATA[
+			WHERE rnum>=#{start} AND rnum<= #{end}
+		]]> 
+	</select>
+</mapper>

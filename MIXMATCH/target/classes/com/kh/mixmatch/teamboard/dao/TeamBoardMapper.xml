@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.kh.mixmatch.teamboard.dao.TeamBoardMapper">  
+	<select id="getTbRowCount" parameterType="map" resultType="integer">
+		SELECT COUNT(*) FROM g_teamboard 
+					<where>
+						t_name=#{t_name}
+						<if test="keyword != '' and keyfield =='gt_title'">
+							AND gt_title like '%' || #{keyword} || '%'
+						</if>
+						<if test="keyword != '' and keyfield =='id'">
+							AND id like '%' || #{keyword} || '%'
+						</if>
+						<if test="keyword != '' and keyfield =='gt_content'">
+							AND gt_content like '%' || #{keyword} || '%'
+						</if>
+						<if test="keyword != '' and keyfield =='all'">
+							AND ( gt_title like '%' || #{keyword} || '%' or
+							id like '%' || #{keyword} || '%' or
+							gt_content like '%' || #{keyword} || '%' )
+						</if>
+					</where>
+	</select>
+	
+	<select id="teamboardList" parameterType="map" resultType="teamBoardCommand">
+		SELECT * FROM (SELECT a.*, rownum rnum FROM(SELECT b.gt_seq, 
+			<![CDATA[ REPLACE(REPLACE(b.gt_title,'<','&lt;'),'>','&gt;') gt_title, ]]>
+			b.gt_hit, b.gt_regdate,b.ip, b.id,b.t_name  <!-- , r.reply_cnt-->  FROM g_teamboard b
+			
+					<where>
+						t_name=#{t_name}
+						<if test="keyword != '' and keyfield =='gt_title'">
+							AND b.gt_title like '%' || #{keyword} || '%'
+						</if>
+						<if test="keyword != '' and keyfield =='gt_content'">
+							AND b.gt_content like '%' || #{keyword} || '%'
+						</if>
+						<if test="keyword != '' and keyfield =='id'">
+							AND b.id like '%' || #{keyword} || '%'
+						</if>
+						<if test="keyword != '' and keyfield =='all'">
+							AND ( b.gt_title like '%' || #{keyword} || '%' or
+							b.id like '%' || #{keyword} || '%' or
+							b.gt_content like '%' || #{keyword} || '%' )
+						</if>
+					</where>
+					ORDER BY b.gt_seq DESC)a) 
+					<![CDATA[ WHERE rnum>=#{start} AND rnum<=#{end} ]]>
+	</select>
+</mapper>

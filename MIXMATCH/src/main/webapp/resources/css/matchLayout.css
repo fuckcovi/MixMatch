@@ -1,0 +1,156 @@
+@CHARSET "UTF-8";
+/* 매치 */
+table.style, table.l-style {
+	margin: 0 auto;  
+	border-collapse: collapse;	
+}
+
+.detail-style table {
+	margin: 0 auto;
+	border-spacing: 3px;
+}
+	
+.style th {
+	background: #FF4848;
+	color: white;
+	width: 130px;
+	height: 30px;
+}
+
+.l-style th {
+	background: #54c5e5;
+	color: white;
+	width: 130px;
+	height: 30px;
+}
+	
+.style td, .l-style td {
+	width: 130px;
+	height: 80px;
+	border-top: 1px solid #CCCCCC;
+	border-bottom: 1px solid #CCCCCC;
+	padding-top: 5px;
+}
+
+.versus td {
+	width: 100px;
+}
+
+.list td {
+	width: 150px;
+	height: 30px;
+	background: white;
+}
+
+hr.style {
+	width: 90%;
+	border: 3px solid #002266;
+}
+
+hr.l-style {
+	width: 90%;
+	border: 3px solid #54c5e5;
+}
+
+form.style, div.style {
+	margin: 0 auto;
+	width: 500px;
+	height: 450px;
+	background: #DDDDDD;
+}
+
+div.detail-style {
+	margin: 0 auto;
+	width: 500px;
+	height: 480px;
+	background: #DDDDDD;
+}
+
+td.left-style {
+	width: 80px;
+	background: #FF4848;
+	color: white;
+}
+
+.style .btn, .detail-style .btn {
+	width: 80px;
+	height: 30px;
+	border: 0;
+	background: #FF4848;
+	color: white;
+}
+
+.l-style .btn {
+	width: 80px;
+	height: 30px;
+	border: 0;
+	background: #54c5e5;
+	color: white;
+}
+
+.l-style .btn:hover {
+	background: #00b1e2;
+}
+
+.style .btn:hover, .detail-style .btn:hover {
+	background: #FF1212;
+}
+
+.style .btn-team-info, .detail-style .btn-team-info {
+	font-size: 10px;
+	width:50px;
+	height:20px;
+	border: 0;
+	background: #FF4848;
+	color: white;
+}
+
+.style .btn-team-info:hover, .detail-style .btn-team-info:hover {
+	background: #FF1212;
+}
+
+.style ul li {
+	list-style: none;
+}
+
+.btn, .dis-btn {
+	width: 80px;
+	height: 30px;
+	border: 0;
+}
+
+.btn:hover {
+	background: #B2B2B2;
+}
+
+.select-btn {
+	width: 80px;
+	height: 30px;
+	border: 0;
+	background: #FF4848;
+	color: white;
+}
+
+.btn-team-info {
+	font-size: 10px;
+	width:50px;
+	height:20px;
+	border: 0;
+}
+
+.btn-team-info:hover {
+	background: #B2B2B2;
+}
+
+.select_box {
+	width: 100px;
+	height: 30px;
+}
+
+.select-l-btn {
+	width: 80px;
+	height: 30px;
+	border: 0;
+	background: #54c5e5;
+	color: white;
+}

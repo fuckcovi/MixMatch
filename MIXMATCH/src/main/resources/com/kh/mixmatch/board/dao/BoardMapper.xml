@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+
+<mapper namespace="com.kh.mixmatch.board.dao.BoardMapper"> 
+	<select id="list" parameterType="map"
+	                          resultType="boardCommand">
+		SELECT
+		  *
+		FROM (SELECT
+		        a.*,
+		        rownum rnum
+		      FROM(SELECT
+		             b.gb_seq,
+					 <![CDATA[
+					 REPLACE(REPLACE(b.gb_title,'<','&lt;'),'>','&gt;') gb_title,
+					 ]]>
+					 b.gb_hit,
+					 b.gb_regdate,
+					 b.id,
+					 r.reply_cnt
+		           FROM g_board b LEFT JOIN (SELECT gb_seq,count(*) reply_cnt 
+		                                     FROM g_board_re 
+		                                     GROUP BY gb_seq)r
+		                               ON b.gb_seq = r.gb_seq
+		           <where>
+		           	<if test="keyword != '' and keyfield == 'title'">
+		           		b.gb_title like '%' || #{keyword} || '%'
+		           	</if>
+		           	<if test="keyword != '' and keyfield == 'id'">
+		           		b.id like '%' || #{keyword} || '%'
+		          	</if>
+		           	<if test="keyword != '' and keyfield == 'content'">
+		           		b.gb_content like '%' || #{keyword} || '%'
+		           	</if>
+		           	<if test="keyword != '' and keyfield == 'all'">
+		           		b.gb_title like '%' || #{keyword} || '%' or
+		           		b.id like '%' || #{keyword} || '%' or
+		           		b.gb_content like '%' || #{keyword} || '%'
+		           	</if>
+		           </where>
+		           ORDER BY b.gb_seq DESC)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>	           
+	</select>
+	
+	<select id="getRowCount" parameterType="map" 
+	                         resultType="integer">
+		SELECT
+		   count(*)
+		FROM g_board 
+		<where>
+        	<if test="keyword != '' and keyfield == 'title'">
+        		gb_title like '%' || #{keyword} || '%'
+        	</if>
+        	<if test="keyword != '' and keyfield == 'id'">
+        		id like '%' || #{keyword} || '%'
+        	</if>
+        	<if test="keyword != '' and keyfield == 'content'">
+        		gb_content like '%' || #{keyword} || '%'
+        	</if>
+        	<if test="keyword != '' and keyfield == 'all'">
+        		gb_title like '%' || #{keyword} || '%' or
+        		id like '%' || #{keyword} || '%' or
+        		gb_content like '%' || #{keyword} || '%'
+        	</if>
+        </where>                        
+	</select>
+	
+	<select id="listReply" parameterType="map"
+	                           resultType="boardReplyCommand">
+		SELECT
+		   gbre_no,
+		   gbre_content,
+		   to_char(gbre_date,'YYYY-MM-DD HH24:MI:SS') gbre_date,
+		   gb_seq,
+		   id
+		FROM (SELECT
+		        a.*,
+		        rownum rnum
+		      FROM(SELECT
+		              *
+		           FROM g_board_re
+		           WHERE gb_seq = #{gb_seq}
+		           ORDER BY gbre_no DESC)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>                                         
+	</select>
+	
+</mapper>

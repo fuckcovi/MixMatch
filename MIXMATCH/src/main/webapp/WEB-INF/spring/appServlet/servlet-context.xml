@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- popup창 또는 Ajax 통신 등 타일스를 이용하지 않고 JSP를 호출해야 하는 경우 -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="order" value="2"/>
+	</beans:bean>
+	
+	<!-- tiles 호출 -->
+	<beans:bean
+	   class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<beans:property name="viewClass"
+		   value="org.springframework.web.servlet.view.tiles3.TilesView"/>
+		<beans:property name="order" value="1"/>   
+	</beans:bean>
+	
+	<!-- =============== Tiles 설정 ============== -->
+	<beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<beans:property name="definitions">
+			<beans:list>
+				<!--  설정파일이 여러개 인 경우 아래 태그를 여러개 나열  -->
+				<beans:value>/WEB-INF/tiles-def/main.xml</beans:value>
+				<!-- 회원 -->
+				<beans:value>/WEB-INF/tiles-def/member.xml</beans:value>
+				<!-- 매칭 -->
+				<beans:value>/WEB-INF/tiles-def/match.xml</beans:value>
+				<!--  팀 -->
+				<beans:value>/WEB-INF/tiles-def/team.xml</beans:value>
+				<!--  랭킹 -->
+				<beans:value>/WEB-INF/tiles-def/totalRank.xml</beans:value>
+				<!-- MyPage -->
+				<beans:value>/WEB-INF/tiles-def/mypage.xml</beans:value>
+				<!-- 게시판 -->
+				<beans:value>/WEB-INF/tiles-def/board.xml</beans:value>
+				<!--  공지사항 -->
+				<beans:value>/WEB-INF/tiles-def/notice.xml</beans:value>
+				<!--  팀게시판 -->
+				<beans:value>/WEB-INF/tiles-def/teamboard.xml</beans:value>
+				<!-- 리그 -->
+				<beans:value>/WEB-INF/tiles-def/league.xml</beans:value>
+				<!-- 경기장예약 -->
+				<beans:value>/WEB-INF/tiles-def/stadium.xml</beans:value>
+				<!-- 게시판 -->
+				<beans:value>/WEB-INF/tiles-def/board.xml</beans:value>
+				<!-- 포인트샵 관련 -->
+				<beans:value>/WEB-INF/tiles-def/pointshop.xml</beans:value> 
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+	
+	<!--  ========= tiles 호출 =========== -->
+	<beans:bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>
+		<beans:property name="order" value="1"/>
+	</beans:bean>
+	
+	<!-- 파일다운로드, 이미지 링크 -->			<!-- view를 호출할때 bean객체를 호출(view이름과 bean이름이 같으면 객체 호출) -->
+	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="0"/>	<!-- 위와 같이 중복이 되기때문에  ViewResolver인데 order를 통해 순서를 줬어-->
+	
+	
+	<context:component-scan base-package="com.kh.mixmatch" />
+	
+	<!-- 메세지 처리 -->
+	<beans:bean id="messageSource"
+	   class="org.springframework.context.support.ResourceBundleMessageSource">
+		<beans:property name="basenames">
+			<beans:list>
+				<beans:value>messages.validation</beans:value>
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+	
+	<!--==== 사용자 정의 에러 페이지 지정 ====-->
+	<beans:bean
+	   class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<beans:property name="exceptionMappings">
+			<beans:props>
+				<beans:prop key="java.lang.Exception">
+					pageError
+				</beans:prop>
+			</beans:props>
+		</beans:property>
+	</beans:bean>
+	 
+	<!-- 파일 업로드 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="52428800"/>		<!-- 50MB -->
+		<beans:property name="defaultEncoding" value="utf-8" />
+	</beans:bean>
+	
+	<!-- 메인 페이지 설정 -->
+	<mvc:view-controller path="/home.do" view-name="home"/>
+	
+	<!-- 웹소켓  -->
+	<!--  /echo.do  요청시 echo.jsp호출 설정  -->
+	<mvc:view-controller path="/chat.do" view-name="chat"/>
+	
+	<!-- echo.jsp에서 echoHandler이벤트 호출하게 연결 -->
+	<websocket:handlers>
+		<websocket:mapping handler="chatHandler" path="/chat-ws.do"/>
+	</websocket:handlers>
+	<beans:bean id="chatHandler" class="com.kh.mixmatch.chat.chatHandler"/>
+	
+	<!--  로그인 여부 체크 인터셉터 -->
+	<mvc:interceptors> 
+		<mvc:interceptor>
+			<mvc:mapping path="/board/write.do"/>
+			<mvc:mapping path="/member/pwUpdate.do"/>
+			<mvc:mapping path="/member/pwCheck.do"/>
+			<mvc:mapping path="/member/update.do"/>
+			<mvc:mapping path="/member/delete.do"/>
+			<mvc:mapping path="/team/teamHome.do"/>
+			<mvc:mapping path="/team/teamInfo.do"/>
+			<mvc:mapping path="/team/teamSchedule.do"/>
+			<mvc:mapping path="/team/teamRecord.do"/>
+			<mvc:mapping path="/mypage/main.do"/>
+			<mvc:mapping path="/teamboard/teamboard.do"/>
+			<beans:bean class="com.kh.mixmatch.member.interceptor.LoginCheckInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+</beans:beans>
+
+
