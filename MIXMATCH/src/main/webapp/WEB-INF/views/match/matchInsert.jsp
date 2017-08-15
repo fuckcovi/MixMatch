@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/match/match.js"></script>
 <div class="page-main-style">
 	<h2>매치등록</h2>
@@ -31,7 +30,33 @@
 			</li>
 			<li>
 				<label for="m_time">시간</label>
-				<form:input path="m_time" id="m_time"/>
+				<select id="ampm">
+					<option value="오전">오전</option>
+					<option value="오후">오후</option>
+				</select>
+				<select id="hour">
+					<option value="12시">12시</option>
+					<option value="1시">1시</option>
+					<option value="2시">2시</option>
+					<option value="3시">3시</option>
+					<option value="4시">4시</option>
+					<option value="5시">5시</option>
+					<option value="6시">6시</option>
+					<option value="7시">7시</option>
+					<option value="8시">8시</option>
+					<option value="9시">9시</option>
+					<option value="10시">10시</option>
+					<option value="11시">11시</option>
+				</select>
+				<select id="minute">
+					<option value="00분">00분</option>
+					<option value="10분">10분</option>
+					<option value="20분">20분</option>
+					<option value="30분">30분</option>
+					<option value="40분">40분</option>
+					<option value="50분">50분</option>
+				</select>
+				<form:hidden path="m_time" id="m_time"/>
 				<form:errors path="m_time" cssClass="error-color"/>
 			</li>
 			<li>

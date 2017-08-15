@@ -1,18 +1,14 @@
 package com.kh.mixmatch.match.domain;
 
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
 public class MatchCommand {
 
 	private int m_seq;
-	@NotEmpty
 	private String t_name;
 	private String m_area;
 	private String m_date;
-	@NotEmpty
 	private String m_time;
-	@NotEmpty
 	private String m_place;
 	private int m_cost;
 	private String m_content;
