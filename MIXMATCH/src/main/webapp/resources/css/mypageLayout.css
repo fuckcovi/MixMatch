@@ -1,9 +1,10 @@
 @CHARSET "UTF-8";
 /*------------------------------- MyPage -----------------------------*/
 div.container{
-	width:100%;
+	width:1100px;
 	height:900px;
 	display: flex;
+	border: 1px solid;
 }
 div.box-left {
   flex: 1.4;
@@ -35,6 +36,8 @@ div.box-center {
 }
 .p_size{
 	height:10px;
+	text-align: left;
+	margin: 0 0 15px;
 }
 /* Mypage게시글 목록 */
 /* 이름,작성날짜 */
@@ -116,5 +119,9 @@ div.reply-list{
 	width: 600px;
 	word-wrap:break-word; 
 	margin-bottom: 15px;
+}
+.tab-content{
+	font-size: 17px;
+	margin-top: 10px;
 }
 /*------------------------------- MyPage -----------------------------*/

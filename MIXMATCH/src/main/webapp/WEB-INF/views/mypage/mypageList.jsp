@@ -8,7 +8,7 @@
 <link href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypageLayout.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/mypage/mypage.reply.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/mypage.reply.js"></script>
 <script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
 
 <div class="container">
@@ -31,22 +31,22 @@
 				  fn:endsWith(member.profile_name,'.PNG')}">
 			<!-- String클래스에 있는 메서드 endsWith는 마지막거만 체크해. 만약 .jpg가 있으면 true를 반환 -->
 			<div class="align-center">
-				<img src="imageView.do?id=${member.id}" style="max-width: 150px">
+				<img src="imageView.do?id=${member.id}" style="max-width: 250px">
 			</div>
 		</c:if><br>
 		<div class="align-center">
 			<c:if test="${!empty user_id && user_id == member.id}">		<!-- 자신의 미니홈피가 아니면 내 정보 버튼 숨김 -->
-				<input type="button" value="내 정보" onclick="location.href='${pageContext.request.contextPath}/member/detail.do'" class="btn btn-info"/>
+				<input type="button" value="내 정보" onclick="location.href='${pageContext.request.contextPath}/member/detail.do'" class="btn btn-info" style="width: 250px;"/>
 			</c:if>
 		</div><br>
-		<ul style="list-style: none;">
+		<ul style="list-style: none; margin-left: 10px; text-align: left; font-size: 25px; font-family: Comic Sans MS,fantasy;">
 			<li>이름 : ${member.name}</li>
 			<li>지역 : ${member.address}</li>
 			<li>등급 : ${member.auth}</li>
 			<li>포인트 : ${member.point}</li>
 		</ul><br>
 
-		<ul class="nav nav-tabs">
+		<ul class="nav nav-tabs" style="font-size: 25px;">
 			<li class="active"><a href="#tab4" data-toggle="tab">축구</a></li>
 			<li><a href="#tab5" data-toggle="tab">야구</a></li>
 			<li><a href="#tab6" data-toggle="tab">농구</a></li>
@@ -125,12 +125,16 @@
 	
 	
 	<!-- 목록출력 -->
+	<c:if test="${h_show_count == 0}">			<!-- 전체공개글이 없을시 등록된 글이 없다는 메시지 출력 -->
+	 	<div>등록된 글이 없습니다.</div>
+	</c:if>
+	
 	
 	<c:if test="${count > 0}">
 		<c:forEach var="mypage" items="${list}">	
 		
 		<!-- 로그인 되어있는 유저가 다른 유저의 페이지를 방문했을때 비공개로 되어있는 글은 확인불가능 -->				
-		<c:if test="${user_id != mypage.id}">							
+		<c:if test="${user_id != mypage.id}">					
 		<c:if test="${mypage.h_show eq 'y'}">
 			<input type="hidden" name="id" id="id" value="${mypage.id}">		<!-- 부모글 작성자 -->
 			<input type="hidden" name="h_show" value="${mypage.h_show}">		<!-- 글 공개여부 -->
@@ -307,7 +311,9 @@
 		</c:forEach>
 	</c:if>
 
-	<div class="align-center">${pagingHtml}</div>
+	<c:if test="${h_show_count != 0}">
+		<div class="align-center">${pagingHtml}</div>
+	</c:if>
 
 </div>
 	
