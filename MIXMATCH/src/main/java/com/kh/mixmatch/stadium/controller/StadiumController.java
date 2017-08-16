@@ -1,7 +1,6 @@
 package com.kh.mixmatch.stadium.controller;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,10 +24,8 @@ import com.kh.mixmatch.stadium.domain.BookingCommand;
 import com.kh.mixmatch.stadium.domain.StadiumCommand;
 import com.kh.mixmatch.stadium.service.StadiumService;
 import com.kh.mixmatch.team.domain.TeamCommand;
-import com.kh.mixmatch.team.domain.TeamMemCommand;
 import com.kh.mixmatch.team.service.TeamService;
 import com.kh.mixmatch.util.PagingUtil;
-
 
 @Controller
 public class StadiumController {
@@ -127,7 +124,6 @@ public class StadiumController {
 	public ModelAndView stadiumDetail(@RequestParam int s_seq,HttpSession session){
 		StadiumCommand stadium = stadiumService.selectStadium(s_seq);
 		String id = (String)session.getAttribute("user_id");
-		Map<String, Object> map = new HashMap<String, Object>();
 
 		List<TeamCommand> t_name = teamService.listMaster(id);
 		
