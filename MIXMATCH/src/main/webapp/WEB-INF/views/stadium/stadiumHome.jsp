@@ -22,6 +22,7 @@
 	#stadiumList td:not(.regdate){
 		font-size: large;
 	}
+	.regdate input{width:50px;font-size:small; }
 </style>
 <div class="page-main-style">
 	
@@ -87,11 +88,13 @@
 			<td><a href="${pageContext.request.contextPath }/stadium/stadiumDetail.do?s_seq=${list.s_seq}">${list.s_name}</a></td>
 			<td>${list.s_type }</td>
 			<td>${list.s_address1}</td>
-			<td class="regdate">${list.s_regdate}</td>
+			<td class="regdate">${list.s_regdate}
 			<c:if test="${user_id eq 'admin' }">
-				<td><input type="button" value="경기장수정" onclick="location.href='${pageContext.request.contextPath }/stadium/stadiumUpdate.do?s_seq=${list.s_seq}'"></td>
-				<td><input type="button" value="경기장삭제" onclick="location.href='${pageContext.request.contextPath }/stadium/stadiumDel.do?s_seq=${list.s_seq}'"></td>
+				<br>
+				<input type="button" value="수정" onclick="location.href='${pageContext.request.contextPath }/stadium/stadiumUpdate.do?s_seq=${list.s_seq}'">
+				<input type="button" value="삭제" onclick="location.href='${pageContext.request.contextPath }/stadium/stadiumDel.do?s_seq=${list.s_seq}'">
 			</c:if>
+			</td>
 		</tr>
 		</c:forEach>
 		

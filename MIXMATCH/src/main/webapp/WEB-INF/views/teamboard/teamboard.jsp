@@ -14,9 +14,10 @@
 			소속된 팀이 없어서 팀게시판 이용이 불가합니다. 
 		</c:if>
 		<c:if test="${teamcount>0 }">
-		<ul style="list-style: none" id="teamboardList" >
+		<ul style="list-style: none;margin: 0 auto;height:70px; width:750px;padding:0;" id="teamboardList" >
+			
 			<c:forEach var="list" items="${teamlist}">
-				<li style="float: left;" value="${list.t_name}">
+				<li style="float: left; width:150px;" value="${list.t_name}">
 					<input type="button" class="btn" value="${list.t_name}" onclick="location.href='${pageContext.request.contextPath}/teamboard/teamboard.do?t_name=${list.t_name}'">
 				</li>
 			</c:forEach>

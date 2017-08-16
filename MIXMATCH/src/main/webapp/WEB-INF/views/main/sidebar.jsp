@@ -91,7 +91,7 @@ $(document).ready(function() {
 			<a href="${pageContext.request.contextPath}/team/team.do">팀생성</a>
 			</c:if>
 			<c:if test="${joinCountSide>0 }">  
-			<select id="myteam" name="myteam">
+			<select id="myteam" name="myteam" style="width:100px;">
 				<c:forEach var="joinListSide" items="${joinListSide}">
 						<c:if test="${joinListSide.t_mem_auth > 0}">
 						<option>
@@ -100,6 +100,7 @@ $(document).ready(function() {
 						</c:if>
 				</c:forEach>
 			</select>
+			<br>
 			<c:forEach var="joinListSide" items="${joinListSide}">
 				<a href="${pageContext.request.contextPath }/team/teamInfo.do?t_name=${joinListSide.t_name}" id="myteamLogo">
 					<c:if test="${fn:endsWith(joinListSide.t_logo_name, '.jpg') || fn:endsWith(joinListSide.t_logo_name, '.png') || fn:endsWith(joinListSide.t_logo_name, '.gif') || fn:endsWith(joinListSide.t_logo_name, '.JPG') || fn:endsWith(joinListSide.t_logo_name, '.PNG') || fn:endsWith(joinListSide.t_logo_name, '.GIF')}">

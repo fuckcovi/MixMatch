@@ -77,7 +77,6 @@ $(document).ready(function(){
 			$(".scheduleList tr").hide();
 			$(".tablehead").show();
 			$("."+$(this).attr("value")).show();
-			alert("팀선택 : "+$(this).attr("value"));
 			if(!$(".xplan tr").hasClass($(this).attr("value"))){
 				$(".xplan .tablenull").show();
 			}if(!$(".cplan tr").hasClass($(this).attr("value"))){
