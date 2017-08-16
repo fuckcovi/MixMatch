@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.mixmatch.member.domain.MemberCommand;
+import com.kh.mixmatch.member.service.MemberService;
 import com.kh.mixmatch.pointshop.domain.PointShopCartCommand;
 import com.kh.mixmatch.pointshop.domain.PointShopCommand;
 import com.kh.mixmatch.pointshop.service.PointShopService;
@@ -36,6 +37,8 @@ public class PointShopController {
 	
 	@Resource
 	private PointShopService pointShopService;
+	@Resource
+	private MemberService memberService;
 	
 	//�ڹٺ��ʱ�ȭ
 	@ModelAttribute("pointShopCommand")
@@ -193,7 +196,8 @@ public class PointShopController {
 		}
 		
 		System.out.println(mapJson);
-		
+		MemberCommand member = memberService.selectMember(user_id);
+		session.setAttribute("user_point", member.getPoint());
 		return mapJson;
 	}
 	
