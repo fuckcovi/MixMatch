@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
-
 <style type="text/css">
 	#search_form{width:500px;height:50px;margin:0 auto;}
 	.search{list-style:none;}
@@ -49,7 +47,9 @@
 		</table>
 		<div class="align-center">${pagingHtml}</div>
 	</c:if>
+	<c:if test="${user_id == 'admin'}">
 	<div class="align-right">
-		<input type="button" value="글쓰기"  onclick="location.href='noticeInsert.do'" <c:if test="${user_id != 'admin'}">disabled="disabled"</c:if>>
+		<input type="button" value="글쓰기"  onclick="location.href='noticeInsert.do'">
 	</div>
+	</c:if>
 </div>

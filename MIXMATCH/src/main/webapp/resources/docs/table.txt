@@ -1,3 +1,4 @@
+----------------------- 회원 ---------------------------------------------
 CREATE TABLE G_MEMBER(
     ID VARCHAR2(20) NOT NULL PRIMARY KEY,
     PW VARCHAR2(20) NOT NULL,
@@ -15,6 +16,7 @@ CREATE TABLE G_MEMBER(
     PROFILE BLOB
 );
 
+----------------------- 팀 ---------------------------------------------
 CREATE TABLE G_TEAM(
     T_NAME VARCHAR2(30) NOT NULL PRIMARY KEY,
     T_TYPE VARCHAR2(30) NOT NULL,
@@ -40,6 +42,7 @@ CREATE TABLE G_TEAM_MEMBER(
 );
 CREATE SEQUENCE G_TEAM_MEMBER_SEQ;
 
+----------------------- 매치 ---------------------------------------------
 CREATE TABLE G_MATCH(
     M_SEQ NUMBER NOT NULL PRIMARY KEY,
     T_NAME VARCHAR2(20) NOT NULL,
@@ -72,6 +75,8 @@ CREATE TABLE G_TOTO(
 );
 CREATE SEQUENCE G_TOTO_SEQ;
 
+
+----------------------- 기록 ---------------------------------------------
 CREATE TABLE G_FOOTBALL (
     F_SEQ NUMBER PRIMARY KEY,
     ID VARCHAR2(20) NOT NULL,
@@ -126,6 +131,8 @@ CREATE TABLE G_BASEBALL (
 );
 CREATE SEQUENCE F_BASEBALL_SEQ;
 
+
+----------------------- 미니홈피 ---------------------------------------------
 CREATE TABLE G_HOME(
 	H_SEQ NUMBER NOT NULL PRIMARY KEY,
 	ID VARCHAR2(20) NOT NULL,
@@ -151,7 +158,7 @@ CREATE TABLE G_HOME_RE(
 );
 CREATE SEQUENCE G_HOME_RE_SEQ;
 
------------------------ 포인트숍 ---------------------------------------------
+----------------------- 포인트샵 ---------------------------------------------
 CREATE TABLE G_POINT_PRODUCT
 (
     p_seq          INT              NOT NULL, 
@@ -304,10 +311,11 @@ create table g_league_detail (
 create sequence g_league_detail_seq;
 
 
---------------------- 경기장 ------------
+--------------------- 경기장예약 ------------
 CREATE TABLE G_STADIUM (
     S_SEQ NUMBER PRIMARY KEY,
     S_NAME VARCHAR2(30) NOT NULL,
+    S_TYPE VARCHAR2(30) NOT NULL,
     S_ADDRESS1 VARCHAR2(30) NOT NULL,
     S_ADDRESS2 VARCHAR2(300),
     S_LOGO_NAME VARCHAR2(150),
@@ -319,9 +327,10 @@ CREATE SEQUENCE G_STADIUM_SEQ;
 CREATE TABLE G_BOOKING (
     B_SEQ NUMBER PRIMARY KEY,
     S_SEQ NUMBER NOT NULL,
-    B_REGDATE DATE NOT NULL,
+    B_REGDATE VARCHAR2(30) NOT NULL,
     B_TIME VARCHAR2(30) NOT NULL,
     B_CHECK NUMBER DEFAULT(0),
-    CONSTRAINT G_BOOKING_FK FOREIGN KEY(S_SEQ) REFERENCES G_STADIUM(S_SEQ)
+    T_NAME VARCHAR2(30) NOT NULL,
+    CONSTRAINT G_BOOKING_FK1 FOREIGN KEY(S_SEQ) REFERENCES G_STADIUM(S_SEQ)
 );
 CREATE SEQUENCE G_BOOKING_SEQ;

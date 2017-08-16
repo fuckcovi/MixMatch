@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
 <div class="page-main-style">
 	<h2>공지사항 작성</h2>
 	<form:form commandName="noticeCommand" enctype="multipart/form-data" action="noticeInsert.do">

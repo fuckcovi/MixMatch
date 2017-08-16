@@ -3,7 +3,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/match/match.js"></script>
 <div class="page-main-style">
 	<h2>상세보기</h2>

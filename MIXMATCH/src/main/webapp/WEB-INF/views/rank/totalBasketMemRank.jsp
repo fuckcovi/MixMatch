@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/team/team.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/rank.css">
 <div class="page-main-style">
@@ -54,14 +53,13 @@
 				<td>${list.b_3point}</td>
 			</tr>
 		</c:forEach>
-		</table>
 		<div class="align-center">${pagingHtml}</div>
 		</c:if>
 		<c:if test="${count==0 }">
 			<tr>
 				<td colspan="9">농구 회원 기록이 없습니다.</td>
 			</tr>
-			</table>
 		</c:if>
+		</table>
 	</div>
 </div>

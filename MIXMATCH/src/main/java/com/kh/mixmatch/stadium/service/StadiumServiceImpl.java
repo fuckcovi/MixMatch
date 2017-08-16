@@ -1,5 +1,8 @@
 package com.kh.mixmatch.stadium.service;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -52,6 +55,42 @@ public class StadiumServiceImpl implements StadiumService{
 	@Override
 	public BookingCommand selectBooking(Integer b_seq) {
 		return stadiumMapper.selectBooking(b_seq);
+	}
+
+	@Override
+	public List<StadiumCommand> listStadium(Map<String, Object> map) {
+		return stadiumMapper.listStadium(map);
+	}
+
+	@Override
+	public int getTotalCountStadium(Map<String, Object> map) {
+		return stadiumMapper.getTotalCountStadium(map);
+	}
+
+	@Override
+	public List<BookingCommand> listBooking(Map<String, Object> map) {
+		return stadiumMapper.listBooking(map);
+	}
+
+	@Override
+	public int getTotalCountBooking(Map<String, Object> map) {
+		return stadiumMapper.getTotalCountBooking(map);
+	}
+
+	@Override
+	public List<BookingCommand> listBookingTeam(String id) {
+		return stadiumMapper.listBookingTeam(id);
+	}
+
+	@Override
+	public int booklistCount(String t_name) {
+		return stadiumMapper.booklistCount(t_name);
+	}
+
+	@Override
+	public void updateCheckBooking(Integer b_seq) {
+		stadiumMapper.updateCheckBooking(b_seq);
+		
 	}
 	
 }

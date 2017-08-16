@@ -1,13 +1,19 @@
 package com.kh.mixmatch.stadium.domain;
 
-import java.sql.Date;
-
 public class BookingCommand {
 	private int b_seq;
 	private int s_seq;
-	private Date b_regdate;
+	private String b_regdate;
 	private String b_time;
 	private int b_check;
+	private String t_name;
+	
+	public String getT_name() {
+		return t_name;
+	}
+	public void setT_name(String t_name) {
+		this.t_name = t_name;
+	}
 	public int getB_seq() {
 		return b_seq;
 	}
@@ -20,10 +26,10 @@ public class BookingCommand {
 	public void setS_seq(int s_seq) {
 		this.s_seq = s_seq;
 	}
-	public Date getB_regdate() {
+	public String getB_regdate() {
 		return b_regdate;
 	}
-	public void setB_regdate(Date b_regdate) {
+	public void setB_regdate(String b_regdate) {
 		this.b_regdate = b_regdate;
 	}
 	public String getB_time() {
@@ -37,6 +43,11 @@ public class BookingCommand {
 	}
 	public void setB_check(int b_check) {
 		this.b_check = b_check;
+	}
+	@Override
+	public String toString() {
+		return "BookingCommand [b_seq=" + b_seq + ", s_seq=" + s_seq + ", b_regdate=" + b_regdate + ", b_time=" + b_time
+				+ ", b_check=" + b_check + ", t_name=" + t_name + "]";
 	}
 	
 	

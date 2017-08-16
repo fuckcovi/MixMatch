@@ -36,7 +36,6 @@
 		</tr>
 	</c:forEach>
 	</tbody>
-	</table>
 	<br>
 		<div class="align-center">${pagingHtml}</div>
 	</c:if>
@@ -46,7 +45,7 @@
 			<td colspan="4">사이트에 등록된 유저가 없습니다.</td>
 		</tr>
 	</tbody>
-	</table>
 	</c:if>
+	</table>
 	</div>
 </div>
