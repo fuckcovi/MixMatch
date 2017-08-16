@@ -3,10 +3,29 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.min.js"></script>
-
+<style type="text/css">
+	#stadiumList th{
+		font-size: large;
+		width:100px;
+		text-align:center;
+		padding:10px 0 10px 0;
+		border-style: none;
+		border-top:2px solid #BDBDBD;
+		border-bottom:2px solid #BDBDBD;
+	}
+	#stadiumList td{
+		text-align: center;
+	}
+	#stadiumList .stadiumName{
+		width:200px;
+	}
+	#stadiumList td:not(.regdate){
+		font-size: large;
+	}
+</style>
 <div class="page-main-style">
-	<br>
-	<h2>경기장 예약</h2>
+	
+	<h2><b>경기장 예약</b></h2>
 <c:if test="${user_id  eq 'admin'}">
 	<input type="button" value="경기장등록" onclick="location.href='${pageContext.request.contextPath }/stadium/stadiumRegi.do'" ><br>
 </c:if>
@@ -14,35 +33,36 @@
 	<form action="stadium.do" id="search_form" method="get">
 		<ul class="search" style="list-style: none;">
 			<li style="float:left ;">
-				<select name="keyfield">
+				<select name="keyfield" style="height:30px;">
 					<option value="s_type">종목</option>
 					<option value="s_address1">지역</option>
-					<option value="s_name">경기장이름</option>
+					<option value="s_name" >경기장이름</option>
 				</select>
 			</li> 
 			<li style="float:left ;">
-				<input type="text" name="keyword" id="keyword">
+				<input type="text" name="keyword" id="keyword" style="height:30px;">
 			</li>
 			<li style="float:left ;">
-				<input type="submit" value="경기장찾기">
+				<input type="submit" value="경기장찾기" style="height:30px;">
 			</li>
 		</ul>
 	</form>
 </div>
+<br>
 	<br>
 <div style="margin:0 auto;display: inline-block;">
-	<table >
+	<table id="stadiumList">
 	<tr>
 		<th>경기장사진</th>
-		<th>경기장이름</th>
+		<th class="stadiumName">경기장이름</th>
 		<th>종목</th>
-		<th>경기장지역</th>
-		<th>경기장등록일</th>
+		<th>지역</th>
+		<th>등록일</th>
 	</tr>
 	
 	<c:if test="${stadiumCount >0}">
 		<c:forEach var="list" items="${stadiumList}">
-		<tr>
+		<tr style="border-bottom: 1px solid #BDBDBD;">
 			<td>
 				<c:if test="${fn:endsWith(list.s_logo_name, '.jpg') || 
 							fn:endsWith(list.s_logo_name, '.png') || 
@@ -67,7 +87,7 @@
 			<td><a href="${pageContext.request.contextPath }/stadium/stadiumDetail.do?s_seq=${list.s_seq}">${list.s_name}</a></td>
 			<td>${list.s_type }</td>
 			<td>${list.s_address1}</td>
-			<td>${list.s_regdate}</td>
+			<td class="regdate">${list.s_regdate}</td>
 			<c:if test="${user_id eq 'admin' }">
 				<td><input type="button" value="경기장수정" onclick="location.href='${pageContext.request.contextPath }/stadium/stadiumUpdate.do?s_seq=${list.s_seq}'"></td>
 				<td><input type="button" value="경기장삭제" onclick="location.href='${pageContext.request.contextPath }/stadium/stadiumDel.do?s_seq=${list.s_seq}'"></td>

@@ -59,6 +59,21 @@
 #output table{
 	width:100%;
 }
+#stadiumTable{ 
+	margin:0 auto;
+}
+#stadiumTable th{
+	font-size:large;
+	text-align: center;
+	width:120px;
+	padding:10px 0 10px 0;
+	border-style: none;
+	border-top:2px solid #BDBDBD;
+	border-bottom:2px solid #BDBDBD;
+}
+#stadiumPic{
+	width:200px;
+}
 
 
   </style>
@@ -259,18 +274,17 @@ function controller(target) {
  }); 
  </script> 
  <div class="page-main-style">
-	<br> 
 <div>
-	<h2>경기장 상세보기</h2>
+	<h2><b>경기장 상세보기</b></h2> 
+	
 	<input type="hidden" value="${stadium.s_seq}" id="stadiumSeq">
-	<table>
+	<table id="stadiumTable">
 	<tr>
-		<th>경기장사진</th>
-		<th>경기장이름</th>
+		<th class="stadiumPic">경기장사진</th>
+		<th>명칭</th>
 		<th class="asd">종목</th>
-		<th>경기장지역</th>
-		<th>상세주소</th>
-		<th>경기장등록일</th>
+		<th>지역</th>
+		<th>등록일</th>
 	</tr>
 	
 		<tr>
@@ -298,8 +312,11 @@ function controller(target) {
 			<td>${stadium.s_name}</td>
 			<td>${stadium.s_type }</td>
 			<td>${stadium.s_address1}</td>
-			<td>${stadium.s_address2}</td>
 			<td>${stadium.s_regdate}</td>
+		</tr>
+		<tr style="border-top:1px dashed #BDBDBD;">
+			<td style="font-size:large;"><b>상세주소</b></td>
+			<td rowspan="4">${stadium.s_address2}</td>
 		</tr>
 		
 	</table>
@@ -316,18 +333,25 @@ function controller(target) {
 	<div id="calendar"></div>
 </div>
 <div>
-
+	<c:if test="${tmasterCount > 0 }">
 		<select id="t_name">
 		<c:forEach var="list" items="${t_name}">
 				<option>${list.t_name}</option> 
 	
 		</c:forEach>
 		</select>
+	</c:if>
+	<c:if test="${tmasterCount == 0 }">
+		<div style="height:200px;"><h4>팀마스터로 지정된 팀이 없습니다.<br>팀마스터만이 경기장을 예약할 수 있습니다.</h4></div>
+	</c:if>
 </div>
+<c:if test="${tmasterCount > 0 }">
 <div id="output"  >
+	
  
 </div>
-  
+</c:if>
+
 	
 </div>
   

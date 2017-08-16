@@ -128,13 +128,16 @@ public class StadiumController {
 		StadiumCommand stadium = stadiumService.selectStadium(s_seq);
 		String id = (String)session.getAttribute("user_id");
 		Map<String, Object> map = new HashMap<String, Object>();
-
-		List<TeamCommand> t_name = teamService.listMaster(id);
-		
+		int tmasterCount = teamService.countMasterTeam(id);
+		List<TeamCommand> t_name = null;
+		if(tmasterCount > 0){
+			t_name = teamService.listMaster(id);
+		}
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("stadiumDetail");
 		mav.addObject("stadium",stadium);
 		mav.addObject("t_name",t_name);
+		mav.addObject("tmasterCount",tmasterCount);
 		return mav;
 	}
 	

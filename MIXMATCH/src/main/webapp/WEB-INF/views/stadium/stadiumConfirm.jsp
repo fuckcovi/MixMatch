@@ -6,7 +6,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/stadium/book.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/layout222.css" rel="stylesheet">
 <div class="page-main-style">
-	<h2>경기장 예약 확인 - 팀마스터인 팀만 보여짐</h2>
+	<h2><b>경기장 예약 확인</b></h2>
 	<div style="margin:0 auto;overflow-y: auto;">
 	<c:if test="${teamCountMaster>0 }">    
 		<ul style="list-style: none;margin: 0 auto;height:70px; width:750px;padding:0;"  id="teamBookList" >
