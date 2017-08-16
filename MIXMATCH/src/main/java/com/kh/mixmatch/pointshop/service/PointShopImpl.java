@@ -66,9 +66,9 @@ public class PointShopImpl implements PointShopService {
 	}
 
 	@Override
-	public List<PointShopCartCommand> cart() {
+	public List<PointShopCartCommand> cart(String id) {
 		
-		return pointShopMapper.cart();
+		return pointShopMapper.cart(id);
 	}
 
 }

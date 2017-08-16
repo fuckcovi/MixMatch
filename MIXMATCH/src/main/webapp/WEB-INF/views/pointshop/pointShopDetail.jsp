@@ -4,7 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/point.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/point/point.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/pointshop.css">
 <div class="page-main-style">
  <h2>상품 상세정보</h2>
@@ -51,7 +51,7 @@
                                     <option value="${i}">${i}</option>
                                 </c:forEach>
                             </select>&nbsp;개
-                            <input type="button" id="purchase" value="구매">
+                            <input type="button" id="purchase" value="구매" >
                             <a href="${pageContext.request.contextPath}/point/pointHome.do">상품목록</a><br>
                 			<c:if test="${product.id==user_id}">
                 			<input type="button" id="update" value="상품수정" onclick="location.href='${pageContext.request.contextPath}/point/PointUpdate.do?p_seq=${product.p_seq}'">

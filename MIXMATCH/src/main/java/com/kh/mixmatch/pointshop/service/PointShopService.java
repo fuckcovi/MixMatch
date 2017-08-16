@@ -25,11 +25,11 @@ public interface PointShopService {
 	public void delete(Integer p_seq);
 	
 	@Transactional(readOnly=true)
-	public List<PointShopCartCommand> cart();
+	public List<PointShopCartCommand> cart(String id);
 	public void cart_insert(PointShopCartCommand pointcart);
 	public void point_update(Map<String,Object> map);
 	
-	//È¸¿øµî±Þ °Ë»ö
+	//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
 	@Transactional(readOnly=true)
 	public MemberCommand selectMemberInfo(String id);
 }

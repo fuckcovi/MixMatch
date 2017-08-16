@@ -107,12 +107,12 @@ public class PointShopController {
 	
 	//���ų���
 	@RequestMapping("/point/pointShopCart.do")
-	public String pointshopcart(Model model){
-		
+	public String pointshopcart(Model model,HttpSession session){
+		String user_id = (String)session.getAttribute("user_id");
 		
 		List<PointShopCartCommand> cart;
 		
-		cart = pointShopService.cart();
+		cart = pointShopService.cart(user_id);
 		
 		model.addAttribute("cart", cart);
 		

@@ -55,7 +55,7 @@
 		ORDER BY m_seq DESC
 	</select>	
 	
-	<select id="matchCountFinish" parameterType="map" resultType="integer">
+	<select id="MainmatchCountFinish" parameterType="map" resultType="integer">
 		SELECT count(*) FROM g_match
 		<where>
 			<if test="board == 'score'">

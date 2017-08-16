@@ -15,7 +15,7 @@ import com.kh.mixmatch.pointshop.domain.PointShopCommand;
 public interface PointShopMapper {
 
 	
-	//»óÇ°¸ñ·ÏÁ¤º¸
+	//ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public List<PointShopCommand> list(Map<String,Object> map);
 	public int getRowCount(Map<String,Object> map);
 	@Insert("INSERT INTO g_point_product(p_seq,p_grade,p_name,p_context,p_price,upload_file,p_file_name,id) "
@@ -28,18 +28,18 @@ public interface PointShopMapper {
 	@Delete("delete from g_point_product where p_seq=#{p_seq}")
 	public void delete(Integer p_seq);
 	
-	//±¸¸Å³»¿ª
-	@Select("SELECT * FROM g_pointshop_cart ORDER BY p_date desc")
-	public List<PointShopCartCommand> cart();
-	//±¸¸Åµî·Ï
+	//ï¿½ï¿½ï¿½Å³ï¿½ï¿½ï¿½
+	@Select("SELECT * FROM g_pointshop_cart WHERE id=#{id} ORDER BY p_date desc")
+	public List<PointShopCartCommand> cart(String id);
+	//ï¿½ï¿½ï¿½Åµï¿½ï¿½
 	@Insert("INSERT INTO g_pointshop_cart (p_seq,id,p_name,amount,p_price,p_date) VALUES(g_pointshop_cart_seq.nextval,#{id},#{p_name},#{amount},#{p_price},sysdate)")
 	public void cart_insert(PointShopCartCommand pointcart);
-	//±¸¸Å ½Ã Æ÷ÀÎÆ® Â÷°¨
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 	@Update("UPDATE g_member SET point = point-${p_price} WHERE id=#{id}")
 	public void point_update(Map<String,Object> map);
 	
 	
-	//È¸¿øµî±Þ °Ë»ö
+	//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
 	@Select("SELECT * FROM g_member WHERE id=#{id}")
 	public MemberCommand selectMemberInfo(String id);
 	
