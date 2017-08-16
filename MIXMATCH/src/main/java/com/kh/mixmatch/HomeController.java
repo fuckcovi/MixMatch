@@ -102,7 +102,7 @@ public class HomeController {
 		matchBmap.put("type", "야구");
 		matchBmap.put("board", "score");
 		
-		int matchBResultCount = teamService.matchCountFinish(matchBmap);
+		int matchBResultCount = teamService.MainmatchCountFinish(matchBmap);
 		
 		List<MatchCommand> matchBResultlist = null;
 		if (matchBResultCount > 0) {
@@ -113,7 +113,7 @@ public class HomeController {
 		matchBKmap.put("type", "농구");
 		matchBKmap.put("board", "score");
 		
-		int matchBKResultCount = teamService.matchCountFinish(matchBKmap);
+		int matchBKResultCount = teamService.MainmatchCountFinish(matchBKmap);
 		
 		List<MatchCommand> matchBKResultlist = null;
 		if (matchBKResultCount > 0) {
@@ -124,7 +124,7 @@ public class HomeController {
 		matchFmap.put("type", "축구");
 		matchFmap.put("board", "score");
 		
-		int matchFResultCount = teamService.matchCountFinish(matchFmap);
+		int matchFResultCount = teamService.MainmatchCountFinish(matchFmap);
 		
 		List<MatchCommand> matchFResultlist = null;
 		if (matchFResultCount > 0) {
