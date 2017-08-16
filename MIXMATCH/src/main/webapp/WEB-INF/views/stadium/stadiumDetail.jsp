@@ -49,6 +49,17 @@
 .tableBookingList th, .tableBookingList td{
 	height:40px;
 }
+#output{
+	height:200px;
+	width:100%;
+	border:1px solid;
+
+	text-align: center;	
+}
+#output table{
+	width:100%;
+}
+
 
   </style>
 <script type='text/javascript'>//<![CDATA[
@@ -168,15 +179,23 @@ function controller(target) {
  <script type="text/javascript">
  $(document).ready(function(){
 
-	 
+	$(document).on("mouseover",".date-cell:not(.not-this-month) div",function(){
+		$(this).parent().css("background-color",'#f98e8e');
+	});
+	$(document).on("mouseout",".date-cell div",function(){
+		$(this).parent().css("background-color",'white');
+		$(".not-this-month").css("background-color","#ddd");		
+	});
+	
+	
 	 $(document).on("click",".resBtn input", function(){
 		 location.href="${pageContext.request.contextPath }/stadium/stadiumBooking.do?s_seq="+$(this).attr("s_seq")+"&b_regdate="+$(this).attr("b_regdate")+"&b_time="+$(this).attr("b_time")+"&t_name="+$("#t_name option:selected").val();
 	 });
 	 
 	 var bookList;
 	 
-	 $(document).on("click",".date-cell",function(){
-
+	 $(document).on("click",".date-cell:not(.not-this-month)",function(){ 
+		
 		var regdate =$(this).attr("dataPick"); 
 		var seq = $("#stadiumSeq").val();
 		$("#loading").show();
@@ -201,10 +220,18 @@ function controller(target) {
 					output += "	</tr>";
 					
 					$(bookList).each(function(index,item){	
+						var time="";
+						if(item.b_time=="1타임"){ time ="8시 ~ 10시30분";}
+						if(item.b_time=="2타임"){time ="10시30분 ~ 13시";}
+						if(item.b_time=="3타임"){time ="13시 ~ 15시30분";}
+						if(item.b_time=="4타임"){time ="15시30분 ~ 18시";}
+						var check = "";
+						if(item.b_check==0){ check = "O";	}
+						if(item.b_check==1 || item.b_check==2){ check = "X";	}
 						output += "	<tr id='"+item.b_time+"'>";
 						output += "		<td>"+item.b_regdate+"</td>";
-						output += "		<td>"+item.b_time+"</td>";
-						output += "		<td>"+item.b_check+"</td>";
+						output += "		<td>"+item.b_time+" ("+time	+")</td>";
+						output += "		<td>"+check+"</td>";
 						if(item.b_check == 0){
 							output += "	<td class='resBtn'><input type='button' s_seq='"+seq+"' b_time='"+item.b_time+"' b_regdate='"+regdate+"' value='예약하기'></td>";
 						}
@@ -297,7 +324,7 @@ function controller(target) {
 		</c:forEach>
 		</select>
 </div>
-<div id="output" style="border:1px solid red;width:400px;height:200px;margin: 0 auto;">
+<div id="output"  >
  
 </div>
   

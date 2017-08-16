@@ -124,6 +124,8 @@
 	<!--  로그인 여부 체크 인터셉터 -->
 	<mvc:interceptors> 
 		<mvc:interceptor>
+		
+			<mvc:mapping path="/board/list.do"/>
 			<mvc:mapping path="/board/write.do"/>
 			<mvc:mapping path="/member/pwUpdate.do"/>
 			<mvc:mapping path="/member/pwCheck.do"/>
@@ -136,6 +138,10 @@
 			<mvc:mapping path="/mypage/main.do"/>
 			<mvc:mapping path="/teamboard/teamboard.do"/>
 			<mvc:mapping path="/match/matchDetail.do"/>
+			<mvc:mapping path="/stadium/stadiumDetail.do"/>
+			<mvc:mapping path="/stadium/stadiumConfirm.do"/>
+			<mvc:mapping path="/point/pointShopCart.do"/>
+			<mvc:mapping path="/point/purchase.do"/>
 			<beans:bean class="com.kh.mixmatch.member.interceptor.LoginCheckInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>
