@@ -5,9 +5,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/rank.css">
 <div class="page-main-style">
-	<h3>우리팀통합랭킹</h3>
+	<h3><b>우리팀통합랭킹</b></h3>
 	
-	<table >
+	<table id="myteamRank">
 		<tr>
 			<th>팀로고</th>
 			<th>팀명</th>
@@ -15,8 +15,8 @@
 			<th>무</th>
 			<th>패</th>
 			<th>종목</th>
-			<th>팀생성일</th>
-			<th>팀연고지</th>
+			<th>생성일</th>
+			<th>연고지</th>
 			<th>팀마스터</th>
 		</tr>
 		<tr>
@@ -46,7 +46,7 @@
 			<td>${team.id}</td>
 		</tr>
 	</table>
-	<h3>우리팀원통합랭킹</h3> 
+	<h3><b>우리팀원통합랭킹</b></h3> 
 	<table class="ranking">
 		<c:if test="${team.t_type eq '농구'}">
 		<tr>
@@ -84,7 +84,7 @@
 			</c:if>
 			<c:if test="${teamMemCount == 0}">
 				<tr>
-					<td colspan="9">${team.t_name}의 회원기록이 존재하지 않습니다.</td>
+					<td colspan="9" style="font-size:large; "><b>팀 ${team.t_name}의 회원기록이 존재하지 않습니다.</b></td>
 				</tr>
 			</c:if>
 		</c:if>
@@ -134,7 +134,7 @@
 			</c:if>
 			<c:if test="${teamMemCount == 0}">
 				<tr>
-					<td colspan="14">${team.t_name}의 회원기록이 존재하지 않습니다.</td>
+					<td colspan="14" style="font-size:large; "><b>팀 ${team.t_name}의 회원기록이 존재하지 않습니다.</b></td>
 				</tr>
 			</c:if>
 		</c:if>
@@ -170,7 +170,7 @@
 			</c:if>
 			<c:if test="${teamMemCount == 0}">
 				<tr>
-					<td colspan="7">${team.t_name}의 회원기록이 존재하지 않습니다.</td>
+					<td colspan="7" style="font-size:large; "><b>팀 ${team.t_name}의 회원기록이 존재하지 않습니다.</b></td>
 				</tr>
 			</c:if>
 		</c:if>

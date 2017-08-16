@@ -43,7 +43,6 @@ $(document).ready(function(){
 			}if(!$(".fplan tr").hasClass("plan")){
 				$(".fplan .tablenull").show();
 			}
-			alert("전체보기");
 		}else{
 			$(".bookList tr").hide();
 			$(".tablehead").show();

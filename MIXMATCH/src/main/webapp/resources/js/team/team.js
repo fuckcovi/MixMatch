@@ -72,7 +72,6 @@ $(document).ready(function(){
 			}if(!$(".fplan tr").hasClass("plan")){
 				$(".fplan .tablenull").show();
 			}
-			alert("전체보기");
 		}else{
 			$(".scheduleList tr").hide();
 			$(".tablehead").show();
