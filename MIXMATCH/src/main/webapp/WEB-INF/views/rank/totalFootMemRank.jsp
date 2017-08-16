@@ -43,7 +43,7 @@
 					<img src="${pageContext.request.contextPath}/resources/images/profile.jpg" style="width:100px;height:100px;">
 				</c:if> 
 				</td>
-				<td><a href="mypage/main.do?id=${list.id}">${list.name}</a></td>
+				<td><a href="/mixmatch/mypage/main.do?id=${list.id}">${list.name}</a></td>
 				<td>${list.f_shoot}</td>
 				<td>${list.f_assist}</td>
 				<td>${list.f_goal}</td>
