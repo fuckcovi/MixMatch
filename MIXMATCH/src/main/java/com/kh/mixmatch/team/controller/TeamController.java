@@ -33,6 +33,7 @@ import com.kh.mixmatch.team.service.TeamMemService;
 import com.kh.mixmatch.team.service.TeamService;
 import com.kh.mixmatch.team.service.TotalTypeService;
 import com.kh.mixmatch.util.PagingUtil;
+import com.kh.mixmatch.util.TeamPagingUtil;
 
 @Controller
 public class TeamController {
@@ -68,7 +69,7 @@ public class TeamController {
 		map.put("keyword",t_type);
 		int count = teamService.getTeamCount(map);
 
-		PagingUtil page = new PagingUtil(currentPage, count, rowCount, pageCount, "team.do?t_type="+t_type);
+		TeamPagingUtil page = new TeamPagingUtil(currentPage, count, rowCount, pageCount, "team.do?t_type="+t_type);
 		map.put("start", page.getStartCount());
 		map.put("end",page.getEndCount());
 		
@@ -630,7 +631,7 @@ public class TeamController {
 		int count = teamMemService.getMemCount();
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		PagingUtil page = new PagingUtil(currentPage, count, totalProwCount, totalPpageCount, "totalRank.do");
+		TeamPagingUtil page = new TeamPagingUtil(currentPage, count, totalProwCount, totalPpageCount, "totalRank.do");
 		map.put("start", page.getStartCount());
 		map.put("end",page.getEndCount());
 		
@@ -655,7 +656,7 @@ public class TeamController {
 		map.put("keyfield","teamtype");
 		int count = teamService.getTeamCount(map);
 
-		PagingUtil page = new PagingUtil(currentPage, count, totalProwCount, totalPpageCount, "totalBaseRank.do?order="+order);
+		TeamPagingUtil page = new TeamPagingUtil(currentPage, count, totalProwCount, totalPpageCount, "totalBaseRank.do?order="+order);
 		map.put("start", page.getStartCount());
 		map.put("end",page.getEndCount());
 		
@@ -683,7 +684,7 @@ public class TeamController {
 		map.put("keyword","야구");
 		int count = teamMemService.getMemRecordCount(map);
 		
-		PagingUtil page = new PagingUtil(currentPage, count, totalProwCount, totalPpageCount, "totalBaseMemRank.do?morder="+morder);
+		TeamPagingUtil page = new TeamPagingUtil(currentPage, count, totalProwCount, totalPpageCount, "totalBaseMemRank.do?morder="+morder);
 		map.put("start", page.getStartCount());
 		map.put("end",page.getEndCount());
 		
@@ -705,7 +706,7 @@ public class TeamController {
 		map.put("keyfield","teamtype");
 		int count = teamService.getTeamCount(map);
 		
-		PagingUtil page = new PagingUtil(currentPage, count, totalProwCount, totalPpageCount, "totalBasketRank.do");
+		TeamPagingUtil page = new TeamPagingUtil(currentPage, count, totalProwCount, totalPpageCount, "totalBasketRank.do");
 		map.put("start", page.getStartCount());
 		map.put("end",page.getEndCount());
 		
@@ -731,7 +732,7 @@ public class TeamController {
 		map.put("keyword","농구");
 		int count = teamMemService.getMemRecordCount(map);
 		
-		PagingUtil page = new PagingUtil(currentPage, count, totalProwCount, totalPpageCount, "totalBasketMemRank.do?morder="+morder);
+		TeamPagingUtil page = new TeamPagingUtil(currentPage, count, totalProwCount, totalPpageCount, "totalBasketMemRank.do?morder="+morder);
 		map.put("start", page.getStartCount());
 		map.put("end",page.getEndCount());
 		
@@ -753,7 +754,7 @@ public class TeamController {
 		map.put("keyfield","teamtype");
 		int count = teamService.getTeamCount(map);
 		
-		PagingUtil page = new PagingUtil(currentPage, count, totalProwCount, totalPpageCount, "totalFootRank.do");
+		TeamPagingUtil page = new TeamPagingUtil(currentPage, count, totalProwCount, totalPpageCount, "totalFootRank.do");
 		map.put("start", page.getStartCount());
 		map.put("end",page.getEndCount());
 		
@@ -778,7 +779,7 @@ public class TeamController {
 		map.put("keyword","축구");
 		int count = teamMemService.getMemRecordCount(map);
 		
-		PagingUtil page = new PagingUtil(currentPage, count, totalProwCount, totalPpageCount, "totalFootMemRank.do?morder="+morder);
+		TeamPagingUtil page = new TeamPagingUtil(currentPage, count, totalProwCount, totalPpageCount, "totalFootMemRank.do?morder="+morder);
 		map.put("start", page.getStartCount());
 		map.put("end",page.getEndCount());
 		

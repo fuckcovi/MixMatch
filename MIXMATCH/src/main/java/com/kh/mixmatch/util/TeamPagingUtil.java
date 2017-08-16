@@ -1,7 +1,7 @@
 
 package com.kh.mixmatch.util;
 
-public class PagingUtil {
+public class TeamPagingUtil {
 	private int startCount;	 // �� ���������� ������ �Խñ��� ���� ��ȣ
 	private int endCount;	 // �� ���������� ������ �Խñ��� �� ��ȣ
 	private StringBuffer pagingHtml;// ������ ǥ�� ���ڿ�
@@ -14,19 +14,19 @@ public class PagingUtil {
 	 * pageUrl : ȣ�� ������ url
 	 * addKey : �ΰ����� key ���� ���� null ó�� (&num=23�������� ������ ��)
 	 * */
-	public PagingUtil(int currentPage, int totalCount, int rowCount,
+	public TeamPagingUtil(int currentPage, int totalCount, int rowCount,
 			int pageCount, String pageUrl) {
 		this(null,null,currentPage,totalCount,rowCount,pageCount,pageUrl,null);
 	}
-	public PagingUtil(int currentPage, int totalCount, int rowCount,
+	public TeamPagingUtil(int currentPage, int totalCount, int rowCount,
 			int pageCount, String pageUrl, String addKey) {
 		this(null,null,currentPage,totalCount,rowCount,pageCount,pageUrl,addKey);
 	}
-	public PagingUtil(String keyfield, String keyword, int currentPage, int totalCount, int rowCount,
+	public TeamPagingUtil(String keyfield, String keyword, int currentPage, int totalCount, int rowCount,
 			int pageCount,String pageUrl) {
 		this(keyfield,keyword,currentPage,totalCount,rowCount,pageCount,pageUrl,null);
 	}
-	public PagingUtil(String keyfield, String keyword, int currentPage, int totalCount, int rowCount,
+	public TeamPagingUtil(String keyfield, String keyword, int currentPage, int totalCount, int rowCount,
 			int pageCount,String pageUrl,String addKey) {
 		
 		if(addKey == null) addKey = ""; //�ΰ�Ű�� null �϶� ""ó��
@@ -54,22 +54,22 @@ public class PagingUtil {
 		pagingHtml = new StringBuffer();
 		if (currentPage > pageCount) {
 			if(keyword==null){//�˻� �̻���
-				/* if(pageUrl.contains("?")){
+				 if(pageUrl.contains("?")){
 					 pagingHtml.append("<a href="+pageUrl+"&pageNum="+ (startPage - 1) + addKey +">");
 				 }else{
 					 pagingHtml.append("<a href="+pageUrl+"?pageNum="+ (startPage - 1) + addKey +">");
 				 }
-*/
+
 
 			
-				pagingHtml.append("<a href="+pageUrl+"?pageNum="+ (startPage - 1) + addKey +">");
+				/*pagingHtml.append("<a href="+pageUrl+"?pageNum="+ (startPage - 1) + addKey +">");*/
 			}else{
-				/*if(pageUrl.contains("?")){
+				if(pageUrl.contains("?")){
 					pagingHtml.append("<a href="+pageUrl+"&keyfield="+keyfield+"&keyword="+keyword+"&pageNum="+ (startPage - 1) + addKey +">");
 				 }else{
 					 pagingHtml.append("<a href="+pageUrl+"?keyfield="+keyfield+"&keyword="+keyword+"&pageNum="+ (startPage - 1) + addKey +">");
-				 }*/
-				pagingHtml.append("<a href="+pageUrl+"?keyfield="+keyfield+"&keyword="+keyword+"&pageNum="+ (startPage - 1) + addKey +">");
+				 }
+				/*pagingHtml.append("<a href="+pageUrl+"?keyfield="+keyfield+"&keyword="+keyword+"&pageNum="+ (startPage - 1) + addKey +">");*/
 			}
 			pagingHtml.append("이전");
 			pagingHtml.append("</a>");
@@ -86,19 +86,19 @@ public class PagingUtil {
 				pagingHtml.append("</font></b>");
 			} else {
 				if(keyword==null){//�˻� �̻���
-					/*if(pageUrl.contains("?")){
+					if(pageUrl.contains("?")){
 						pagingHtml.append("&nbsp;<a href='"+pageUrl+"&pageNum=");
 					 }else{
 						 pagingHtml.append("&nbsp;<a href='"+pageUrl+"?pageNum=");
-					 }*/
-					pagingHtml.append("&nbsp;<a href='"+pageUrl+"?pageNum=");
+					 }
+					/*pagingHtml.append("&nbsp;<a href='"+pageUrl+"?pageNum=");*/
 				}else{
-					/*if(pageUrl.contains("?")){
+					if(pageUrl.contains("?")){
 						pagingHtml.append("&nbsp;<a href='"+pageUrl+"&keyfield="+keyfield+"&keyword="+keyword+"&pageNum=");
 					 }else{
 						 pagingHtml.append("&nbsp;<a href='"+pageUrl+"?keyfield="+keyfield+"&keyword="+keyword+"&pageNum=");
-					 }*/
-					pagingHtml.append("&nbsp;<a href='"+pageUrl+"?keyfield="+keyfield+"&keyword="+keyword+"&pageNum=");
+					 }
+					/*pagingHtml.append("&nbsp;<a href='"+pageUrl+"?keyfield="+keyfield+"&keyword="+keyword+"&pageNum=");*/
 				}
 				pagingHtml.append(i);
 				pagingHtml.append(addKey+"'>");
@@ -111,19 +111,19 @@ public class PagingUtil {
 		// ���� block ������
 		if (totalPage - startPage >= pageCount) {
 			if(keyword==null){//�˻� �̻���
-				/*if(pageUrl.contains("?")){
+				if(pageUrl.contains("?")){
 					pagingHtml.append("<a href="+pageUrl+"&pageNum="+ (endPage + 1) + addKey +">");
 				 }else{
 					 pagingHtml.append("<a href="+pageUrl+"?pageNum="+ (endPage + 1) + addKey +">");
-				 }*/
-				pagingHtml.append("<a href="+pageUrl+"?pageNum="+ (endPage + 1) + addKey +">");
+				 }
+				/*pagingHtml.append("<a href="+pageUrl+"?pageNum="+ (endPage + 1) + addKey +">");*/
 			}else{
-				/*if(pageUrl.contains("?")){
+				if(pageUrl.contains("?")){
 					pagingHtml.append("<a href="+pageUrl+"&keyfield="+keyfield+"&keyword="+keyword+"&pageNum="+ (endPage + 1) + addKey +">");
 				 }else{
 					 pagingHtml.append("<a href="+pageUrl+"?keyfield="+keyfield+"&keyword="+keyword+"&pageNum="+ (endPage + 1) + addKey +">");
-				 }*/
-				pagingHtml.append("<a href="+pageUrl+"?keyfield="+keyfield+"&keyword="+keyword+"&pageNum="+ (endPage + 1) + addKey +">");
+				 }
+				/*pagingHtml.append("<a href="+pageUrl+"?keyfield="+keyfield+"&keyword="+keyword+"&pageNum="+ (endPage + 1) + addKey +">");*/
 			}
 			pagingHtml.append("다음");
 			pagingHtml.append("</a>");
