@@ -53,7 +53,7 @@
 				<td align="left"> ${match.m_place}</td>
 			</tr>
 		</table><br><br>
-		<input type="button" value="개인기록+" class="btn" onclick="location.href='${pageContext.request.contextPath}/matchMemRecordInsert.do?m_seq=${match.m_seq}'">
+		<input type="button" value="개인기록+" class="btn" onclick="location.href='${pageContext.request.contextPath}/team/matchMemRecordInsert.do?m_seq=${match.m_seq}'">
 		<input type="button" value="목록으로" class="btn" onclick="location.href='scoreBoard.do'">
 	</div>
 	<br><hr class="style">
