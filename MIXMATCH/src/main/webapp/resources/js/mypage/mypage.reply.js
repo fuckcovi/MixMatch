@@ -175,7 +175,7 @@ $(document).ready(function(){
 							output += '<div class="reply-list" id="'+item.h_re_seq+'">';
 							output += ' <table id="tbl">';
 							output += '   <tr>';
-							output += ' 	<td>'+item.id+'</td>';
+							output += ' 	<td style="font-weight:bold";>'+item.id+'</td>';
 							output += '     <td id="re_content">'+item.h_re_content+'</td>'; 	  		
 							output += '   </tr>'; 	
 							output += '   <tr>'; 
@@ -185,13 +185,16 @@ $(document).ready(function(){
 							
 							if($('#user_id').val() && $('#user_id').val() == item.id){
 								//로그인한 id가 글 작성자 id와 같은 경우
+								output += ' <div id="modi_btn">';
 								output += '	<input type="button" value="수정" data-replyNum="'+item.h_re_seq+'" data-replyId="'+item.id+'" class="reply-modify">';
 								output += '	<input type="button" value="삭제" data-replyNum="'+item.h_re_seq+'" data-replyId="'+item.id+'" class="reply-delete">';
+								output += ' </div>';
 							}
 							
 							output += '   	</td>';
 							output += '   </tr>'; 
 							output += '   </div>'; 
+							output += ' 			<hr size="1" noshade>';
 							output += '			</div>';
 							
 							
@@ -269,23 +272,23 @@ $(document).ready(function(){
 			$('#re_first .letter-count').text('300/300');
 		}
 		
-		//textarea에 내용 입력시 글자수 체크
+		//h_re_content에 내용 입력시 글자수 체크
 		$(document).on('keyup','#h_re_content'+h_seq,function(){
 			//남은 글자수를 구함
 			var inputLength = $(this).val().length;		//this는 textarea
 			
 			if (inputLength > 300) {		//300자를 넘어선 경우
-				$(this).val($(this).val().sutbstrin(0,300));
+				$(this).val($(this).val().substring(0,300));
 			}else{		//300자 이하인 경우
 				var remain = 300 - inputLength;
 				remain += '/300';
 				if ($(this).attr('id') == 'h_re_content'+h_seq) {
 					//등록폼 글자수
 					$('#re_first .letter-count'+h_seq).text(remain);
-				}else{
+				}/*else{
 					//수정폼 글자수
-					$('#mre_first .letter-count'+h_seq).text(remain);
-				}
+					$('#mre_first .letter-count'+h_re_seq).text(remain);
+				}*/
 			}
 		});
 		
@@ -308,7 +311,8 @@ $(document).ready(function(){
 		var modifyUI = 	'<form id="mre_form">';
 			modifyUI +=	' <input type="hidden" name="h_re_seq" id="reply_num" value="'+reply_num+'">';
 			modifyUI +=	' <input type="hidden" name="id" id="muser_id" value="'+id+'">';
-			modifyUI += ' <input type="text" name="h_re_content" id="mh_re_content" value="'+reply_content+'">';
+			modifyUI += ' <input type="text" name="h_re_content" id="mh_re_content'+reply_num+'" value="'+reply_content+'">';
+			modifyUI += ' <div id="mre_first"><span class="letter-count'+reply_num+'">300/300</span></div>';
 			modifyUI += ' <div id="mre_second" class="align-right">';
 			modifyUI += ' 	<input type="submit" value="수정">';
 			modifyUI += ' 	<input type="button" value="취소" class="re-reset">';
@@ -324,9 +328,39 @@ $(document).ready(function(){
 		//수정폼을 수정하고자하는 데이터가 있는 div에 노출
 		$('#reply'+reply_num).append(modifyUI);	
 		
+		
+		
+		
+		
+		
+		//h_re_content에 내용 입력시 글자수 체크
+		$(document).on('keyup','#mh_re_content'+reply_num,function(){
+			//남은 글자수를 구함
+			var inputLength = $(this).val().length;		//this는 mh_re_content
 			
-	});
-	
+			if (inputLength > 300) {		//300자를 넘어선 경우
+				$(this).val($(this).val().substring(0,300));
+			}else{		//300자 이하인 경우
+				var remain = 300 - inputLength;
+				remain += '/300';
+					//수정폼 글자수
+					$('#mre_first .letter-count'+reply_num).text(remain);
+			}
+		});	
+			
+		//입력한 글자수 셋팅
+		var inputLength = $('#mh_re_content'+reply_num).val().length;
+		var remain = 300 - inputLength;
+		remain += '/300';
+		
+		//문서 객체에 반영
+		$('#mre_first .letter-count'+reply_num).text(remain);
+		
+		});	
+		
+		
+		
+		
 	//수정폼에서 취소 버튼 클릭시 수정폼 초기화
 	$(document).on('click','.re-reset',function(){
 		initModifyForm();
@@ -365,7 +399,7 @@ $(document).ready(function(){
 					alert('로그인해야 수정할 수 있습니다.');
 				}else if (data.result == 'success') {
 					//변경한 데이터로 UI 갱신
-					$('#'+replyNum+' #tbl tr td:eq(1)').text($('#mh_re_content').val());
+					$('#'+replyNum+' #tbl tr td:eq(1)').text($('#mh_re_content'+replyNum).val());
 					
 					//수정폼 초기화
 					initModifyForm();
@@ -385,11 +419,7 @@ $(document).ready(function(){
 		
 	});
 	
-	
-	
-	
-	
-	
+
 	//댓글삭제
 	$(document).on('click','.reply-delete',function(){
 		//댓글번호
@@ -423,3 +453,4 @@ $(document).ready(function(){
 		});
 	});
 });
+

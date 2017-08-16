@@ -34,14 +34,14 @@
 				<input type="button" value="내 정보" onclick="location.href='${pageContext.request.contextPath}/member/detail.do'" class="btn btn-info" style="width: 250px;"/>
 			</c:if>
 		</div><br>
-		<ul style="list-style: none; margin-left: 10px; text-align: left; font-size: 25px; font-family: Comic Sans MS,fantasy;">
+		<ul style="list-style: none; margin-left: 10px; text-align: left; font-size: 17px; font-family: Comic Sans MS,fantasy;">
 			<li>이름 : ${member.name}</li>
 			<li>지역 : ${member.address}</li>
 			<li>등급 : ${member.auth}</li>
 			<li>포인트 : ${member.point}</li>
 		</ul><br>
 
-		<ul class="nav nav-tabs" style="font-size: 25px;">
+		<ul class="nav nav-tabs" style="font-size: 17px; margin-left: 25px;">
 			<li class="active"><a href="#tab4" data-toggle="tab">축구</a></li>
 			<li><a href="#tab5" data-toggle="tab">야구</a></li>
 			<li><a href="#tab6" data-toggle="tab">농구</a></li>
@@ -54,13 +54,15 @@
 					<p class="p_size">최근 축구기록이 없습니다.</p>
 				</div>
 			</c:if>	
+			
+			<c:if test="${football != null}">
 				<div class="tab-pane active fade in" id="tab4">
 					<p class="p_size">소속팀명 : ${football.t_name}</p>
 					<p class="p_size">골 : ${football.f_goal}</p>
 					<p class="p_size">어시스트 : ${football.f_assist}</p>
 					<p class="p_size">공격P : ${football.f_attack}</p>
 				</div>
-				
+			</c:if>	
 			<!-- 야구 -->	
 			<c:if test="${baseball == null}">
 				<div class="tab-pane fade" id="tab5">
@@ -174,7 +176,7 @@
 			  fn:endsWith(mypage.h_file_name,'.PNG')}">
 			<!-- String클래스에 있는 메서드 endsWith는 마지막거만 체크해. 만약 .jpg가 있으면 true를 반환 -->
 			<div class="align-center">
-				<img src="imageView2.do?seq=${mypage.h_seq}" style="max-width: 300px">
+				<img src="imageView2.do?seq=${mypage.h_seq}" style="max-width: 400px">
 			</div>
 		</c:if>
 		
@@ -262,7 +264,7 @@
 			  fn:endsWith(mypage.h_file_name,'.PNG')}">
 			<!-- String클래스에 있는 메서드 endsWith는 마지막거만 체크해. 만약 .jpg가 있으면 true를 반환 -->
 			<div class="align-center">
-				<img src="imageView2.do?seq=${mypage.h_seq}" style="max-width: 300px">
+				<img src="imageView2.do?seq=${mypage.h_seq}" style="max-width: 400px">
 			</div>
 		</c:if>
 		

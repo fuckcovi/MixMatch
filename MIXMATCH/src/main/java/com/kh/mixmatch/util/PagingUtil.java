@@ -1,4 +1,17 @@
-
+/*******************************************************************************
+ * ���ϸ� : PagingUtil.java
+ * �ۼ��� : ��븸
+ * �ۼ����� : 2013. 01. 01
+ *
+ * Ŭ���� ����: ����¡
+ * =============================================================================
+ * ��������
+ * NO   ��������			������		��������  
+ * 001. 2013. 01. 01	��븸  		�����ۼ�
+ * 002. 2013. 05. 15    ��븸          �پ��� ���ڸ� ó���� �� �ֵ��� ������ �߰�
+ * 003. 2014. 01. 02    ��븸          �˻��� url ���� ���� ����
+ * =============================================================================
+ */
 package com.kh.mixmatch.util;
 
 public class PagingUtil {
@@ -54,24 +67,11 @@ public class PagingUtil {
 		pagingHtml = new StringBuffer();
 		if (currentPage > pageCount) {
 			if(keyword==null){//�˻� �̻���
-				/* if(pageUrl.contains("?")){
-					 pagingHtml.append("<a href="+pageUrl+"&pageNum="+ (startPage - 1) + addKey +">");
-				 }else{
-					 pagingHtml.append("<a href="+pageUrl+"?pageNum="+ (startPage - 1) + addKey +">");
-				 }
-*/
-
-			
 				pagingHtml.append("<a href="+pageUrl+"?pageNum="+ (startPage - 1) + addKey +">");
 			}else{
-				/*if(pageUrl.contains("?")){
-					pagingHtml.append("<a href="+pageUrl+"&keyfield="+keyfield+"&keyword="+keyword+"&pageNum="+ (startPage - 1) + addKey +">");
-				 }else{
-					 pagingHtml.append("<a href="+pageUrl+"?keyfield="+keyfield+"&keyword="+keyword+"&pageNum="+ (startPage - 1) + addKey +">");
-				 }*/
 				pagingHtml.append("<a href="+pageUrl+"?keyfield="+keyfield+"&keyword="+keyword+"&pageNum="+ (startPage - 1) + addKey +">");
 			}
-			pagingHtml.append("이전");
+			pagingHtml.append("����");
 			pagingHtml.append("</a>");
 		}
 		pagingHtml.append("&nbsp;|&nbsp;");
@@ -86,18 +86,8 @@ public class PagingUtil {
 				pagingHtml.append("</font></b>");
 			} else {
 				if(keyword==null){//�˻� �̻���
-					/*if(pageUrl.contains("?")){
-						pagingHtml.append("&nbsp;<a href='"+pageUrl+"&pageNum=");
-					 }else{
-						 pagingHtml.append("&nbsp;<a href='"+pageUrl+"?pageNum=");
-					 }*/
 					pagingHtml.append("&nbsp;<a href='"+pageUrl+"?pageNum=");
 				}else{
-					/*if(pageUrl.contains("?")){
-						pagingHtml.append("&nbsp;<a href='"+pageUrl+"&keyfield="+keyfield+"&keyword="+keyword+"&pageNum=");
-					 }else{
-						 pagingHtml.append("&nbsp;<a href='"+pageUrl+"?keyfield="+keyfield+"&keyword="+keyword+"&pageNum=");
-					 }*/
 					pagingHtml.append("&nbsp;<a href='"+pageUrl+"?keyfield="+keyfield+"&keyword="+keyword+"&pageNum=");
 				}
 				pagingHtml.append(i);
@@ -111,21 +101,11 @@ public class PagingUtil {
 		// ���� block ������
 		if (totalPage - startPage >= pageCount) {
 			if(keyword==null){//�˻� �̻���
-				/*if(pageUrl.contains("?")){
-					pagingHtml.append("<a href="+pageUrl+"&pageNum="+ (endPage + 1) + addKey +">");
-				 }else{
-					 pagingHtml.append("<a href="+pageUrl+"?pageNum="+ (endPage + 1) + addKey +">");
-				 }*/
 				pagingHtml.append("<a href="+pageUrl+"?pageNum="+ (endPage + 1) + addKey +">");
 			}else{
-				/*if(pageUrl.contains("?")){
-					pagingHtml.append("<a href="+pageUrl+"&keyfield="+keyfield+"&keyword="+keyword+"&pageNum="+ (endPage + 1) + addKey +">");
-				 }else{
-					 pagingHtml.append("<a href="+pageUrl+"?keyfield="+keyfield+"&keyword="+keyword+"&pageNum="+ (endPage + 1) + addKey +">");
-				 }*/
 				pagingHtml.append("<a href="+pageUrl+"?keyfield="+keyfield+"&keyword="+keyword+"&pageNum="+ (endPage + 1) + addKey +">");
 			}
-			pagingHtml.append("다음");
+			pagingHtml.append("����");
 			pagingHtml.append("</a>");
 		}
 	}
