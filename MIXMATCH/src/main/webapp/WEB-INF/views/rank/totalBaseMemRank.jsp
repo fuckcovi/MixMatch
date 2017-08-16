@@ -50,7 +50,7 @@
 					<img src="${pageContext.request.contextPath}/resources/images/profile.jpg" style="width:100px;height:100px;">
 				</c:if>
 				</td>
-				<td><a href="mypage/main.do?id=${list.id}">${listMem.name}</a></td>
+				<td><a href="/mixmatch/mypage/main.do?id=${listMem.id}">${listMem.name}</a></td>
 				<td>${listMem.b_bat}</td>
 				<td>${listMem.b_hit}</td>
 				<td>${listMem.b_rbi}</td>

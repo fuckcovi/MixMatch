@@ -30,7 +30,7 @@
 					<img src="imageViewMem.do?id=${list.id}" style="width:60px;height:60px;">
 				</c:if> 
 			</td>
-			<td><a href="mypage/main.do?id=${list.id}">${list.name}</a></td>
+			<td><a href="/mixmatch/mypage/main.do?id=${list.id}">${list.name}</a></td>
 			<td>${list.point} 점</td>
 			<td>${list.regdate} </td>
 		</tr>

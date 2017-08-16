@@ -4,11 +4,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/match/match.js"></script>
-<div class="page-main-style">
-	<h2>상세보기</h2>
-	<hr class="style"><br>
-	<div class="detail-style"><br>
-		<table class="versus"> 
+<div class="match-div">
+	<h3 style="text-align:left;font-weight:bold;">매치정보</h3>
+	<hr class="match-hr"><br>
+	
+	<div class="match-form">
+		<table> 
 			<tr>
 				<td>
 					<c:if test="${!empty match.t_logo_name}">
@@ -20,7 +21,7 @@
 						<c:if test="${match.m_type eq '농구'}"><img src="${pageContext.request.contextPath}/resources/images/basketball.png" style="width:80px;height:80px;"></c:if>	
 					</c:if>
 				</td>
-				<td>${match.t_name}<br><input type="button" value="팀정보" class="btn-team-info" onclick="location.href='${pageContext.request.contextPath}/teamInfo.do?t_name=${match.t_name}'"></td>
+				<td>${match.t_name}<br><input type="button" value="팀정보" class="team-btn" onclick="location.href='${pageContext.request.contextPath}//teamteamInfo.do?t_name=${match.t_name}'"></td>
 				<td><img src="${pageContext.request.contextPath}/resources/images/versus.png" width="80"></td>
 				<td>없음</td>
 				<td><img src="${pageContext.request.contextPath}/resources/images/away_img.png" width="80"></td>
@@ -66,11 +67,10 @@
 				<input type="submit" value="매치신청" id="match_btn" class="btn">			
 			</form:form>
 		</c:if><br>
-		<input type="button" value="목록으로" class="btn" onclick="location.href='matchBoard.do'">
+		<input type="button" value="목록으로" class="match-btn" onclick="location.href='matchBoard.do'">
 	</div>
-	<br><hr class="style">
 	<c:if test="${fn:contains(t_name,match.t_name)}">  
-		<input type="button" value="삭제" class="btn" id="delete_btn" style="float:right;margin-right:42px;" onClick="location.href='matchDelete.do?m_seq=${match.m_seq}'">
-		<input type="button" value="수정" class="btn" style="float:right;margin-right:18px;" onClick="location.href='matchUpdate.do?m_seq=${match.m_seq}'">
+		<input type="button" value="수정" class="match-btn" style="margin-top:20px;" onClick="location.href='matchUpdate.do?m_seq=${match.m_seq}'">
+		<input type="button" value="삭제" class="match-btn" id="delete_btn" style="margin-top:20px;" onClick="location.href='matchDelete.do?m_seq=${match.m_seq}'">
 	</c:if>
 </div>
