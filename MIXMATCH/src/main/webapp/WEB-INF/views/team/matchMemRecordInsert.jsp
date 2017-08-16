@@ -89,6 +89,7 @@
 			<th>도움</th>
 			<th>골</th>
 			<th>공격포인트</th>
+			<th>기록수정</th>
 		</tr>
 			<c:forEach var="list" items="${footlist}">
 			<tr class="footRecord" >
@@ -188,6 +189,7 @@
 			<th>스틸</th>
 			<th>블록</th>
 			<th>3점슛</th>
+			<th>기록수정</th>
 		</tr>
 			<c:forEach var="list" items="${basketlist}">
 			<tr class="basketRecord" >
@@ -308,6 +310,7 @@ list-bscore="${list.b_score}" list-bassist="${list.b_assist}" list-bsteel="${lis
 			<th>이닝</th>
 			<th>실점</th>
 			<th>방어율</th>
+			<th>기록수정</th>
 		</tr>
 			<c:forEach var="list" items="${baselist}">
 			<tr class="baseRecord">

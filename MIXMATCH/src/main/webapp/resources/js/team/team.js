@@ -90,26 +90,23 @@ $(document).ready(function(){
 	
 	// 개인기록 수정
 	$(".footRecordModify").click(function(){
-		alert("축구개인기록 수정");
 		var tname= $(this).attr("list-tname");
 		var id = $(this).attr("list-id");
 		var mseq = $(this).attr("list_mseq");
 		var output = "";
 			output+= "<form id='modifyform' action='footMemModify.do'>";
-			output+= "	<td>";
-			output+="<input type='hidden' id='m_seq' name='m_seq' value='"+mseq+"'></td>";
-			output+= "	<td><input type='text' id='t_name' name='t_name' value='"+tname+"' readonly='true'></td>";
-			output+= "	<td><input type='text' id='id' name='id' value='"+id+"' readonly='true'></td>";
-			output+= "	<td><input type='text' id='f_shoot' name='f_shoot' value='"+$(this).attr("list-fshoot")+"'></td>";
-			output+= "	<td><input type='text' id='f_assist' name='f_assist' value='"+$(this).attr("list-fassist")+"'></td>";
-			output+= "	<td><input type='text' id='f_goal' name='f_goal' value='"+$(this).attr("list-fgoal")+"'></td>";
-			output+= "	<td><input type='text' id='f_attack' name='f_attack' value='"+$(this).attr("list-fattack")+"'></td>";
-			output+= "	<td><input type='submit' value='기록수정'></td>";
+			output+="<input type='hidden' id='m_seq' name='m_seq' value='"+mseq+"'>";
+			output+= "	<input type='text' id='t_name' name='t_name' value='"+tname+"' readonly='true'>";
+			output+= "	<input type='text' id='id' name='id' value='"+id+"' readonly='true'>";
+			output+= "	<input type='text' id='f_shoot' name='f_shoot' value='"+$(this).attr("list-fshoot")+"'>";
+			output+= "	<input type='text' id='f_assist' name='f_assist' value='"+$(this).attr("list-fassist")+"'>";
+			output+= "	<input type='text' id='f_goal' name='f_goal' value='"+$(this).attr("list-fgoal")+"'>";
+			output+= "	<input type='text' id='f_attack' name='f_attack' value='"+$(this).attr("list-fattack")+"'>";
+			output+= "	<input type='submit' value='기록수정'></td>";
 			output+= "</form>";
 		$(this).parent().parent().text("").append(output);
 	});
 	$(".basketRecordModify").click(function(){
-		alert("농구개인기록 수정");
 		var tname= $(this).attr("list-tname");
 		var id = $(this).attr("list-id");
 		var mseq = $(this).attr("list_mseq");
@@ -129,7 +126,6 @@ $(document).ready(function(){
 		$(this).parent().parent().text("").append(output);
 	});
 	$(".baseRecordModify").click(function(){
-		alert("야구개인기록 수정");
 		var tname= $(this).attr("list-tname");
 		var id = $(this).attr("list-id");
 		var mseq = $(this).attr("list_mseq");
