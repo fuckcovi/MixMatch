@@ -88,7 +88,7 @@ $(document).ready(function() {
 			<div  >
 			<c:if test="${joinCountSide==0 }">
 			<br><br>가입신청한 팀이 없습니다. 자신의 팀을 생성하거나 이미 등록된 팀에 가입신청하세요.<br>
-			<a href="${pageContext.request.contextPath}/team.do">팀생성</a>
+			<a href="${pageContext.request.contextPath}/team/team.do">팀생성</a>
 			</c:if>
 			<c:if test="${joinCountSide>0 }">  
 			<select id="myteam" name="myteam">

@@ -91,9 +91,9 @@ public class TeamServiceImpl implements TeamService {
 	}
 
 	@Override
-	public int matchCountFinish(Map<String, Object> map) {
+	public int MainmatchCountFinish(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return teamMapper.matchCountFinish(map);
+		return teamMapper.MainmatchCountFinish(map);
 	}
 	
 }

@@ -49,7 +49,7 @@ public interface TeamMapper {
 	
 	// 메인화면 매치결과 가져오기
 	public List<MatchCommand> matchListFinish(Map<String, Object> map);
-	public int matchCountFinish(Map<String, Object> map);
+	public int MainmatchCountFinish(Map<String, Object> map);
 	
 	
 }

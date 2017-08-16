@@ -251,4 +251,4 @@ $(document).ready(function(){
 			<li>최근 야구경기결과가 없습니다.</li>
 		</c:if>
 		</ul> 
-</div>
+</div> 

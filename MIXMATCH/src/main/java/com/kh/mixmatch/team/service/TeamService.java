@@ -42,5 +42,5 @@ public interface TeamService {
 	@Transactional(readOnly=true)
 	public List<MatchCommand> matchListFinish(Map<String, Object> map);
 	@Transactional(readOnly=true)
-	public int matchCountFinish(Map<String, Object> map);
+	public int MainmatchCountFinish(Map<String, Object> map);
 }
