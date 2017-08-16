@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Update;
 
 import com.kh.mixmatch.stadium.domain.BookingCommand;
 import com.kh.mixmatch.stadium.domain.StadiumCommand;
+import com.kh.mixmatch.team.domain.TeamMemCommand;
 
 public interface StadiumMapper {
 	

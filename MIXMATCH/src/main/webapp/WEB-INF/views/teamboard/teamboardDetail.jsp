@@ -10,7 +10,7 @@
 		<li>조회수 : ${teamboard.gt_hit}</li>
 		<li>등록일 : ${teamboard.gt_regdate}</li>
 		<c:if test="${!empty teamboard.gt_filename}">
-			<li>첨부파일 : <a href="teamboardfile.do?gt_seq=${teamboard.gt_seq}">${teamboard.gt_filename}</a></li>	
+			<li>첨부파일 : <a href="${pageContext.request.contextPath}/teamboard/teamboardfile.do?gt_seq=${teamboard.gt_seq}">${teamboard.gt_filename}</a></li>	
 		</c:if>
 	</ul>
 	<hr size="1" width="100%"> 
@@ -18,7 +18,7 @@
 				fn:endsWith(teamboard.gt_filename, '.JPG') || fn:endsWith(teamboard.gt_filename, '.PNG') || fn:endsWith(teamboard.gt_filename, '.GIF')}">
 		<%-- endsWith : 뒤에 있는 문자값 확인. --%>		
 		<div class="align-center">
-			<img src="teamboardimageView.do?gt_seq=${teamboard.gt_seq}" style="max-width:500px">
+			<img src="${pageContext.request.contextPath}/teamboard/teamboardimageView.do?gt_seq=${teamboard.gt_seq}" style="max-width:500px">
 		</div>
 	</c:if>
 	<p>
@@ -27,10 +27,10 @@
 	<hr size="1" width="100%">
 	<div class="align-right">
 		<c:if test="${!empty user_id && user_id==teamboard.id }">
-			<input type="button" value="수정" onclick="location.href='teamboardUpdate.do?gt_seq=${teamboard.gt_seq}'">
-			<input type="button" value="삭제" onclick="location.href='teamboardDelete.do?gt_seq=${teamboard.gt_seq}'">
+			<input type="button" value="수정" onclick="location.href='${pageContext.request.contextPath}/teamboard/teamboardUpdate.do?gt_seq=${teamboard.gt_seq}'">
+			<input type="button" value="삭제" onclick="location.href='${pageContext.request.contextPath}/teamboard/teamboardDelete.do?gt_seq=${teamboard.gt_seq}'">
 		</c:if>
-		<input type="button" value="목록" onclick="location.href='teamboard.do'">
+		<input type="button" value="목록" onclick="location.href='${pageContext.request.contextPath}/teamboard/teamboard.do'">
 	</div>
 	<div id="reply_div">
 		<span class="reply-title">댓글 달기</span>

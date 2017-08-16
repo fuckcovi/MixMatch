@@ -2,12 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/team/confirmTname.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/team/teamLogo.js"></script>
+<link href="${pageContext.request.contextPath}/resources/css/layout222.css" rel="stylesheet">
 <div class="page-main-style">
 	<h2>팀생성</h2>
 	<hr class="style"><br>
-	<form:form id="teamRegister" class="style" commandName="teamCommand" action="teamRegister.do" enctype="multipart/form-data">
+	<form:form id="teamRegister" class="style" commandName="teamCommand" action="${pageContext.request.contextPath}/team/teamRegister.do" enctype="multipart/form-data">
 	<form:errors element="div" cssClass="error-color"/>
 	<input type="hidden" id="id" name="id" value="${user_id}"><br><br>
 	<ul>

@@ -129,7 +129,7 @@
 			<mvc:mapping path="/member/pwCheck.do"/>
 			<mvc:mapping path="/member/update.do"/>
 			<mvc:mapping path="/member/delete.do"/>
-			<mvc:mapping path="/team/teamHome.do"/>
+			<mvc:mapping path="/team/team.do"/>
 			<mvc:mapping path="/team/teamInfo.do"/>
 			<mvc:mapping path="/team/teamSchedule.do"/>
 			<mvc:mapping path="/team/teamRecord.do"/>

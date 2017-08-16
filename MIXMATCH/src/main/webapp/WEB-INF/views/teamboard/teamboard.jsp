@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
 <style type="text/css">
 	#search_form{width:500px;height:50px;margin:0 auto;}
 	.search{list-style:none;}
@@ -16,14 +17,14 @@
 		<ul style="list-style: none" id="teamboardList" >
 			<c:forEach var="list" items="${teamlist}">
 				<li style="float: left;" value="${list.t_name}">
-					<input type="button" class="btn" value="${list.t_name}" onclick="location.href='teamboard.do?t_name=${list.t_name}'">
+					<input type="button" class="btn" value="${list.t_name}" onclick="location.href='${pageContext.request.contextPath}/teamboard/teamboard.do?t_name=${list.t_name}'">
 				</li>
 			</c:forEach>
 		</ul>
 		</c:if>
 	</div>
 	<div class="align-right">
-		<input type="button" value="글쓰기"  onclick="location.href='teamboardInsert.do'" >
+		<input type="button" value="글쓰기"  onclick="location.href='${pageContext.request.contextPath}/teamboard/teamboardInsert.do'" >
 	</div>
 	<div>
 	<c:if test="${count==0 }">
@@ -43,7 +44,7 @@
 			<tr>
 				<td>${article.gt_seq }</td>
 				<td>${article.t_name}</td>
-				<td><a href="teamboardDetail.do?gt_seq=${article.gt_seq}">${article.gt_title}</a></td>
+				<td><a href="${pageContext.request.contextPath}/teamboard/teamboardDetail.do?gt_seq=${article.gt_seq}">${article.gt_title}</a></td>
 				<td>${article.gt_regdate}</td>
 				<td>${article.id}</td>
 				<td>${article.gt_hit}</td>
@@ -52,7 +53,7 @@
 		</table>
 		<div class="align-center">${pagingHtml}</div>
 	</c:if>
-	<form action="teamboard.do" id="search_form" method="get" >
+	<form action="${pageContext.request.contextPath}/teamboard/teamboard.do" id="search_form" method="get" >
 		<ul class="search">
 			<li>
 				<select name="keyfield">

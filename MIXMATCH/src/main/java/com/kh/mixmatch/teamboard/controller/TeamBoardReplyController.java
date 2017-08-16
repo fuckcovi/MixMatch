@@ -30,7 +30,7 @@ public class TeamBoardReplyController {
 	@Resource
 	private TeamBoardService teamBoardService;
 	
-	@RequestMapping("teamBoardListReply.do")
+	@RequestMapping("/teamboard/teamBoardListReply.do")
 	@ResponseBody
 	public Map<String, Object> teamBoardListReplyProcess(@RequestParam(value="pageNum", defaultValue="1") int currentPage, @RequestParam("gt_seq") int gt_seq) {
 		if (log.isDebugEnabled()) {
@@ -62,7 +62,7 @@ public class TeamBoardReplyController {
 		return mapJson;
 	}
 	
-	@RequestMapping("teamBoardWriteReply.do")
+	@RequestMapping("/teamboard/teamBoardWriteReply.do")
 	@ResponseBody
 	public Map<String, String> teamBoardWriteReplyProcess(TeamBoardReplyCommand teamBoardReplyCommand, HttpSession session, HttpServletRequest request) {
 		if (log.isDebugEnabled()) {
@@ -85,7 +85,7 @@ public class TeamBoardReplyController {
 		return map;
 	}
 	
-	@RequestMapping("teamBoardUpdateReply.do")
+	@RequestMapping("/teamboard/teamBoardUpdateReply.do")
 	@ResponseBody
 	public Map<String, String> teamBoardUpdateReplyProcess(TeamBoardReplyCommand teamBoardReplyCommand, HttpSession session, HttpServletRequest request) {
 		if (log.isDebugEnabled()) {
@@ -116,7 +116,7 @@ Map<String,String> map = new HashMap<String,String>();
 		return map;
 	}
 
-	@RequestMapping("teamBoardDeleteReply.do")
+	@RequestMapping("/teamboard/teamBoardDeleteReply.do")
 	@ResponseBody
 	public Map<String,String> process(
 			@RequestParam("gtre_no") int gtre_no,

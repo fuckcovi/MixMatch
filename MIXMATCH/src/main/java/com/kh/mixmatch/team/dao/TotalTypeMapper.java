@@ -33,13 +33,9 @@ public interface TotalTypeMapper {
 	public BasketCommand selectBasket(Integer b_seq);
 	public FootCommand selectFoot(Integer f_seq);
 	
-	
-	// ���κ� ���շ�ŷ ����Ʈ
+	// 개인별 통합랭킹 리스트
 	public List<BaseCommand> listBase(Map<String, Object> map);
 	public List<BasketCommand> listBasket(Map<String, Object> map);	
 	public List<FootCommand> listFoot(Map<String, Object> map);
-	
-	
-	
 	
 }

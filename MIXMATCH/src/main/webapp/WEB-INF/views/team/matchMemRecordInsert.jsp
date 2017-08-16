@@ -3,7 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/team/team.js"></script>
+<link href="${pageContext.request.contextPath}/resources/css/layout222.css" rel="stylesheet">
 <style type="text/css">
 	input{
 		width:100%;
@@ -15,7 +17,7 @@
 	<hr class="style"><br>
 
 <c:if test="${match.m_type eq '축구'}">
-	<form:form commandName="footCommand" id="type_form" action="homeMemRecordFoot.do">
+	<form:form commandName="footCommand" id="type_form" action="${pageContext.request.contextPath}/team/homeMemRecordFoot.do">
 	<form:hidden path="m_seq" value="${match.m_seq}"/>
 	<form:hidden path="t_name" value="${match.t_name}"/>
 	<table class="style"  id="homeMem">
@@ -47,7 +49,7 @@
 	<input type="submit" value="홈선수추가등록">
 	</form:form>
 	
-	<form:form commandName="footCommand" id="type_form" action="awayMemRecordFoot.do">
+	<form:form commandName="footCommand" id="type_form" action="${pageContext.request.contextPath}/team/awayMemRecordFoot.do">
 	<form:hidden path="m_seq" value="${match.m_seq}"/>
 	<form:hidden path="t_name" value="${match.m_challenger}"/>
 	<table class="style"  id="awayMem" >
@@ -104,7 +106,7 @@
 </c:if>
 
 <c:if test="${match.m_type eq '농구'}">
-	<form:form commandName="basketCommand" id="type_form" action="homeMemRecordBasket.do">
+	<form:form commandName="basketCommand" id="type_form" action="${pageContext.request.contextPath}/team/homeMemRecordBasket.do">
 	<form:hidden path="m_seq" value="${match.m_seq}"/>
 	<form:hidden path="t_name" value="${match.t_name}"/>
 	<table class="style"  id="homeMem" >
@@ -140,7 +142,7 @@
 	<input type="submit" value="홈선수추가등록">
 	</form:form>
 	
-	<form:form commandName="basketCommand" id="type_form" action="awayMemRecordBasket.do">
+	<form:form commandName="basketCommand" id="type_form" action="${pageContext.request.contextPath}/team/awayMemRecordBasket.do">
 	<form:hidden path="m_seq" value="${match.m_seq}"/>
 	<form:hidden path="t_name" value="${match.m_challenger}"/>
 	<table class="style"  id="awayMem">
@@ -207,7 +209,7 @@ list-bscore="${list.b_score}" list-bassist="${list.b_assist}" list-bsteel="${lis
 
 
 <c:if test="${match.m_type eq '야구'}">
-	<form:form commandName="baseCommand" id="type_form" action="homeMemRecordBase.do">
+	<form:form commandName="baseCommand" id="type_form" action="${pageContext.request.contextPath}/team/homeMemRecordBase.do">
 	<form:hidden path="m_seq" value="${match.m_seq}"/>
 	<form:hidden path="t_name" value="${match.t_name}"/>
 	<table class="style"  id="homeMem">
@@ -249,7 +251,7 @@ list-bscore="${list.b_score}" list-bassist="${list.b_assist}" list-bsteel="${lis
 	<input type="submit" value="홈선수추가등록">
 	</form:form>
 	
-	<form:form commandName="baseCommand" id="type_form" action="awayMemRecordBase.do">
+	<form:form commandName="baseCommand" id="type_form" action="${pageContext.request.contextPath}/team/awayMemRecordBase.do">
 	<form:hidden path="m_seq" value="${match.m_seq}"/>
 	<form:hidden path="t_name" value="${match.m_challenger}"/>
 	<table class="style"  id="awayMem">
@@ -332,5 +334,5 @@ list-bwin="${list.b_win}" list-blose="${list.b_lose}" list-bstrike="${list.b_str
 </c:if>
 
 
-	<input type="button" value="목록으로" onclick="location.href='match/scoreBoard.do'">
+	<input type="button" value="목록으로" onclick="location.href='${pageContext.request.contextPath}/match/scoreBoard.do'">
 </div>

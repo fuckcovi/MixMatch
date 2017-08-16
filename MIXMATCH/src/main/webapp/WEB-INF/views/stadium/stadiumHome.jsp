@@ -2,11 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.min.js"></script>
+
 <div class="page-main-style">
 	<br>
 	<h2>경기장 예약</h2>
 <c:if test="${user_id  eq 'admin'}">
-	<input type="button" value="경기장등록" onclick="location.href='stadiumRegi.do'" ><br>
+	<input type="button" value="경기장등록" onclick="location.href='${pageContext.request.contextPath }/stadium/stadiumRegi.do'" ><br>
 </c:if>
 <div style="height:30px;margin:0 auto;display: inline-block;">
 	<form action="stadium.do" id="search_form" method="get">
@@ -37,6 +39,7 @@
 		<th>경기장지역</th>
 		<th>경기장등록일</th>
 	</tr>
+	
 	<c:if test="${stadiumCount >0}">
 		<c:forEach var="list" items="${stadiumList}">
 		<tr>
@@ -47,7 +50,7 @@
 							fn:endsWith(list.s_logo_name, '.JPG') || 
 							fn:endsWith(list.s_logo_name, '.PNG') || 
 							fn:endsWith(list.s_logo_name, '.GIF')}">
-					<img src="imageViewStadium.do?s_seq=${list.s_seq}" style="width:200px;height:200px;">
+					<img src="${pageContext.request.contextPath }/stadium/imageViewStadium.do?s_seq=${list.s_seq}" style="width:200px;height:200px;">
 				</c:if>
 				<c:if test="${empty list.s_logo_name }">
 				<c:if test="${list.s_type eq '야구' }">
@@ -61,24 +64,27 @@
 				</c:if>
 				</c:if>
 			</td>
-			<td><a href="${pageContext.request.contextPath }/stadiumDetail.do?s_seq=${list.s_seq}">${list.s_name}</a></td>
+			<td><a href="${pageContext.request.contextPath }/stadium/stadiumDetail.do?s_seq=${list.s_seq}">${list.s_name}</a></td>
 			<td>${list.s_type }</td>
 			<td>${list.s_address1}</td>
 			<td>${list.s_regdate}</td>
 			<c:if test="${user_id eq 'admin' }">
-				<td><input type="button" value="경기장수정" onclick="location.href='stadiumUpdate.do?s_seq=${list.s_seq}'"></td>
-				<td><input type="button" value="경기장삭제" onclick="location.href='stadiumDel.do?s_seq=${list.s_seq}'"></td>
+				<td><input type="button" value="경기장수정" onclick="location.href='${pageContext.request.contextPath }/stadium/stadiumUpdate.do?s_seq=${list.s_seq}'"></td>
+				<td><input type="button" value="경기장삭제" onclick="location.href='${pageContext.request.contextPath }/stadium/stadiumDel.do?s_seq=${list.s_seq}'"></td>
 			</c:if>
 		</tr>
 		</c:forEach>
+		
+	</table>
 		<div class="align-center">${pagingHtml}</div>
 	</c:if>
-	<c:if test="${stadiumCount == 0}">
+	<c:if test="${stadiumCount ==0}">
 		<tr>
 			<td colspan="3">등록된 경기장 없음</td>
 		</tr>
-	</c:if>
+		
 	</table>
+	</c:if>
 </div>
 
 </div>

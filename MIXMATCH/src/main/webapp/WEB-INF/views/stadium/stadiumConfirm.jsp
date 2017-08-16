@@ -2,7 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/stadium/book.js"></script>
+<link href="${pageContext.request.contextPath}/resources/css/layout222.css" rel="stylesheet">
 <div class="page-main-style">
 	<h2>경기장 예약 확인 - 팀마스터인 팀만 보여짐</h2>
 	<div style="margin:0 auto;overflow-y: auto;">
@@ -40,8 +42,8 @@
 							<td>${booklist.s_seq}</td>
 							<td>${booklist.b_time}</td>
 							<td>${booklist.t_name}</td>
-							<td><input type="button" id="stadiumBookF" onclick="location.href='stadiumBookC.do?b_seq=${booklist.b_seq}'" value="예약취소"></td>
-							<td><input type="button" id="stadiumBookF" onclick="location.href='stadiumBookF.do?b_seq=${booklist.b_seq}'" value="예약확정"></td>
+							<td><input type="button" id="stadiumBookF" onclick="location.href='${pageContext.request.contextPath }/stadium/stadiumBookC.do?b_seq=${booklist.b_seq}'" value="예약취소"></td>
+							<td><input type="button" id="stadiumBookF" onclick="location.href='${pageContext.request.contextPath }/stadium/stadiumBookF.do?b_seq=${booklist.b_seq}'" value="예약확정"></td>
 						</tr>
 					</c:if>
 				</c:forEach>	

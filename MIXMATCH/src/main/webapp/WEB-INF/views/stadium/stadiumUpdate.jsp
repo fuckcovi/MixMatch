@@ -2,10 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.min.js"></script>
 <div class="page-main-style">
 	<h2>경기장 수정</h2>
 	<ul style="list-style: none;">
-	<form:form commandName="stadiumCommand" enctype="multipart/form-data" id="stadiumUpdate" action="stadiumUpdate.do" class="style" >
+	<form:form commandName="stadiumCommand" enctype="multipart/form-data" id="stadiumUpdate" action="${pageContext.request.contextPath }/stadium/stadiumUpdate.do" class="style" >
 	<form:hidden path="s_seq" value="${s_seq}"/>
 		<br>
 		<br>

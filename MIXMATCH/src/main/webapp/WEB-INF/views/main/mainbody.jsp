@@ -43,7 +43,7 @@ $(document).ready(function(){
 		<ul class="rolling">
 			<c:if test="${noticeCount>0 }">
 			<c:forEach var="noticeList" items="${noticeList}">
-				<li><a href="noticeDetail.do?gn_seq=${noticeList.gn_seq}">${noticeList.gn_title }</a></li>
+				<li><a href="${pageContext.request.contextPath}/notice/noticeDetail.do?gn_seq=${noticeList.gn_seq}">${noticeList.gn_title }</a></li>
 			</c:forEach>
 		</c:if>
 		<c:if test="${noticeCount==0 }">
@@ -74,7 +74,7 @@ $(document).ready(function(){
 	        </div>
 	    </div>
 	</div>
-	<div class="flip-container" onclick="location.href='${pageContext.request.contextPath}/stadium.do'">
+	<div class="flip-container" onclick="location.href='${pageContext.request.contextPath}/stadium/stadium.do'">
 	    <div class="flipper">
 	        <div class="front">
 		       	경기장예약<br><span class="glyphicon glyphicon-calendar" style="font-size:30px;"></span>
@@ -189,7 +189,7 @@ $(document).ready(function(){
 		
 		<c:if test="${footTeamCount>0 }">
 			<c:forEach var="footTeamList" items="${footTeamList}" varStatus="status">
-				<tr class="foot" onclick="location.href='${pageContext.request.contextPath}/team/teamInfo.do?t_name=${footTeamList.t_name}'" style="display: none;">
+				<tr class="foot" onclick="location.href='${pageContext.request.contextPath}/team/teamInfo.do?t_name=${footTeamList.t_name}'" >
 						<td>
 							<c:if test="${status.count eq 1}"><img src="${pageContext.request.contextPath}/resources/images/goldmedal.png" width="20"></c:if>
 							<c:if test="${status.count eq 2}"><img src="${pageContext.request.contextPath}/resources/images/silvermedal.png" width="20"></c:if>
@@ -211,20 +211,44 @@ $(document).ready(function(){
 </div>
 <br>
 
-<%-- <div id="matchView" class="full">
+<div id="matchView" class="full" >
 		<h4>최근경기결과</h4>
-		<ul>
-		<c:if test="${matchResultCount>0 }">
-			<c:forEach var="matchResultList" items="${matchResultlist}">
-				<c:if test="${!empty matchResultList.m_challenger }">
-					<li>${matchResultList.t_name }-${matchResultList.m_home} : ${matchResultList.m_away}-${matchResultList.m_challenger }</li>
-				</c:if>
+		<ul style="background: red; height:100px;">
+		<c:if test="${matchFResultCount>0 }">
+			<c:forEach var="matchFResultList" items="${matchFResultlist}">
+					<li>${matchFResultList.t_name }-${matchFResultList.m_home} : ${matchFResultList.m_away}-${matchFResultList.m_challenger }</li>
+
 			</c:forEach>
 		</c:if>
-		<c:if test="${matchResultCount==0 }">
-			<li>최근 경기결과가 없습니다.</li>
+		<c:if test="${matchFResultCount==0 }">
+			<li>최근 축구경기결과가 없습니다.</li>
 		</c:if>
+		</ul> 
+</div>
+<div id="matchView" class="full" >
+		<h4>최근경기결과</h4>
+		<ul style="background:blue; height:100px;">
+			<c:if test="${matchBKResultCount>0 }">
+				<c:forEach var="matchBKResultlist" items="${matchBKResultlist}">
+						<li>${matchBKResultlist.t_name }-${matchBKResultlist.m_home} : ${matchBKResultlist.m_away}-${matchBKResultlist.m_challenger }</li>
+					
+				</c:forEach>
+			</c:if>
+			<c:if test="${matchBKResultCount==0 }">
+				<li>최근 농구경기결과가 없습니다.</li>
+			</c:if>
 		</ul>
-	</div>
-	
-</div> --%>
+</div>
+<div id="matchView" class="full" >
+		<h4>최근경기결과</h4>
+		<ul style="background: yellow; height:100px;"> 
+		<c:if test="${matchBResultCount>0 }">
+			<c:forEach var="matchBResultList" items="${matchBResultlist}">
+					<li>${matchBResultList.t_name }-${matchBResultList.m_home} : ${matchBResultList.m_away}-${matchBResultList.m_challenger }</li>
+			</c:forEach>
+		</c:if>
+		<c:if test="${matchBResultCount==0 }">
+			<li>최근 야구경기결과가 없습니다.</li>
+		</c:if>
+		</ul> 
+</div>

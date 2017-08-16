@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/team/teamLogo.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	var flag = false;
@@ -100,7 +101,7 @@ $(document).ready(function() {
 				</c:forEach>
 			</select>
 			<c:forEach var="joinListSide" items="${joinListSide}">
-				<a href="${pageContext.request.contextPath }/teamInfo.do?t_name=${joinListSide.t_name}" id="myteamLogo">
+				<a href="${pageContext.request.contextPath }/team/teamInfo.do?t_name=${joinListSide.t_name}" id="myteamLogo">
 					<c:if test="${fn:endsWith(joinListSide.t_logo_name, '.jpg') || fn:endsWith(joinListSide.t_logo_name, '.png') || fn:endsWith(joinListSide.t_logo_name, '.gif') || fn:endsWith(joinListSide.t_logo_name, '.JPG') || fn:endsWith(joinListSide.t_logo_name, '.PNG') || fn:endsWith(joinListSide.t_logo_name, '.GIF')}">
 						<img id="${joinListSide.t_name }" src="${pageContext.request.contextPath}/imageViewTside.do?t_name=${joinListSide.t_name}" style="width:100px;height:100px;display: none;">
 					</c:if>

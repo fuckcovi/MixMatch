@@ -83,5 +83,17 @@ public class TeamServiceImpl implements TeamService {
 		// TODO Auto-generated method stub
 		return teamMapper.countMasterTeam(id);
 	}
+
+	@Override
+	public List<MatchCommand> matchListFinish(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return teamMapper.matchListFinish(map);
+	}
+
+	@Override
+	public int matchCountFinish(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return teamMapper.matchCountFinish(map);
+	}
 	
 }

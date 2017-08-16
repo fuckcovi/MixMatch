@@ -2,7 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/team/team.js"></script>
+<link href="${pageContext.request.contextPath}/resources/css/layout222.css" rel="stylesheet">
 <div class="page-main-style">
 	<h2>팀정보</h2>
 	<hr class="style"><br>
@@ -39,7 +41,7 @@
 		<tr>
 			<td>${match.m_date}</td>
 			<td>${match.m_area}</td>
-			<td><a href="teamInfo.do?t_name=${match.t_name}">${match.t_name}</a> vs <a href="teamInfo.do?t_name=${match.m_challenger}">${match.m_challenger}</a></td>
+			<td><a href="${pageContext.request.contextPath }/team/teamInfo.do?t_name=${match.t_name}">${match.t_name}</a> vs <a href="${pageContext.request.contextPath }/team/teamInfo.do?t_name=${match.m_challenger}">${match.m_challenger}</a></td>
 			<td>${match.m_home} : ${match.m_away}</td>
 		</tr>
 		</c:if>
@@ -47,7 +49,7 @@
 		<tr>
 			<td>${match.m_date}</td>
 			<td>${match.m_area}</td>
-			<td><a href="teamInfo.do?t_name=${match.t_name}">${match.t_name}</a> vs <a href="teamInfo.do?t_name=${match.m_challenger}">${match.m_challenger}</a></td>
+			<td><a href="${pageContext.request.contextPath }/team/teamInfo.do?t_name=${match.t_name}">${match.t_name}</a> vs <a href="${pageContext.request.contextPath }/team/teamInfo.do?t_name=${match.m_challenger}">${match.m_challenger}</a></td>
 			<td>${match.m_home} : ${match.m_away}</td>
 		</tr>
 		</c:if>
@@ -58,17 +60,17 @@
 		<div>최근경기결과 없음</div>
 	</c:if>
 	<br>
-	<form:form commandName="teamMemCommand" action="teamMemJoin.do" id="teamMemJoin">
+	<form:form commandName="teamMemCommand" action="${pageContext.request.contextPath }/team/teamMemJoin.do" id="teamMemJoin">
 		<input type="hidden" value="${team.t_name}" id="t_name" name="t_name">
 		<input type="hidden" value="${user_id}" id="id" name="id">
 		<br><input type="submit" value="가입신청" class="btn">
 		<c:if test="${tCheck == true}">
-			<input type="button" value="가입철회" class="btn" onclick="location.href='cancelRegi.do?t_name=${team.t_name}'">
+			<input type="button" value="가입철회" class="btn" onclick="location.href='${pageContext.request.contextPath }/team/cancelRegi.do?t_name=${team.t_name}'">
 		</c:if>
 	</form:form>
 	<br><hr class="style">
 	<c:if test="${team.id == user_id}">
-		<input type="button" value="팀정보수정" class="btn" onclick="location.href='teamUpdate.do?t_name=${team.t_name}'" style="float:right;margin-right:42px;">
-		<input type="button" value="팀삭제" class="btn" onclick="location.href='deleteTeam.do?t_name=${team.t_name}'" style="float:right;margin-right:18px;">
+		<input type="button" value="팀정보수정" class="btn" onclick="location.href='${pageContext.request.contextPath }/team/teamUpdate.do?t_name=${team.t_name}'" style="float:right;margin-right:42px;">
+		<input type="button" value="팀삭제" class="btn" onclick="location.href='${pageContext.request.contextPath }/team/deleteTeam.do?t_name=${team.t_name}'" style="float:right;margin-right:18px;">
 	</c:if>
 </div>

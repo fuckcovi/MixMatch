@@ -46,4 +46,10 @@ public interface TeamMapper {
 	@Select("SELECT * FROM g_match WHERE m_seq=#{m_seq}")
 	public MatchCommand selectMatchDetail(Integer mseq);// 매치번호로 매치내용 찾기
 	
+	
+	// 메인화면 매치결과 가져오기
+	public List<MatchCommand> matchListFinish(Map<String, Object> map);
+	public int matchCountFinish(Map<String, Object> map);
+	
+	
 }

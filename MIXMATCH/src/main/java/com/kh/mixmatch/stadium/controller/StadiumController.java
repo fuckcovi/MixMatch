@@ -1,6 +1,7 @@
 package com.kh.mixmatch.stadium.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,8 +25,10 @@ import com.kh.mixmatch.stadium.domain.BookingCommand;
 import com.kh.mixmatch.stadium.domain.StadiumCommand;
 import com.kh.mixmatch.stadium.service.StadiumService;
 import com.kh.mixmatch.team.domain.TeamCommand;
+import com.kh.mixmatch.team.domain.TeamMemCommand;
 import com.kh.mixmatch.team.service.TeamService;
 import com.kh.mixmatch.util.PagingUtil;
+
 
 @Controller
 public class StadiumController {
@@ -44,7 +47,7 @@ public class StadiumController {
 		return new BookingCommand();
 	}
 	
-	@RequestMapping("/stadium.do")
+	@RequestMapping("/stadium/stadium.do")
 	public ModelAndView stadium(@RequestParam(value="pageNum",defaultValue="1") int currentPage,
 			@RequestParam(value="keyfield",defaultValue="") String keyfield,
 			@RequestParam(value="keyword",defaultValue="") String keyword){
@@ -64,7 +67,7 @@ public class StadiumController {
 		map.put("keyword", keyword);
 		int stadiumCount = stadiumService.getTotalCountStadium(map);
 		
-		PagingUtil page = new PagingUtil(currentPage, stadiumCount, rowCount, pageCount, "stadium.do");
+		PagingUtil page = new PagingUtil(currentPage, stadiumCount, rowCount, pageCount, "/stadium/stadium.do");
 		map.put("start", page.getStartCount());
 		map.put("end", page.getEndCount());
 		
@@ -80,15 +83,15 @@ public class StadiumController {
 		mav.addObject("pagingHtml", page.getPagingHtml());
 		return mav;
 	}
-	@RequestMapping(value="/stadiumRegi.do",method=RequestMethod.GET)
+	@RequestMapping(value="/stadium/stadiumRegi.do",method=RequestMethod.GET)
 	public String stadiumRegiForm(HttpSession session){
 		String id = (String)session.getAttribute("user_id");
 		if(!id.equals("admin")){
-			return "redirect:/stadium.do";
+			return "redirect:/stadium/stadium.do";
 		}
 		return "stadiumRegi";
 	}
-	@RequestMapping(value="/stadiumRegi.do",method=RequestMethod.POST)
+	@RequestMapping(value="/stadium/stadiumRegi.do",method=RequestMethod.POST)
 	public String stadiumRegi(@ModelAttribute("command") @Valid StadiumCommand stadium,BindingResult result,HttpSession session) throws Exception{
 		if(log.isDebugEnabled()){
 			log.debug("<<<< StadiumCommand >>>>  : " + stadium);
@@ -106,10 +109,10 @@ public class StadiumController {
 		}else{
 			return "redirect:/login.do";
 		}
-		return "redirect:/stadium.do";
+		return "redirect:/stadium/stadium.do";
 	
 	}
-	@RequestMapping("/imageViewStadium.do")
+	@RequestMapping("/stadium/imageViewStadium.do")
 	public ModelAndView imageViewStadium(@RequestParam int s_seq){
 		StadiumCommand stadium = stadiumService.selectStadium(s_seq);
 		ModelAndView mav = new ModelAndView();
@@ -120,10 +123,11 @@ public class StadiumController {
 	}
 	
 	
-	@RequestMapping("/stadiumDetail.do")
+	@RequestMapping("/stadium/stadiumDetail.do")
 	public ModelAndView stadiumDetail(@RequestParam int s_seq,HttpSession session){
 		StadiumCommand stadium = stadiumService.selectStadium(s_seq);
 		String id = (String)session.getAttribute("user_id");
+		Map<String, Object> map = new HashMap<String, Object>();
 
 		List<TeamCommand> t_name = teamService.listMaster(id);
 		
@@ -135,7 +139,7 @@ public class StadiumController {
 	}
 	
 	
-	@RequestMapping("/bookingList.do")
+	@RequestMapping("/stadium/bookingList.do")
 	@ResponseBody
 	public Map<String, Object> bookingList(@RequestParam String b_regdate, @RequestParam int s_seq){
 		if(log.isDebugEnabled()){
@@ -195,7 +199,7 @@ public class StadiumController {
 		return mapJson;
 	}
 	
-	@RequestMapping("/stadiumBooking.do")
+	@RequestMapping("/stadium/stadiumBooking.do")
 	public ModelAndView stadiumBooking(@RequestParam String b_regdate, @RequestParam int s_seq,@RequestParam String b_time,@RequestParam String t_name){
 		if(log.isDebugEnabled()){
 			log.debug("<<< b_regdate >>> : " + b_regdate);
@@ -216,21 +220,21 @@ public class StadiumController {
 		return mav;
 	}
 	
-	@RequestMapping("/stadiumMap.do")
+	@RequestMapping("/stadium/stadiumMap.do")
 	public String map(){
 		return "stadiumMap";
 	}
-	@RequestMapping(value="/stadiumUpdate.do",method=RequestMethod.GET)
+	@RequestMapping(value="/stadium/stadiumUpdate.do",method=RequestMethod.GET)
 	public String stadiumUpdateForm(@RequestParam int s_seq,HttpSession session,Model model){
 		String id =(String)session.getAttribute("user_id");
 		if(!id.equals("admin")){
-			return "redirect:/stadium.do";
+			return "redirect:/stadium/stadium.do";
 		}
 		StadiumCommand stadiumCommand = stadiumService.selectStadium(s_seq);
 		model.addAttribute("stadiumCommand",stadiumCommand);
 		return "stadiumUpdate";
 	}
-	@RequestMapping(value="/stadiumUpdate.do",method=RequestMethod.POST)
+	@RequestMapping(value="/stadium/stadiumUpdate.do",method=RequestMethod.POST)
 	public String stadiumUpdate(@ModelAttribute("command") @Valid StadiumCommand stadiumCommand,BindingResult result,HttpSession session) throws Exception{
 		if(log.isDebugEnabled()){
 			log.debug("<<<< StadiumCommand >>>>  : " + stadiumCommand);
@@ -253,18 +257,18 @@ public class StadiumController {
 		}
 		
 		stadiumService.updateStadium(stadiumCommand);
-		return "redirect:/stadium.do";
+		return "redirect:/stadium/stadium.do";
 	}
-	@RequestMapping("/stadiumDel.do")
+	@RequestMapping("/stadium/stadiumDel.do")
 	public String stadiumDel(@RequestParam int s_seq,HttpSession session){
 		String id =(String)session.getAttribute("user_id");
 		if(!id.equals("admin")){
-			return "redirect:/stadium.do";
+			return "redirect:/stadium/stadium.do";
 		}
 		stadiumService.deleteStadium(s_seq);
-		return "redirect:/stadium.do";
+		return "redirect:/stadium/stadium.do";
 	}
-	@RequestMapping("/stadiumConfirm.do")
+	@RequestMapping("/stadium/stadiumConfirm.do")
 	public ModelAndView stadiumConfirm(HttpSession session){
 		// 예약 리스트
 		String id =(String)session.getAttribute("user_id");
@@ -283,19 +287,19 @@ public class StadiumController {
 		mav.addObject("teamlist", teamlist);
 		return mav;
 	}
-	@RequestMapping("/stadiumBookF.do")
+	@RequestMapping("/stadium/stadiumBookF.do")
 	public String stadiumBookF(@RequestParam int b_seq){
 		
 		stadiumService.updateCheckBooking(b_seq);
 		
-		return "redirect:/stadiumConfirm.do";
+		return "redirect:/stadium/stadiumConfirm.do";
 	}
 	
-	@RequestMapping("/stadiumBookC.do")
+	@RequestMapping("/stadium/stadiumBookC.do")
 	public String stadiumBookc(@RequestParam int b_seq){
 		
 		stadiumService.deleteBooking(b_seq);
 		
-		return "redirect:/stadiumConfirm.do";
+		return "redirect:/stadium/stadiumConfirm.do";
 	}
 }

@@ -98,19 +98,43 @@ public class HomeController {
 		}
 		
 	// 최근경기결과 - 야구
-		Map<String, Object> matchmap = new HashMap<String, Object>();
-		matchmap.put("type", "야구");
-		matchmap.put("board", "score");
+		Map<String, Object> matchBmap = new HashMap<String, Object>();
+		matchBmap.put("type", "야구");
+		matchBmap.put("board", "score");
 		
-		int matchResultCount = matchService.getRowCount(matchmap);
+		int matchBResultCount = teamService.matchCountFinish(matchBmap);
 		
-		List<MatchCommand> matchResultlist = null;
-		if (matchResultCount > 0) {
-			matchResultlist = matchService.matchList(matchmap);
+		List<MatchCommand> matchBResultlist = null;
+		if (matchBResultCount > 0) {
+			matchBResultlist = teamService.matchListFinish(matchBmap);
 		}
+	// 최근경기결과 - 농구
+		Map<String, Object> matchBKmap = new HashMap<String, Object>();
+		matchBKmap.put("type", "농구");
+		matchBKmap.put("board", "score");
 		
+		int matchBKResultCount = teamService.matchCountFinish(matchBKmap);
+		
+		List<MatchCommand> matchBKResultlist = null;
+		if (matchBKResultCount > 0) {
+			matchBKResultlist = teamService.matchListFinish(matchBKmap);
+		}
+	// 최근경기결과 -축구
+		Map<String, Object> matchFmap = new HashMap<String, Object>();
+		matchFmap.put("type", "축구");
+		matchFmap.put("board", "score");
+		
+		int matchFResultCount = teamService.matchCountFinish(matchFmap);
+		
+		List<MatchCommand> matchFResultlist = null;
+		if (matchFResultCount > 0) {
+			matchFResultlist = teamService.matchListFinish(matchFmap);
+		}
+				
 		//////////////
-		
+		System.out.println("매치결과 야구 : " + matchBResultlist);
+		System.out.println("매치결과 축구 : " + matchFResultlist);
+		System.out.println("매치결과 농구 : " + matchBKResultlist);
 		
 	// 사이드바 - 마이페이지
 		String user_id = (String)session.getAttribute("user_id");
@@ -140,8 +164,12 @@ public class HomeController {
 		mav.addObject("footTeamCount",footTeamCount);
 		mav.addObject("footTeamList",footTeamList);
 		
-		mav.addObject("matchResultCount", matchResultCount);
-		mav.addObject("matchResultlist", matchResultlist);
+		mav.addObject("matchBResultCount", matchBResultCount);
+		mav.addObject("matchBResultlist", matchBResultlist);
+		mav.addObject("matchFResultCount", matchFResultCount);
+		mav.addObject("matchFResultlist", matchFResultlist);
+		mav.addObject("matchBKResultCount", matchBKResultCount);
+		mav.addObject("matchBKResultlist", matchBKResultlist);
 		
 		mav.addObject("member",member);
 		mav.addObject("joinCountSide",joinCountSide);

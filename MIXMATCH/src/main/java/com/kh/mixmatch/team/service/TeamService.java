@@ -39,4 +39,8 @@ public interface TeamService {
 	public int countAwayMatch(String tname);
 	@Transactional(readOnly=true)
 	public MatchCommand selectMatchDetail(Integer mseq);
+	@Transactional(readOnly=true)
+	public List<MatchCommand> matchListFinish(Map<String, Object> map);
+	@Transactional(readOnly=true)
+	public int matchCountFinish(Map<String, Object> map);
 }

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
 <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/team/team.js"></script> --%>
 <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/team/teamList.js"></script> --%>
 <div class="page-main-style">
@@ -17,9 +18,9 @@
 			<c:forEach var="joinList" items="${joinList}">
 				<div>
 					<c:if test="${joinList.t_mem_auth > 0}">
-						<a href="teamInfo.do?t_name=${joinList.t_name}">${joinList.t_name}</a> | 
-						<a href="teamRank.do?t_name=${joinList.t_name}">우리팀랭킹</a> | 
-						<a href="teamMem.do?t_name=${joinList.t_name}">팀원관리</a>
+						<a href="${pageContext.request.contextPath}/team/teamInfo.do?t_name=${joinList.t_name}">${joinList.t_name}</a> | 
+						<a href="${pageContext.request.contextPath}/team/teamRank.do?t_name=${joinList.t_name}">우리팀랭킹</a> | 
+						<a href="${pageContext.request.contextPath}/team/teamMem.do?t_name=${joinList.t_name}">팀원관리</a>
 					</c:if>
 				</div>
 			</c:forEach>
@@ -29,7 +30,7 @@
 			<div style="overflow-y: auto; height:50px; width:600px; margin:0 auto;">  
 			<c:forEach var="joinList" items="${joinList}">
 				<c:if test="${joinList.t_mem_auth ==0}"> 
-					<div><a href="teamInfo.do?t_name=${joinList.t_name}">${joinList.t_name}</a></div>
+					<div><a href="${pageContext.request.contextPath}/team/teamInfo.do?t_name=${joinList.t_name}">${joinList.t_name}</a></div>
 				</c:if>				
 			</c:forEach>
 			</div>
@@ -40,10 +41,10 @@
 	<hr class="style">
 	
 	<h3 style="color:red;">MixMatch등록팀현황</h3> 
-	<input type="button" value="전체보기" class="btn" id="typeAll" onclick="location.href='team.do?t_type='">
-	<input type="button" value="축구" class="btn" id="typeFoot" onclick="location.href='team.do?t_type=축구'">
-	<input type="button" value="야구" class="btn" id="typeBase" onclick="location.href='team.do?t_type=야구'">
-	<input type="button" value="농구" class="btn" id="typeBasket" onclick="location.href='team.do?t_type=농구'">
+	<input type="button" value="전체보기" class="btn" id="typeAll" onclick="location.href='${pageContext.request.contextPath}/team/team.do?t_type='">
+	<input type="button" value="축구" class="btn" id="typeFoot" onclick="location.href='${pageContext.request.contextPath}/team/team.do?t_type=축구'">
+	<input type="button" value="야구" class="btn" id="typeBase" onclick="location.href='${pageContext.request.contextPath}/team/team.do?t_type=야구'">
+	<input type="button" value="농구" class="btn" id="typeBasket" onclick="location.href='${pageContext.request.contextPath}/team/team.do?t_type=농구'">
 	
 	
 	<div  style="height: 300px;">
@@ -57,7 +58,7 @@
 							fn:endsWith(list.t_logo_name, '.JPG') || 
 							fn:endsWith(list.t_logo_name, '.PNG') || 
 							fn:endsWith(list.t_logo_name, '.GIF')}">
-					<img src="imageView.do?t_name=${list.t_name}" style="width:100%;height:200px;">
+					<img src="${pageContext.request.contextPath}/team/imageView.do?t_name=${list.t_name}" style="width:100%;height:200px;">
 				</c:if>
 				<c:if test="${empty list.t_logo_name }">
 				<c:if test="${list.t_type eq '야구' }">
@@ -70,7 +71,7 @@
 					<img src="${pageContext.request.contextPath}/resources/images/football.png" style="width:100%;height:200px;">
 				</c:if>
 				</c:if>
-				<a href="teamInfo.do?t_name=${list.t_name}">${list.t_name}</a> | ${list.t_address}
+				<a href="${pageContext.request.contextPath}/team/teamInfo.do?t_name=${list.t_name}">${list.t_name}</a> | ${list.t_address}
 				<br>
 			</div>
 			</c:forEach>

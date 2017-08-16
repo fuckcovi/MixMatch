@@ -56,16 +56,16 @@
 				</ul>
 			</li>
 			<li class="topMenuLi">
-				<a class="menuLink" href="${pageContext.request.contextPath}/stadium.do">경기장예약</a>
+				<a class="menuLink" href="${pageContext.request.contextPath}/stadium/stadium.do">경기장예약</a>
 				<ul class="submenu">
-					<li><a href="${pageContext.request.contextPath}/stadium.do" class="submenuLink">경기장예약</a></li>
-					<li><a href="${pageContext.request.contextPath}/stadiumConfirm.do" class="submenuLink">my예약목록</a></li>
+					<li><a href="${pageContext.request.contextPath}/stadium/stadium.do" class="submenuLink">경기장예약</a></li>
+					<li><a href="${pageContext.request.contextPath}/stadium/stadiumConfirm.do" class="submenuLink">my예약목록</a></li>
 				</ul>
 			</li>
 			<li class="topMenuLi">
-				<a class="menuLink" href="${pageContext.request.contextPath}/team/teamHome.do">팀메뉴</a>
+				<a class="menuLink" href="${pageContext.request.contextPath}/team/team.do">팀메뉴</a>
 				<ul class="submenu">
-					<li><a href="${pageContext.request.contextPath}/team/teamHome.do" class="submenuLink">팀관리</a></li>
+					<li><a href="${pageContext.request.contextPath}/team/team.do" class="submenuLink">팀관리</a></li>
 					<li><a href="${pageContext.request.contextPath}/team/teamSchedule.do" class="submenuLink">팀일정/결과</a></li>
 					<li><a href="${pageContext.request.contextPath}/team/teamRecord.do" class="submenuLink">팀기록</a></li>
 				</ul>

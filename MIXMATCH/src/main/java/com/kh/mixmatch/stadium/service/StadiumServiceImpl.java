@@ -79,11 +79,13 @@ public class StadiumServiceImpl implements StadiumService{
 
 	@Override
 	public List<BookingCommand> listBookingTeam(String id) {
+		// TODO Auto-generated method stub
 		return stadiumMapper.listBookingTeam(id);
 	}
 
 	@Override
 	public int booklistCount(String t_name) {
+		// TODO Auto-generated method stub
 		return stadiumMapper.booklistCount(t_name);
 	}
 

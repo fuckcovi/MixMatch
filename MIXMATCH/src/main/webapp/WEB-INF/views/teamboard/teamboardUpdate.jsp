@@ -2,10 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
+
 <div class="page-main-style">
 	<h2>글 수정</h2>
 	
-	<form:form commandName="teamboard" action="teamboardUpdate.do" enctype="multipart/form-data">
+	<form:form commandName="teamboard" action="${pageContext.request.contextPath}/teamboard/teamboardUpdate.do" enctype="multipart/form-data">
 		<form:errors element="div" cssClass="error-color"/>
 		<form:hidden path="gt_seq"/>
 		<form:hidden path="id"/>
@@ -41,6 +43,6 @@
 			</li>
 		</ul>
 		<input type="submit" value="글 수정">
-		<input type="button" value="취소" onclick="location.href='teamboard.do'">
+		<input type="button" value="취소" onclick="location.href='${pageContext.request.contextPath}/teamboard/teamboard.do'">
 	</form:form>
 </div>

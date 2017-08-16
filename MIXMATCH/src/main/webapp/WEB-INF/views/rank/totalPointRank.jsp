@@ -27,15 +27,16 @@
 					<img src="${pageContext.request.contextPath}/resources/images/profile.jpg" style="width:60px;height:60px;">
 				</c:if>
 				<c:if test="${fn:endsWith(list.profile_name, '.jpg') || fn:endsWith(list.profile_name, '.png') || fn:endsWith(list.profile_name, '.gif') || fn:endsWith(list.profile_name, '.JPG') || fn:endsWith(list.profile_name, '.PNG') || fn:endsWith(list.profile_name, '.GIF')}">
-					<img src="imageViewMem.do?id=${list.id}" style="width:60px;height:60px;">
+					<img src="${pageContext.request.contextPath}/team/imageViewMem.do?id=${list.id}" style="width:60px;height:60px;">
 				</c:if> 
 			</td>
-			<td><a href="/mixmatch/mypage/main.do?id=${list.id}">${list.name}</a></td>
+			<td><a href="${pageContext.request.contextPath}/mypage/main.do?id=${list.id}">${list.name}</a></td>
 			<td>${list.point} 점</td>
 			<td>${list.regdate} </td>
 		</tr>
 	</c:forEach>
 	</tbody>
+	</table>
 	<br>
 		<div class="align-center">${pagingHtml}</div>
 	</c:if>
@@ -45,7 +46,7 @@
 			<td colspan="4">사이트에 등록된 유저가 없습니다.</td>
 		</tr>
 	</tbody>
-	</c:if>
 	</table>
+	</c:if>
 	</div>
 </div>

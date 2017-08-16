@@ -162,13 +162,13 @@ public class TeamBoardController {
 			log.debug("<<<<<<< teamboardCommand : " +teamboardCommand);
 		}
 		if(result.hasErrors()){
-			return "redirect:/teamboardInsert.do";
+			return "redirect:/teamboard/teamboardInsert.do";
 		}
 		// 글쓰기
 		teamboardCommand.setIp(request.getRemoteAddr());
 		System.out.println(teamboardCommand);
 		teamBoardService.teamboardInsert(teamboardCommand);
-		return "redirect:/teamboard.do";
+		return "redirect:/teamboard/teamboard.do";
 	}
 	// 글 수정폼
 	@RequestMapping(value="/teamboard/teamboardUpdate.do", method=RequestMethod.GET)
@@ -224,7 +224,7 @@ public class TeamBoardController {
 		
 		teamBoardService.teamboardUpdate(teamBoardCommand);
 		
-		return "redirect:/teamboard.do";
+		return "redirect:/teamboard/teamboard.do";
 	}
 	
 	// 글 삭제
@@ -242,7 +242,7 @@ public class TeamBoardController {
 		
 		teamBoardService.teamboardDelete(teamBoardCommand.getGt_seq());
 		
-		return "redirect:/teamboard.do";
+		return "redirect:/teamboard/teamboard.do";
 	}
 	
 }
