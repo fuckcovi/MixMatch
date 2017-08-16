@@ -6,28 +6,28 @@
 
 <tiles-definitions>
 
-    <definition name="PointHome" extends="main">
+    <definition name="PointHome" extends="home">
     	<put-attribute name="title" value="포인트샵" />
     	<put-attribute name="body" value="/WEB-INF/views/pointshop/pointShopHome.jsp" />
     </definition>
     
-    <definition name="PointWrite" extends="main">
+    <definition name="PointWrite" extends="home">
     	<put-attribute name="title" value="포인트 상품등록" />
     	<put-attribute name="body" value="/WEB-INF/views/pointshop/pointShopWrite.jsp" />
     </definition>
     
-    <definition name="PointUpdate" extends="main">
+    <definition name="PointUpdate" extends="home">
     	<put-attribute name="title" value="포인트 상품수정" />
     	<put-attribute name="body" value="/WEB-INF/views/pointshop/pointShopUpdate.jsp" />
     </definition>
     
     
-    <definition name="PointDetail" extends="main">
+    <definition name="PointDetail" extends="home">
     	<put-attribute name="title" value="포인트샵 상세정보" />
     	<put-attribute name="body" value="/WEB-INF/views/pointshop/pointShopDetail.jsp" />
     </definition>
     
-    <definition name="PointCart" extends="main">
+    <definition name="PointCart" extends="home">
     	<put-attribute name="title" value="포인트샵 장바구니" />
     	<put-attribute name="body" value="/WEB-INF/views/pointshop/pointShopCart.jsp" />
     </definition>

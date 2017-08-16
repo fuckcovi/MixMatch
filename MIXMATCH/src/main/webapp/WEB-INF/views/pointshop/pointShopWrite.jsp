@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/point.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/point/point.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/pointshop.css">
 <div class="page-main-style">
 <h2>상품등록</h2>

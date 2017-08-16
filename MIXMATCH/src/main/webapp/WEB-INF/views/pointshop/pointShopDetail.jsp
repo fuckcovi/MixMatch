@@ -38,7 +38,7 @@
                     </tr>
                     <tr>
                     	<td>판매자</td>
-                    	<td>${product.id}</td>
+                    	<td><%-- ${product.id} --%>MIXMATCH 협력사</td>
                     </tr>
                     <tr align="center">
                         <td colspan="2">

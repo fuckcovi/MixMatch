@@ -113,12 +113,14 @@ public class PointShopController {
 	public String pointshopcart(Model model,HttpSession session){
 		String user_id = (String)session.getAttribute("user_id");
 		
-		List<PointShopCartCommand> cart;
-		
-		cart = pointShopService.cart(user_id);
-		
+		List<PointShopCartCommand> cart=null;
+		// 구매내역여부 
+		int cartCount = pointShopService.getCartCount(user_id);
+		if(cartCount >0){
+			cart = pointShopService.cart(user_id);
+		}
 		model.addAttribute("cart", cart);
-		
+		model.addAttribute("cartCount",cartCount);
 		return "PointCart";
 	}
 	//��ǰ������////////////////////////////////////////////////////////

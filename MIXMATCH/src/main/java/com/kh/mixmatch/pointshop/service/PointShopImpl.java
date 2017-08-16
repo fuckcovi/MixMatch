@@ -71,4 +71,10 @@ public class PointShopImpl implements PointShopService {
 		return pointShopMapper.cart(id);
 	}
 
+	@Override
+	public int getCartCount(String id) {
+		// TODO Auto-generated method stub
+		return pointShopMapper.getCartCount(id);
+	}
+
 }

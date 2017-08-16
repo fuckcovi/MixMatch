@@ -32,4 +32,6 @@ public interface PointShopService {
 	//ȸ����� �˻�
 	@Transactional(readOnly=true)
 	public MemberCommand selectMemberInfo(String id);
+	@Transactional(readOnly=true)
+	public int getCartCount(String id);
 }

@@ -43,4 +43,7 @@ public interface PointShopMapper {
 	@Select("SELECT * FROM g_member WHERE id=#{id}")
 	public MemberCommand selectMemberInfo(String id);
 	
+	@Select("SELECT COUNT(*) FROM g_pointshop_cart WHERE id=#{id}")
+	public int getCartCount(String id);
+	
 }
