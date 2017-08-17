@@ -7,10 +7,13 @@
 	ul{list-style: none;}
 	
 </style>
+<link href="${pageContext.request.contextPath}/resources/css/layout222.css" rel="stylesheet">
 <div class="page-main-style">
-	<form:form id="teamUpdate" commandName="teamCommand" action="${pageContext.request.contextPath}/team/teamUpdate.do" enctype="multipart/form-data">
+	<form:form class="style" id="teamUpdate" commandName="teamCommand" action="${pageContext.request.contextPath}/team/teamUpdate.do" enctype="multipart/form-data">
 	<form:errors element="div" cssClass="error-color"/>
 	<input type="hidden" id="id" name="id" value="${user_id}">
+	<br>
+	<br>
 	<ul>
 		<li>
 			<label for="t_name">팀명</label>
@@ -49,8 +52,10 @@
 		</li>
 	</ul>
 	<div class="align-center">
-		<input type="submit" value="팀정보수정">
-		<input type="button" value="취소" onclick="location.href='${pageContext.request.contextPath}/team/teamInfo.do?t_name=${teamCommand.t_name}'">
+		<input type="submit" class="btn" value="수정">
+		<input type="button" class="btn" value="취소" onclick="location.href='${pageContext.request.contextPath}/team/teamInfo.do?t_name=${teamCommand.t_name}'">
 	</div>
+	<br>
+	<br>
 	</form:form>
 </div>

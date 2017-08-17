@@ -80,6 +80,7 @@
 	<div class="align-center">
 		<input type="submit" value="팀생성" class="btn">
 	</div>
+	<br><br>
 	</form:form>
 	<br><hr class="style">
 </div>

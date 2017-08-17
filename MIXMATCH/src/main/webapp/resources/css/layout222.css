@@ -55,9 +55,7 @@ hr.l-style {
 form.style, div.style {
 	margin: 0 auto;
 	width: 500px;
-	height: 450px;
 	background: #DDDDDD;
-	display:table-cell;
 	vertical-align:middle;
 }
 
