@@ -2,13 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/teamboard.reply.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/teamboard/teamboard.js"></script>
+<style type="text/css">
+	ul li{list-style: none;float:left;}
+</style>
 <div class="page-main-style">
 	<h2>${teamboard.gt_title}</h2>
 	<ul>
 		<li>번호 : ${teamboard.gt_seq}</li>
 		<li>조회수 : ${teamboard.gt_hit}</li>
-		<li>등록일 : ${teamboard.gt_regdate}</li>
+		<li>등록일 : ${teamboard.gt_regdate}</li><br>
 		<c:if test="${!empty teamboard.gt_filename}">
 			<li>첨부파일 : <a href="${pageContext.request.contextPath}/teamboard/teamboardfile.do?gt_seq=${teamboard.gt_seq}">${teamboard.gt_filename}</a></li>	
 		</c:if>
@@ -25,12 +28,12 @@
 		${teamboard.gt_content}
 	</p>
 	<hr size="1" width="100%">
-	<div class="align-right">
+	<div class="align-center">
 		<c:if test="${!empty user_id && user_id==teamboard.id }">
-			<input type="button" value="수정" onclick="location.href='${pageContext.request.contextPath}/teamboard/teamboardUpdate.do?gt_seq=${teamboard.gt_seq}'">
-			<input type="button" value="삭제" onclick="location.href='${pageContext.request.contextPath}/teamboard/teamboardDelete.do?gt_seq=${teamboard.gt_seq}'">
+			<input type="button" value="수정" class="btn" onclick="location.href='${pageContext.request.contextPath}/teamboard/teamboardUpdate.do?gt_seq=${teamboard.gt_seq}'">
+			<input type="button" value="삭제" class="btn" onclick="location.href='${pageContext.request.contextPath}/teamboard/teamboardDelete.do?gt_seq=${teamboard.gt_seq}'">
 		</c:if>
-		<input type="button" value="목록" onclick="location.href='${pageContext.request.contextPath}/teamboard/teamboard.do'">
+		<input type="button" value="목록" class="btn" onclick="location.href='${pageContext.request.contextPath}/teamboard/teamboard.do'">
 	</div>
 	<div id="reply_div">
 		<span class="reply-title">댓글 달기</span>
@@ -49,7 +52,7 @@
 					<span class="letter-count">300/300</span>
 				</div>
 				<div id="re_second" class="align-right">
-					<input type="submit" value="전송">
+					<input type="submit" class="btn" value="댓글달기">
 				</div>
 			</c:if>                                   
 		</form>
@@ -57,7 +60,7 @@
 	<!-- 목록 출력 -->
 	<div id="output"></div>
 	<div class="paging-button" style="display:none;">
-		<input type="button" value="다음글 보기">
+		<input type="button" class="btn" value="다음글 보기">
 	</div>
 	<div id="loading" style="display:none;">
 		<img src="${pageContext.request.contextPath}/resources/images/ajax-loader.gif">

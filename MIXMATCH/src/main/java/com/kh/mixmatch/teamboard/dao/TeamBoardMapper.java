@@ -33,8 +33,8 @@ public interface TeamBoardMapper {
 	public void insertReply(TeamBoardReplyCommand teamBoardReply);
 	@Update("UPDATE g_teamboard_re SET gtre_content=#{gtre_content},ip=#{ip} WHERE gtre_no=#{gtre_no}")
 	public void updateReply(TeamBoardReplyCommand teamBoardReply);
-	@Delete("DELETE FROM g_teamboard_re WHERE gtre_no=#{gtre_no}")
-	public void deleteReply(Integer gtre_no);
+	@Delete("DELETE FROM g_teamboard_re WHERE gt_seq=#{gt_seq}")
+	public void deleteReply(Integer gt_seq);
 	
 	//부모글 삭제시 댓글이 존재하면 부모글 삭제전 댓글 삭제
 	@Delete("DELETE FROM g_teamboard_re WHERE gt_seq=#{gt_seq}")

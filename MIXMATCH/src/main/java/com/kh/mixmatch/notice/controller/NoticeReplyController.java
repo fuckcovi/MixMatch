@@ -72,7 +72,6 @@ public class NoticeReplyController {
 		
 		//총 댓글의 개수
 		int count = noticeService.getRowCountReply(map);
-		
 		PagingUtil page = new PagingUtil(currentPage, count, rowCount, pageCount, null);
 		
 		map.put("start", page.getStartCount());
@@ -80,7 +79,6 @@ public class NoticeReplyController {
 		
 		List<NoticeReplyCommand> list = null;
 		
-		System.out.println(map);
 		
 		if(count > 0){
 			list = noticeService.listReply(map);
@@ -89,7 +87,6 @@ public class NoticeReplyController {
 		}
 		
 		Map<String, Object> mapJson = new HashMap<String, Object>();
-		
 		mapJson.put("count", count);
 		mapJson.put("rowCount", rowCount);
 		mapJson.put("list", list);

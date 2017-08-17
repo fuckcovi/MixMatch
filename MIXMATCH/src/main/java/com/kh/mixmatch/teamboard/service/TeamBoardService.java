@@ -30,5 +30,5 @@ public interface TeamBoardService {
 	public int getRowCountReply(Map<String,Object> map);
 	public void insertReply(TeamBoardReplyCommand teamBoardReply);
 	public void updateReply(TeamBoardReplyCommand teamBoardReply);
-	public void deleteReply(Integer gtre_no);
+	public void deleteReply(Integer gt_seq);
 }

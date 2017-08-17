@@ -241,10 +241,10 @@ create table g_notice_re(
   gnre_content varchar2(900) not null,
   gnre_date date not null,
   ip varchar2(40) not null,
-  gnre_seq number not null,
+  gn_seq number not null,
   id varchar2(12) not null,
   constraint g_notice_reply_pk primary key (gnre_no),
-  constraint reply_g_notice_fk1 foreign key (gnre_seq) references g_notice (gn_seq),
+  constraint reply_g_notice_fk1 foreign key (gn_seq) references g_notice (gn_seq),
   constraint reply_gn_member_fk2 foreign key (id) references g_member (id)
 );
 

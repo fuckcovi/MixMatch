@@ -3,20 +3,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/notice/notice.js"></script>
+<style type="text/css">
+	ul li{list-style: none;float:left;}
+</style>
 <div class="page-main-style">
 	<h2>${notice.gn_title}</h2>
 	<ul class="menu">
 		<li>번호 : ${notice.gn_seq}</li>
 		<li>조회수 : ${notice.gn_hit}</li>
-		<li>등록일 : ${notice.gn_regdate}</li>
+		<li>등록일 : ${notice.gn_regdate}</li><br>
 		<c:if test="${!empty notice.gn_filename}">
 			<li>첨부파일 : <a href="noticefile.do?gn_seq=${notice.gn_seq}">${notice.gn_filename}</a></li>	
 		</c:if>
 	</ul>
 	<hr size="1" width="100%"> 
-	<p>
-		${notice.gn_content}
-	</p>
 	<c:if test="${fn:endsWith(notice.gn_filename, '.jpg') || fn:endsWith(notice.gn_filename, '.png') || fn:endsWith(notice.gn_filename, '.gif') ||
 				fn:endsWith(notice.gn_filename, '.JPG') || fn:endsWith(notice.gn_filename, '.PNG') || fn:endsWith(notice.gn_filename, '.GIF')}">
 		<%-- endsWith : 뒤에 있는 문자값 확인. --%>		
@@ -24,17 +24,19 @@
 			<img src="noticeimageView.do?n_seq=${notice.gn_seq}" style="max-width:500px">
 		</div>
 	</c:if>
-	
+	<p>
+		${notice.gn_content}
+	</p>
 	<hr size="1" width="100%">
-	<div class="align-right">
+	<div class="align-center">
 		<c:if test="${!empty user_id && user_id==notice.id }">
-			<input type="button" value="수정" onclick="location.href='noticeUpdate.do?gn_seq=${notice.gn_seq}'">
-			<%-- <input type="button" value="삭제" onclick="location.href='notiecDelete.do?gn_seq=${notice.gn_seq}'"> --%>
+			<input type="button" class="btn" value="수정" onclick="location.href='noticeUpdate.do?gn_seq=${notice.gn_seq}'">
+			<input type="button"class="btn"  value="삭제" onclick="location.href='notiecDelete.do?gn_seq=${notice.gn_seq}'">
 		</c:if>
-		<input type="button" value="목록" onclick="location.href='notice.do'">
+		<input type="button" class="btn" value="목록" onclick="location.href='notice.do'">
 	</div>
 	<div id="reply_div">
-		<span class="reply-title">댓글달기</span>
+		<span class="reply-title"></span>
 		<form id="re_form">
 			<input type="hidden" name="gn_seq" value="${notice.gn_seq}" id="gn_seq">
 			<input type="hidden" name="id" value="${user_id}" id="user_id">
@@ -47,7 +49,7 @@
 					<span class="letter-count">300/300</span>
 				</div>
 				<div id="re_second" class="align-right">
-					<input type="submit" value="댓글 달기">
+					<input type="submit" class="btn" value="댓글 달기">
 				</div>
 			</c:if>
 			
@@ -56,7 +58,7 @@
 	<!-- - 목록 출력 = -->
 	<div id="output"></div>
 	<div class="paging-button" style="display: none">
-		<input type="button" value="다음글 보기">
+		<input type="button" class="btn" value="다음글 보기">
 	</div>
 	<div id="loading" style="display: none;">
 		<img src="${pageContext.request.contextPath}/resources/images/ajax-loader.gif">

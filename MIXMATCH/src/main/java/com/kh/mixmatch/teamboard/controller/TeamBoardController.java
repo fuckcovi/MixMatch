@@ -114,7 +114,7 @@ public class TeamBoardController {
 	}
 
 	// 파일 다운로드
-	@RequestMapping("/teamboardfile.do")
+	@RequestMapping("/teamboard/teamboardfile.do")
 	public ModelAndView download(@RequestParam int gt_seq){
 		TeamBoardCommand teamboard = teamBoardService.teamboardSelect(gt_seq);
 		ModelAndView mav = new ModelAndView();
@@ -239,7 +239,7 @@ public class TeamBoardController {
 		if (!user_id.equals(teamBoardCommand.getId())) {
 			throw new Exception("본인 글이 아니면 삭제하실 수 없습니다.");
 		}
-		
+		teamBoardService.deleteReply(teamBoardCommand.getGt_seq());
 		teamBoardService.teamboardDelete(teamBoardCommand.getGt_seq());
 		
 		return "redirect:/teamboard/teamboard.do";

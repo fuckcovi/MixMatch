@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.mixmatch.notice.domain.NoticeCommand;
 import com.kh.mixmatch.notice.service.NoticeService;
+import com.kh.mixmatch.teamboard.domain.TeamBoardCommand;
 import com.kh.mixmatch.util.PagingUtil;
 
 @Controller
@@ -166,7 +167,7 @@ public class NoticeController {
 	}
 	
 	// �̹��� ���
-	@RequestMapping("/notice/noticeimageView.do")
+	@RequestMapping("/noticeimageView.do")
 	public ModelAndView viewImage(@RequestParam int n_seq){
 		NoticeCommand notice = noticeService.noticeSelect(n_seq);
 		ModelAndView mav = new ModelAndView();
@@ -175,4 +176,23 @@ public class NoticeController {
 		mav.addObject("filename",  notice.getGn_filename());
 		return mav;
 	}
+	
+	// 글 삭제
+	@RequestMapping("/notice/noticeDelete.do")
+	public String teamboardDeleteProcess(@RequestParam("gn_seq") int gn_seq, HttpSession session) throws Exception {
+		if (log.isDebugEnabled()) {
+			log.debug("<<gn_seq>> : " + gn_seq);
+		}
+		
+		NoticeCommand notice = noticeService.noticeSelect(gn_seq);
+		String user_id = (String) session.getAttribute("user_id");
+		if (!user_id.equals(notice.getId())) {
+			throw new Exception("본인 글이 아니면 삭제하실 수 없습니다.");
+		}
+		noticeService.deleteReply(notice.getGn_seq());
+		noticeService.noticeDelete(notice.getGn_seq());
+		
+		return "redirect:/teamboard/teamboard.do";
+	}
+	
 }

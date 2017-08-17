@@ -73,8 +73,8 @@ public class TeamBoardServiceImpl implements TeamBoardService{
 	}
 
 	@Override
-	public void deleteReply(Integer gtre_no) {
-		teamBoardMapper.deleteReply(gtre_no);
+	public void deleteReply(Integer gt_seq) {
+		teamBoardMapper.deleteReply(gt_seq);
 	}
 	
 	

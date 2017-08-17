@@ -5,7 +5,7 @@ $(document).ready(function(){
 	var rowCount; // 한페이지에 보여질 행
 	
 	// 댓글 목록
-	function selectData(pageNum,gn_seq){
+	function selectData(pageNum,gt_seq){
 		currentPage = pageNum;
 		if(pageNum==1){
 			// 처음 호출 시 해당id의 div내부 내용물 제거
@@ -16,8 +16,8 @@ $(document).ready(function(){
 		
 		$.ajax({
 			type:"post",
-			data:{pageNum:pageNum, gn_seq:gn_seq},// key:value
-			url:"noticeListReply.do",	// 댓글의 목록 url. 페이지 자체는 그대론데 밑에서 호출되는 화면
+			data:{pageNum:pageNum, gt_seq:gt_seq},// key:value
+			url:"teamBoardListReply.do",	// 댓글의 목록 url. 페이지 자체는 그대론데 밑에서 호출되는 화면
 			dataType:"json",
 			cache:false,
 			timeout:30000,
@@ -32,16 +32,16 @@ $(document).ready(function(){
 				}else{
 					$(list).each(function(index,item){
 						var output="";
-						output += "<div class='item' id='"+item.gnre_no+"'>";
+						output += "<div class='item' id='"+item.gtre_no+"'>";
 						output += "	<h4>"+item.id +"</h4>";
 						output += "	<div class='sub-item'>";
-						output += "		<p>"+item.gnre_content+"</p>";
-						output += "		<div>"+item.gnre_date;
+						output += "		<p>"+item.gtre_content+"</p>";
+						output += "		<div>"+item.gtre_date;
 						
 						if($("#user_id").val() && $("#user_id").val()== item.id){
 							// 로그인한 id가 댓글작성자id와 같은경우
-							output += " <input type='button' value='수정' data-num='"+item.gnre_no+"' data-id='"+item.id+"' class='modify-button'>";
-							output += " <input type='button' value='삭제' data-num='"+item.gnre_no+"' data-id='"+item.id+"' class='delete-button'>";
+							output += " <input type='button' value='수정' data-num='"+item.gtre_no+"' data-id='"+item.id+"' class='modify-button'>";
+							output += " <input type='button' value='삭제' data-num='"+item.gtre_no+"' data-id='"+item.id+"' class='delete-button'>";
 						}else{	// 로그인하지 않았거나 작성자 id와 다른경우
 							output += " <input type='button' value='수정' disabled='disabled'>";
 							output += " <input type='button' value='삭제' disabled='disabled'>";
@@ -74,16 +74,16 @@ $(document).ready(function(){
 	//  다음 댓글 보기 버튼클릭 시 데이터 추가
 	$(".paging-button input").click(function(){
 		var pageNum = currentPage +1;
-		selectData(pageNum, $("#gn_seq").val());
+		selectData(pageNum, $("#gt_seq").val());
 	});
 	
 	
 	
 	// 댓글 등록
 	$("#re_form").submit(function(){
-		if($("#gnre_content").val()==""){
+		if($("#gtre_content").val()==""){
 			alert("내용을 입력하세요");
-			$("#gnre_content").focus();
+			$("#gtre_content").focus();
 			return false;
 		}
 		
@@ -94,7 +94,7 @@ $(document).ready(function(){
 		$.ajax({
 			type:"post",
 			data:data,	// 위에 전송할 데이터를 데이터로 쓰겠다.
-			url:"noticeWriteReply.do",
+			url:"teamBoardWriteReply.do",
 			dataType:"json",
 			cache:false,
 			timeout:30000,
@@ -105,7 +105,7 @@ $(document).ready(function(){
 					// 폼초기화
 					initForm();
 					// 댓글작성이 성공하면 새로 삽입한 글을 포함하여 첫번쨰페이지의 게시글들을 호출
-					selectData(1,$("#gn_seq").val());
+					selectData(1,$("#gt_seq").val());
 				}else{
 					alert("등록 시 오류 발생");
 				}
@@ -121,7 +121,7 @@ $(document).ready(function(){
 	
 	// 댓글 작성 폼 초기화
 	function initForm(){
-		$("#gnre_content").val("");
+		$("#gtre_content").val("");
 		$("#re_first .letter-count").text("300/300");
 	}
 	
@@ -133,7 +133,7 @@ $(document).ready(function(){
 		}else{	// 300자 이하
 			var remain = 300 - inputLength;
 			remain += "/300";
-			if($(this).attr("id")=="gnre_content"){
+			if($(this).attr("id")=="gtre_content"){
 				// 등록 폼 글자수
 				$("#re_first .letter-count").text(remain);
 			}else{
@@ -152,8 +152,8 @@ $(document).ready(function(){
 		
 		$.ajax({
 			type:"post",
-			data:{gnre_num:data_num,id:id},
-			url:"noticeDeleteReply.do",
+			data:{gtre_no:data_num,id:id},
+			url:"teamBoardDeleteReply.do",
 			dataType:"json",
 			cache:false,
 			timeout:30000,
@@ -162,7 +162,7 @@ $(document).ready(function(){
 					alert("로그인 해야 삭제 할 수 있습니다.");
 				}else if(data.result=="success"){
 					alert("삭제 완료");
-					selectData(1,$("#gn_seq").val());
+					selectData(1,$("#gt_seq").val());
 				}else if(data.result=="wrongAccess"){
 					alert("타인의 글은 삭제불가");
 				}else{
@@ -186,9 +186,9 @@ $(document).ready(function(){
 		
 		// 댓글 수정폼 UI
 		var modifyUI = "<form id='mre_form'>";
-			modifyUI +="	<input type='hidden' name='gnre_num' id='mre_num' value='"+num+"'>";
+			modifyUI +="	<input type='hidden' name='gtre_num' id='mre_num' value='"+num+"'>";
 			modifyUI +="	<input type='hidden' name='id' id='muser_id' value='"+id+"'>";
-			modifyUI +="	<textarea rows='3' cols='50' name='gnre_content' id='mre_content' class='rep-content'>"+content+"</textarea>";
+			modifyUI +="	<textarea rows='3' cols='50' name='gtre_content' id='mre_content' class='rep-content'>"+content+"</textarea>";
 			modifyUI +="	<div id='mre_first'><span class='letter-count'>300/300</span></div>";
 			modifyUI +="	<div id='mre_second' class='align-right'>";
 			modifyUI +="		<input type='submit' value='수정'>";
@@ -237,7 +237,7 @@ $(document).ready(function(){
 		$.ajax({
 			type:"post",
 			data:data,
-			url:"noticeUpdateReply.do",
+			url:"teamBoardUpdateReply.do",
 			dataType:"json",
 			cache:false,
 			timeout:30000,
@@ -266,6 +266,6 @@ $(document).ready(function(){
 	
 	
 	// 초기 데이터(목록) 호출
-	selectData(1, $("#gn_seq").val());
+	selectData(1, $("#gt_seq").val());
 	
 });

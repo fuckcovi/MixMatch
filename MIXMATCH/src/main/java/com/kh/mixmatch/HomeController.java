@@ -1,5 +1,6 @@
 package com.kh.mixmatch;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,6 +71,12 @@ public class HomeController {
 			bmap.put("order", "t_win");
 			baseTeamList = teamService.listRank(bmap);
 		}
+		if(baseTeamList.size()<5){
+			TeamCommand team = new TeamCommand();
+			for(int i=baseTeamList.size()+1;i<=5;i++){
+				baseTeamList.add(team);
+			}
+		}
 	// 축구팀
 		Map<String, Object> fmap = new HashMap<String, Object>();
 		fmap.put("keyword","축구");
@@ -82,6 +89,12 @@ public class HomeController {
 		if(footTeamCount > 0){
 			fmap.put("order", "t_win");
 			footTeamList = teamService.listRank(fmap);
+		}
+		if(footTeamList.size()<5){
+			TeamCommand team = new TeamCommand();
+			for(int i=footTeamList.size()+1;i<=5;i++){
+				footTeamList.add(team);
+			}
 		}
 	// 농구팀
 		Map<String, Object> bkmap = new HashMap<String, Object>();
@@ -96,6 +109,12 @@ public class HomeController {
 			bkmap.put("order", "t_win");
 			basketTeamList = teamService.listRank(bkmap);
 		}
+		if(basketTeamList.size()<5){
+			TeamCommand team = new TeamCommand();
+			for(int i=basketTeamList.size()+1;i<=5;i++){
+				basketTeamList.add(team);
+			}
+		}
 		
 	// 최근경기결과 - 야구
 		Map<String, Object> matchBmap = new HashMap<String, Object>();
@@ -109,6 +128,12 @@ public class HomeController {
 		if (matchBResultCount > 0) {
 			matchBResultlist = teamService.matchListFinish(matchBmap);
 		}
+		if(matchBResultlist.size() <5){
+			MatchCommand match = new MatchCommand();
+			for(int i=matchBResultlist.size()+1;i<=5;i++){
+				matchBResultlist.add(match);
+			}
+		}
 	// 최근경기결과 - 농구
 		Map<String, Object> matchBKmap = new HashMap<String, Object>();
 		matchBKmap.put("type", "농구");
@@ -121,6 +146,12 @@ public class HomeController {
 		if (matchBKResultCount > 0) {
 			matchBKResultlist = teamService.matchListFinish(matchBKmap);
 		}
+		if(matchBKResultlist.size() <5){
+			MatchCommand match = new MatchCommand();
+			for(int i=matchBKResultlist.size()+1;i<=5;i++){
+				matchBKResultlist.add(match);
+			}
+		}
 	// 최근경기결과 -축구
 		Map<String, Object> matchFmap = new HashMap<String, Object>();
 		matchFmap.put("type", "축구");
@@ -132,6 +163,12 @@ public class HomeController {
 		List<MatchCommand> matchFResultlist = null;
 		if (matchFResultCount > 0) {
 			matchFResultlist = teamService.matchListFinish(matchFmap);
+		}
+		if(matchFResultlist.size() <5){
+			MatchCommand match = new MatchCommand();
+			for(int i=matchFResultlist.size()+1;i<=5;i++){
+				matchFResultlist.add(match);
+			}
 		}
 	// 사이드바 - 마이페이지
 		String user_id = (String)session.getAttribute("user_id");
