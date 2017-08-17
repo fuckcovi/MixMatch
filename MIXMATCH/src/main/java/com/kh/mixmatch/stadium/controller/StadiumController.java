@@ -67,7 +67,7 @@ public class StadiumController {
 		map.put("keyword", keyword);
 		int stadiumCount = stadiumService.getTotalCountStadium(map);
 		
-		PagingUtil page = new PagingUtil(currentPage, stadiumCount, rowCount, pageCount, "/stadium/stadium.do");
+		PagingUtil page = new PagingUtil(currentPage, stadiumCount, rowCount, pageCount, "stadium.do");
 		map.put("start", page.getStartCount());
 		map.put("end", page.getEndCount());
 		
