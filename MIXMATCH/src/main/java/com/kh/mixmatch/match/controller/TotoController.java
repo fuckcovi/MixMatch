@@ -64,7 +64,6 @@ public class TotoController {
 		// 리스트에 저장
 		List<MatchCommand> list = null;
 		if (count > 0) {
-			map.put("type", type);		
 			list = matchService.matchList(map);
 		}
 		
