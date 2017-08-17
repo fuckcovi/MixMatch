@@ -163,6 +163,7 @@ $(document).ready(function(){
 		</tr>
 		<c:if test="${baseTeamCount>0 }">
 			<c:forEach var="baseTeamList" items="${baseTeamList}" varStatus="status">
+				<c:if test="${!empty baseTeamList.t_name}">
 					<tr class="base" onclick="location.href='${pageContext.request.contextPath}/team/teamInfo.do?t_name=${baseTeamList.t_name}'" style="display: none;">
 						<td>
 							<c:if test="${status.count eq 1}"><img src="${pageContext.request.contextPath}/resources/images/goldmedal.png" width="20"></c:if>
@@ -176,6 +177,12 @@ $(document).ready(function(){
 						<td>${baseTeamList.t_lose}</td>
 						<td>${baseTeamList.t_address}</td>
 					</tr>
+				</c:if>
+				<c:if test="${empty baseTeamList.t_name }">
+					<tr class="base" style="display: none;">
+						<td colspan="6" style="color:#bdbdbd;">생성된 야구팀 부족</td>
+					</tr> 
+				</c:if>	
 			</c:forEach>			
 		</c:if>
 		<c:if test="${baseTeamCount==0 }">
@@ -184,7 +191,8 @@ $(document).ready(function(){
 			
 		<c:if test="${basketTeamCount>0 }">
 			<c:forEach var="basketTeamList" items="${basketTeamList}" varStatus="status">
-				<tr class="basket" onclick="location.href='${pageContext.request.contextPath}/team/teamInfo.do?t_name=${basketTeamList.t_name}'" style="display: none;">
+				<c:if test="${!empty basketTeamList.t_name}">
+					<tr class="basket" onclick="location.href='${pageContext.request.contextPath}/team/teamInfo.do?t_name=${basketTeamList.t_name}'" style="display: none;">
 						<td>
 							<c:if test="${status.count eq 1}"><img src="${pageContext.request.contextPath}/resources/images/goldmedal.png" width="20"></c:if>
 							<c:if test="${status.count eq 2}"><img src="${pageContext.request.contextPath}/resources/images/silvermedal.png" width="20"></c:if>
@@ -196,7 +204,13 @@ $(document).ready(function(){
 						<td>${basketTeamList.t_draw}</td>
 						<td>${basketTeamList.t_lose}</td>
 						<td>${basketTeamList.t_address}</td>
-					</tr>	
+					</tr>
+				</c:if>
+				<c:if test="${empty basketTeamList.t_name }">
+					<tr class="basket" style="display: none;">
+						<td colspan="6" style="color:#bdbdbd;">생성된 농구팀 부족</td>
+					</tr>
+				</c:if>	
 			</c:forEach>			
 		</c:if>
 		<c:if test="${basketTeamCount==0 }">
@@ -205,7 +219,8 @@ $(document).ready(function(){
 		
 		<c:if test="${footTeamCount>0 }">
 			<c:forEach var="footTeamList" items="${footTeamList}" varStatus="status">
-				<tr class="foot" onclick="location.href='${pageContext.request.contextPath}/team/teamInfo.do?t_name=${footTeamList.t_name}'" >
+				<c:if test="${!empty footTeamList.t_name}">
+					<tr class="foot" onclick="location.href='${pageContext.request.contextPath}/team/teamInfo.do?t_name=${footTeamList.t_name}'" >
 						<td>
 							<c:if test="${status.count eq 1}"><img src="${pageContext.request.contextPath}/resources/images/goldmedal.png" width="20"></c:if>
 							<c:if test="${status.count eq 2}"><img src="${pageContext.request.contextPath}/resources/images/silvermedal.png" width="20"></c:if>
@@ -218,6 +233,12 @@ $(document).ready(function(){
 						<td>${footTeamList.t_lose}</td>
 						<td>${footTeamList.t_address}</td>
 					</tr>
+					</c:if>
+				<c:if test="${empty footTeamList.t_name }">
+					<tr class="foot">
+						<td colspan="6" style="color:#bdbdbd;">생성된 축구팀 부족</td>
+					</tr>
+				</c:if>
 			</c:forEach>			
 		</c:if>
 		<c:if test="${footTeamCount==0 }">
@@ -245,12 +266,19 @@ $(document).ready(function(){
 		</tr>
 		<c:if test="${matchFResultCount>0 }">
 			<c:forEach var="matchFResultList" items="${matchFResultlist}">
+				<c:if test="${!empty matchFResultList.t_name}">
 					<tr class="foot" onclick="location.href='${pageContext.request.contextPath}/match/scoreDetail.do?m_seq=${matchFResultList.m_seq }'"  >
 						<td>${matchFResultList.m_date}</td>
 						<td>${matchFResultList.t_name }-${matchFResultList.m_home}</td>
 						<td>VS</td>
 						<td>${matchFResultList.m_away}-${matchFResultList.m_challenger }</td>
 					</tr>
+				</c:if>
+				<c:if test="${empty matchFResultList.t_name }">
+					<tr class="foot">
+						<td colspan="4" style="color:#bdbdbd;">매치결과부족</td>
+					</tr>
+				</c:if>
 			</c:forEach>
 		</c:if>
 		<c:if test="${matchFResultCount==0 }">
@@ -258,12 +286,19 @@ $(document).ready(function(){
 		</c:if>
 		<c:if test="${matchBKResultCount>0 }">
 			<c:forEach var="matchBKResultlist" items="${matchBKResultlist}">
+				<c:if test="${!empty matchBKResultlist.t_name}">
 					<tr class="basket" onclick="location.href='${pageContext.request.contextPath}/match/scoreDetail.do?m_seq=${matchBKResultlist.m_seq }'" style="display: none;" >
 						<td>${matchBKResultlist.m_date}</td>
 						<td>${matchBKResultlist.t_name }-${matchBKResultlist.m_home}</td>
 						<td>VS</td>
 						<td>${matchBKResultlist.m_away}-${matchBKResultlist.m_challenger }</td>
 					</tr>
+				</c:if>
+				<c:if test="${empty matchBKResultlist.t_name }">
+					<tr class="basket" style="display: none;">
+						<td colspan="4" style="color:#bdbdbd;">매치결과부족</td>
+					</tr>
+				</c:if>
 			</c:forEach>
 		</c:if>
 		<c:if test="${matchBKResultCount==0 }">
@@ -272,11 +307,19 @@ $(document).ready(function(){
 
 		<c:if test="${matchBResultCount>0 }">
 			<c:forEach var="matchBResultList" items="${matchBResultlist}">
+			<c:if test="${!empty matchBResultList.t_name}">
 					<tr class="base" onclick="location.href='${pageContext.request.contextPath}/match/scoreDetail.do?m_seq=${matchBResultList.m_seq }'"  style="display: none;">
 						<td>${matchBResultList.m_date}</td>
 						<td>${matchBResultList.t_name }-${matchBResultList.m_home}</td>
 						<td>VS</td>
 						<td>${matchBResultList.m_away}-${matchBResultList.m_challenger }</td>
+					</tr>
+			</c:if>
+			<c:if test="${empty matchBResultList.t_name }">
+				<tr class="base" style="display: none;">
+					<td colspan="4" style="color:#bdbdbd;">매치결과부족</td>
+				</tr>
+			</c:if>
 			</c:forEach>
 		</c:if>
 		<c:if test="${matchBResultCount==0 }">

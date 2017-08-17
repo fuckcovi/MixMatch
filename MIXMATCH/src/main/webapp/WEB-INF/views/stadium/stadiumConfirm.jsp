@@ -25,8 +25,8 @@
 		</ul>
 		<hr size="1" width="100%">
 		<ul style="list-style: none;">
-			<li class="bookListX btn" style="display:inline-block;width:150px;background-color:#e8d477;">예약준비</li>
-			<li class="bookListF btn" style="display:inline-block;width:150px;background-color:#e8d477;">예약확정</li>
+			<li class="bookListXbtn btn" style="display:inline-block;width:150px;background-color:#e8d477;">예약준비</li>
+			<li class="bookListFbtn btn" style="display:inline-block;width:150px;background-color:#e8d477;">예약확정</li>
 		</ul>
 		<div class="bookListX" style="overflow-y: auto;height:440px;">
 			<div class="bookList xplan">
@@ -56,8 +56,8 @@
 			</table>
 			</div>
 		</div>
-		<div class="bookListF"  style="overflow-y: auto;height:440px;">
-			<div class="bookList fplan" style="display:none">
+		<div class="bookListF"  style="overflow-y: auto;height:440px;display: none;">
+			<div class="bookList fplan">
 				<table class="style">			
 				<tr class="tablehead">
 					<th>예약일자</th>
