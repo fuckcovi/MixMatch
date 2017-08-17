@@ -9,7 +9,7 @@
  
   <link rel="stylesheet" type="text/css" href="/css/result-light.css"> -->
   <link href="${pageContext.request.contextPath}/resources/css/layout222.css" rel="stylesheet">
-   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
+  <!--  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script> -->
   <style type="text/css">
     .wrap {
 	width: 500px;
@@ -80,7 +80,7 @@
 
   </style>
 <script type='text/javascript'>//<![CDATA[
-$(window).load(function(){
+$(document).ready(function(){
 
 	
 	
