@@ -5,20 +5,76 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/team/team.js"></script>
+<link href="${pageContext.request.contextPath}/resources/css/layout222.css" rel="stylesheet">
+<style type="text/css">
+	.style th{text-align: center;}
+</style>
 <div class="page-main-style">
-	<h3>매치 상세 기록</h3>
-	<h2>${match.m_away} ${match.m_challenger} : ${match.t_name} ${match.m_home}</h2>
-	<br>
-	일자 : ${match.m_date}	장소 : ${match.m_place}	mvp : ${match.m_mvp}
+	
+	<div>
+	<table class="style">
+		<tr>
+			<th colspan="5"><h5>매치 상세 기록</h5></th>
+		</tr>
+		<tr>
+			<td><h2>${match.m_away}</h2></td>
+			<td>${match.m_challenger}</td>
+			<td><img src="${pageContext.request.contextPath}/resources/images/versus.png" width="40"></td>
+			<td>${match.t_name}</td>
+			<td><h2>${match.m_home}</h2></td>
+		</tr>
+		<tr>
+			<th colspan="2">경기일자</th>
+			<th>경기장소</th>
+			<th colspan="2">MVP</th>
+		</tr>
+		<tr>
+			<td colspan="2">${match.m_date}</td>
+			<td>${match.m_place}</td>
+				<c:if test="${!empty match.m_mvp }">
+			<td>
+						<c:if test="${fn:endsWith(mvpmember.profile_name, '.jpg') || fn:endsWith(mvpmember.profile_name, '.png') || fn:endsWith(mvpmember.profile_name, '.gif') || fn:endsWith(mvpmember.profile_name, '.JPG') || fn:endsWith(mvpmember.profile_name, '.PNG') || fn:endsWith(mvpmember.profile_name, '.GIF')}">
+							<img src="${pageContext.request.contextPath}/team/imageViewMem.do?id=${mvpmember.id}" style="width:100px;height:100px;">
+						</c:if> 
+						<c:if test="${empty mvpmember.profile_name }">
+							<img src="${pageContext.request.contextPath}/resources/images/profile.jpg" style="width:100px;height:100px;">
+						</c:if>
+			</td>
+			<td>
+						${match.m_mvp}
+			</td> 
+				</c:if>
+			
+				<c:if test="${empty match.m_mvp }">
+			<td colspan="2">
+				MVP가 선택되지 않았습니다.
+			</td>
+				</c:if>
+			
+			
+		</tr>
+	
+	</table>
+	</div>
 	<br><hr>
+	<div>
+		<ul style="margin:0 auto;padding:0 0 0 0; height:35px;list-style: none;display: inline-block;" id="matchDetailRecord">
+			<li style="float: left; width:150px;" value="homeRecord">
+				<input type="button"class="btn" style="width:150px;border:1px solid white;" value="홈팀기록">
+			</li>
+			<li style="float: left; width:150px;" value="awayRecord">
+				<input type="button"class="btn" style="width:150px;border:1px solid white;" value="어웨이팀기록">
+			</li>
+		</ul>
+	</div>
 	<div>
 		<c:if test="${match.m_type eq '야구'}">
 			<!--  개인기록  ㅇ-->
 			<c:if test="${basecount > 0}">
-			<div class="detailRecord_home" style="float:right">
-			<table class="homeRecord">
-				<tr>
-					<th>홈이름</th>
+			<div class="detailRecord_home">
+			<table class="homeRecord style">
+				<tr class="tablehead">
+					<th>이름</th>
 					<th>타수</th>
 					<th>안타수</th>
 					<th>타점</th>
@@ -51,9 +107,9 @@
 			</c:forEach>
 			</table>
 			</div>
-			<div class="detailRecord_away" style="float:left;">
-			<table class="awayRecord">
-				<tr>
+			<div class="detailRecord_away" style="display: none;">
+			<table class="awayRecord style">
+				<tr class="tablehead">
 					<th>이름</th>
 					<th>타수</th>
 					<th>안타수</th>
@@ -95,10 +151,10 @@
 		<c:if test="${match.m_type eq '농구'}">
 			<!--  개인기록 ㄴ -->
 			<c:if test="${basketcount > 0}">
-			<div class="detailRecord_home" style="float:right">
-			<table class="homeRecord">
-				<tr>
-					<th>홈이름</th>
+			<div class="detailRecord_home" >
+			<table class="homeRecord style">
+				<tr class="tablehead">
+					<th>이름</th> 
 					<th>득점</th>
 					<th>도움</th>
 					<th>리바운드</th>
@@ -121,9 +177,9 @@
 			</c:forEach>
 			</table>
 			</div>
-			<div class="detailRecord_away" style="float:left;">
-			<table class="awayRecord">
-				<tr>
+			<div class="detailRecord_away" style=" display: none;">
+			<table class="awayRecord style">
+				<tr class="tablehead">
 					<th>이름</th>
 					<th>득점</th>
 					<th>도움</th>
@@ -155,10 +211,10 @@
 		<c:if test="${match.m_type eq '축구'}">
 			<!--  개인기록  ㅊ-->
 			<c:if test="${footcount > 0}">
-			<div class="detailRecord_home" style="float:right">
-			<table class="homeRecord">
-				<tr>
-					<th>홈이름</th>
+			<div class="detailRecord_home" >
+			<table class="homeRecord style">
+				<tr class="tablehead">
+					<th>이름</th>
 					<th>슈팅</th>
 					<th>도움</th>
 					<th>골</th>
@@ -177,9 +233,9 @@
 			</c:forEach>
 			</table>
 			</div>
-			<div class="detailRecord_away" style="float:left;">
-			<table class="awayRecord">
-				<tr>
+			<div class="detailRecord_away" style="display: none;">
+			<table class="awayRecord style">
+				<tr class="tablehead">
 					<th>이름</th>
 					<th>슈팅</th>
 					<th>도움</th>

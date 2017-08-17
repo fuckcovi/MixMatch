@@ -60,6 +60,19 @@ $(document).ready(function(){
 		$(".fplan .tablenull").show();
 	}
 	
+	// 홈 어웨이 선택에 따른 매치개인기록 보여주기
+	$("#matchDetailRecord li").click(function(){
+			$(".detailRecord_home").hide();
+			$(".detailRecord_away").hide();
+			if($(this).attr("value")=="homeRecord"){
+				$(".detailRecord_home").show();
+			}else{
+				$(".detailRecord_away").show();
+			}
+			
+	});
+	
+	
 	// 팀 선택에 따라 일정결과 목록 보여주기
 	$("#teamScheduleList li").click(function(){
 		if($(this).attr("value")=="allList"){

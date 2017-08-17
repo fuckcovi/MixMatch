@@ -8,6 +8,7 @@
   <meta name="googlebot" content="noindex, nofollow">
  
   <link rel="stylesheet" type="text/css" href="/css/result-light.css"> -->
+  <link href="${pageContext.request.contextPath}/resources/css/layout222.css" rel="stylesheet">
    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
   <style type="text/css">
     .wrap {
@@ -52,12 +53,13 @@
 #output{
 	height:200px;
 	width:100%;
-	border:1px solid;
-
 	text-align: center;	
 }
 #output table{
 	width:100%;
+}
+#output th{
+	text-align: center;
 }
 #stadiumTable{ 
 	margin:0 auto;
@@ -227,11 +229,11 @@ function controller(target) {
 				bookList = data.bookList;
 				if(bookCount>=0 && bookList!=null){
 					var output = "";
-					output += "<table class='tableBookingList'>"
+					output += "<table class='tableBookingList style'>"
 					output += "	<tr>";
 					output += "		<th>날짜</th>";
 					output += "		<th>타임</th>";
-					output += "		<th>가능여부</th>";
+					output += "		<th colspan='2'>가능여부</th>";
 					output += "	</tr>";
 					
 					$(bookList).each(function(index,item){	

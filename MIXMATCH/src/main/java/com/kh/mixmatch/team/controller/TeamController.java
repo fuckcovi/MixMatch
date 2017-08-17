@@ -283,9 +283,11 @@ public class TeamController {
 	
 		map.put("t_name", t_name);
 		List<TeamMemCommand> tMemList = teamMemService.listTeamMem(map);		// 濡쒓렇�씤�븳 �븘�씠�뵒媛� �냼�냽�맂 ��由ъ뒪�듃
+		TeamCommand team = teamService.selectTeam(t_name);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("teamMemView");
 		mav.addObject("tMemList",tMemList);
+		mav.addObject("team", team);
 		return mav;
 	}
 	
@@ -611,10 +613,16 @@ public class TeamController {
 			basketlist = teamMemService.listMatchBasket(m_seq);
 			basketcount = basketlist.size();
 		}
+		String mvp = match.getM_mvp();
+		MemberCommand mvpmember = null;
+		if(mvp != null){
+			mvpmember= memberService.selectMember(mvp);
+		}
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("matchDetailRecord");
 		mav.addObject("match",match);
+		mav.addObject("mvpmember",mvpmember);
 		mav.addObject("footlist",footlist);
 		mav.addObject("baselist",baselist);
 		mav.addObject("basketlist",basketlist);

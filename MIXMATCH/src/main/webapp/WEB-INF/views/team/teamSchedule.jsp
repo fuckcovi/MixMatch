@@ -5,6 +5,11 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/team/team.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/layout222.css" rel="stylesheet">
+<style type="text/css">
+	.style th{text-align: center;}
+	#result{
+	width:300px;}
+</style>
 <div class="page-main-style">
 	<h2>팀일정결과</h2>
 	<hr class="style"><br>
@@ -100,7 +105,7 @@
 			<table class="style">	 		
 			<tr class="tablehead">
 				<th>경기일자</th>
-				<th>매치결과</th>
+				<th id="result" >매치결과</th>
 				<th>MVP</th>
 			</tr>
 			<c:set var="fseq" value="0"/>
@@ -112,7 +117,7 @@
 						<c:set var="fseq" value="${fseq},[${matchlist.m_seq}]"/>
 						<tr class="${matchlist.t_name} ${matchlist.m_challenger} plan">
 							<td>${matchlist.m_date}</td>
-							<td><a href="${pageContext.request.contextPath }/team/matchDetail.do?m_seq=${matchlist.m_seq}">${matchlist.t_name} ${matchlist.m_home} : ${matchlist.m_away} ${matchlist.m_challenger}</a></td>
+							<td ><a href="${pageContext.request.contextPath }/team/matchDetail.do?m_seq=${matchlist.m_seq}">${matchlist.t_name} ${matchlist.m_home} : ${matchlist.m_away} ${matchlist.m_challenger}</a></td>
 							<td>${matchlist.m_mvp}</td>
 						</tr>
 						</c:if>
@@ -120,7 +125,7 @@
 				</c:forEach>
 			</c:forEach>
 			<tr class="tablenull" style="display: none;">
-				<td colspan="4">매치결과없음</td>
+				<td colspan="5">매치결과없음</td>
 			</tr>
 			</table>
 		</div>

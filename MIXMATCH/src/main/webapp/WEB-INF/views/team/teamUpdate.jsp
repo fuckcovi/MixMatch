@@ -3,6 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
+<style type="text/css">
+	ul{list-style: none;}
+	
+</style>
 <div class="page-main-style">
 	<form:form id="teamUpdate" commandName="teamCommand" action="${pageContext.request.contextPath}/team/teamUpdate.do" enctype="multipart/form-data">
 	<form:errors element="div" cssClass="error-color"/>

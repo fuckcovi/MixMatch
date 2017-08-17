@@ -5,6 +5,9 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/team/team.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/layout222.css" rel="stylesheet">
+<style type="text/css">
+	.style th{text-align: center;}
+</style>
 <div class="page-main-style">
 	<h2>팀정보</h2>
 	<hr class="style"><br>
@@ -70,7 +73,7 @@
 	</form:form>
 	<br><hr class="style">
 	<c:if test="${team.id == user_id}">
-		<input type="button" value="팀정보수정" class="btn" onclick="location.href='${pageContext.request.contextPath }/team/teamUpdate.do?t_name=${team.t_name}'" style="float:right;margin-right:42px;">
+		<input type="button" value="팀수정" class="btn" onclick="location.href='${pageContext.request.contextPath }/team/teamUpdate.do?t_name=${team.t_name}'" style="float:right;margin-right:42px;">
 		<input type="button" value="팀삭제" class="btn" onclick="location.href='${pageContext.request.contextPath }/team/deleteTeam.do?t_name=${team.t_name}'" style="float:right;margin-right:18px;">
 	</c:if>
 </div>
