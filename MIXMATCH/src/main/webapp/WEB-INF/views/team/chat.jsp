@@ -8,7 +8,7 @@
 <script type="text/javascript">
 	var wsocket;
 	function connect(){
-		wsocket = new WebSocket("ws://localhost:8080/mixmatch/chat-ws.do");
+		wsocket = new WebSocket("ws://192.168.20.31:8080/mixmatch/chat-ws.do");
 
 		wsocket.onopen = onOpen;
 		wsocket.close = onClose;
