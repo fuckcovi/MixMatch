@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.min.js"></script>
+  <link href="${pageContext.request.contextPath}/resources/css/layout222.css" rel="stylesheet">
 <style type="text/css">
 	#stadiumList th{
 		font-size: large;
@@ -28,7 +29,7 @@
 	
 	<h2><b>경기장 예약</b></h2>
 <c:if test="${user_id  eq 'admin'}">
-	<input type="button" value="경기장등록" onclick="location.href='${pageContext.request.contextPath }/stadium/stadiumRegi.do'" ><br>
+	<input type="button" style="width:300px;" class="btn" value="경기장등록" onclick="location.href='${pageContext.request.contextPath }/stadium/stadiumRegi.do'" ><br>
 </c:if>
 <div style="height:30px;margin:0 auto;display: inline-block;">
 	<form action="stadium.do" id="search_form" method="get">
@@ -91,8 +92,8 @@
 			<td class="regdate">${list.s_regdate}
 			<c:if test="${user_id eq 'admin' }">
 				<br>
-				<input type="button" value="수정" onclick="location.href='${pageContext.request.contextPath }/stadium/stadiumUpdate.do?s_seq=${list.s_seq}'">
-				<input type="button" value="삭제" onclick="location.href='${pageContext.request.contextPath }/stadium/stadiumDel.do?s_seq=${list.s_seq}'">
+				<input type="button" class="btn" value="수정" onclick="location.href='${pageContext.request.contextPath }/stadium/stadiumUpdate.do?s_seq=${list.s_seq}'">
+				<input type="button" class="btn" value="삭제" onclick="location.href='${pageContext.request.contextPath }/stadium/stadiumDel.do?s_seq=${list.s_seq}'">
 			</c:if>
 			</td>
 		</tr>

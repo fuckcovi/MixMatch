@@ -5,6 +5,9 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/stadium/book.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/layout222.css" rel="stylesheet">
+<style type="text/css">
+.style th{text-align: center;}	
+</style>
 <div class="page-main-style">
 	<h2><b>경기장 예약 확인</b></h2>
 	<div style="margin:0 auto;overflow-y: auto;">
@@ -32,7 +35,7 @@
 				<th>예약일자</th>
 				<th>예약경기장</th>
 				<th>예약타임</th>
-				<th>예약팀</th>
+				<th colspan="2">예약팀</th>
 			</tr>
 			<c:forEach var="teamlist" items="${teamlist}">
 				<c:forEach var="booklist" items="${booklist}" >
@@ -42,14 +45,13 @@
 							<td>${booklist.s_seq}</td>
 							<td>${booklist.b_time}</td>
 							<td>${booklist.t_name}</td>
-							<td><input type="button" id="stadiumBookF" onclick="location.href='${pageContext.request.contextPath }/stadium/stadiumBookC.do?b_seq=${booklist.b_seq}'" value="예약취소"></td>
-							<td><input type="button" id="stadiumBookF" onclick="location.href='${pageContext.request.contextPath }/stadium/stadiumBookF.do?b_seq=${booklist.b_seq}'" value="예약확정"></td>
+							<td><input class="btn" type="button" id="stadiumBookF" onclick="location.href='${pageContext.request.contextPath }/stadium/stadiumBookC.do?b_seq=${booklist.b_seq}'" value="예약취소"><input type="button" id="stadiumBookF" onclick="location.href='${pageContext.request.contextPath }/stadium/stadiumBookF.do?b_seq=${booklist.b_seq}'" value="예약확정" class="btn"></td>
 						</tr>
 					</c:if>
 				</c:forEach>	
 			</c:forEach>
 			<tr class="tablenull" style="display: none;">
-				<td colspan="3">예정일정없음</td>
+				<td colspan="5">예정일정없음</td>
 			</tr>
 			</table>
 			</div>

@@ -57,7 +57,7 @@ public class StadiumController {
 			log.debug("<<keyword>> : " +keyword);
 		}
 		
-		int rowCount = 10;
+		int rowCount = 5;
 		int pageCount = 5;
 		
 		
