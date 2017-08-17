@@ -101,7 +101,8 @@ public class HomeController {
 		Map<String, Object> matchBmap = new HashMap<String, Object>();
 		matchBmap.put("type", "야구");
 		matchBmap.put("board", "score");
-		
+		matchBmap.put("start", 1);
+		matchBmap.put("end",5);
 		int matchBResultCount = teamService.MainmatchCountFinish(matchBmap);
 		
 		List<MatchCommand> matchBResultlist = null;
@@ -112,7 +113,8 @@ public class HomeController {
 		Map<String, Object> matchBKmap = new HashMap<String, Object>();
 		matchBKmap.put("type", "농구");
 		matchBKmap.put("board", "score");
-		
+		matchBKmap.put("start", 1);
+		matchBKmap.put("end",5);
 		int matchBKResultCount = teamService.MainmatchCountFinish(matchBKmap);
 		
 		List<MatchCommand> matchBKResultlist = null;
@@ -123,19 +125,14 @@ public class HomeController {
 		Map<String, Object> matchFmap = new HashMap<String, Object>();
 		matchFmap.put("type", "축구");
 		matchFmap.put("board", "score");
-		
+		matchFmap.put("start", 1);
+		matchFmap.put("end",5);
 		int matchFResultCount = teamService.MainmatchCountFinish(matchFmap);
 		
 		List<MatchCommand> matchFResultlist = null;
 		if (matchFResultCount > 0) {
 			matchFResultlist = teamService.matchListFinish(matchFmap);
 		}
-				
-		//////////////
-		System.out.println("매치결과 야구 : " + matchBResultlist);
-		System.out.println("매치결과 축구 : " + matchFResultlist);
-		System.out.println("매치결과 농구 : " + matchBKResultlist);
-		
 	// 사이드바 - 마이페이지
 		String user_id = (String)session.getAttribute("user_id");
 		MemberCommand member = null;

@@ -48,11 +48,12 @@
 	
 		
 	<select id="matchListFinish" parameterType="map" resultType="matchCommand">
-		SELECT m.*,t.t_logo,t.t_logo_name FROM  g_match m, (SELECT * FROM g_team)t 
+		SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT m.*,t.t_logo,t.t_logo_name FROM  g_match m, (SELECT * FROM g_team)t 
 		<where>
 			m.t_name = t.t_name AND m_type = #{type} AND m_home!= -1
 		</where>
-		ORDER BY m_seq DESC
+		ORDER BY m_seq DESC )a)
+		<![CDATA[ WHERE rnum>=#{start} AND rnum<=#{end} ]]>	
 	</select>	
 	
 	<select id="MainmatchCountFinish" parameterType="map" resultType="integer">
@@ -62,6 +63,7 @@
 				m_challenger is not null AND m_type = #{type} AND m_home!= -1
 			</if>
 		</where>
+		
 	</select>
 	
 </mapper>

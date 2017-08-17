@@ -33,6 +33,22 @@ $(document).ready(function(){
 		$("#teamRankList .foot").show();
 		$("#teamRankList .basket").hide();
 	});
+	$("#baseMatch").click(function(){
+		$("#matchList .base").show();
+		$("#matchList .foot").hide();
+		$("#matchList .basket").hide();
+	});
+	$("#basketMatch").click(function(){
+		$("#matchList .base").hide();
+		$("#matchList .foot").hide();
+		$("#matchList .basket").show();
+	});
+	$("#footMatch").click(function(){
+		$("#matchList .base").hide();
+		$("#matchList .foot").show();
+		$("#matchList .basket").hide();
+	});
+	
 });		
 </script>
 <div id="notice-link">
@@ -163,7 +179,7 @@ $(document).ready(function(){
 			</c:forEach>			
 		</c:if>
 		<c:if test="${baseTeamCount==0 }">
-			<tr class="base"><td colspan="6">등록된 야구팀이 없습니다.</td></tr>
+			<tr class="base" style="display: none;"><td colspan="6">등록된 야구팀이 없습니다.</td></tr>
 		</c:if>
 			
 		<c:if test="${basketTeamCount>0 }">
@@ -184,7 +200,7 @@ $(document).ready(function(){
 			</c:forEach>			
 		</c:if>
 		<c:if test="${basketTeamCount==0 }">
-			<tr class="basket"><td colspan="6">등록된 농구팀이 없습니다.</td></tr>
+			<tr class="basket" style="display: none;"><td colspan="6">등록된 농구팀이 없습니다.</td></tr>
 		</c:if>
 		
 		<c:if test="${footTeamCount>0 }">
@@ -211,44 +227,60 @@ $(document).ready(function(){
 </div>
 <br>
 
-<div id="matchView" class="full" >
-		<h4>최근경기결과</h4>
-		<ul style="background: red; height:100px;">
+<div id="matchView" >
+<a href="${pageContext.request.contextPath}/match/scoreBoard.do" style="font-size:18px;">최근경기결과<span class="glyphicon glyphicon-chevron-right" style="font-size:18px;"></span></a>
+	<br><br>
+	<ul id="ttype">
+		<li id="footMatch"><img src="${pageContext.request.contextPath}/resources/images/scicon.png" width="15"> 축구</li>
+		<li id="baseMatch"><img src="${pageContext.request.contextPath}/resources/images/bsicon.png" width="15"> 야구</li>
+		<li id="basketMatch"><img src="${pageContext.request.contextPath}/resources/images/bkicon.png" width="15"> 농구</li>
+	</ul>
+	<br>
+	<table id="matchList">
+		<tr>
+			<th>경기일자</th>
+			<th>홈팀</th>
+			<th></th>
+			<th>원정팀</th>
+		</tr>
 		<c:if test="${matchFResultCount>0 }">
 			<c:forEach var="matchFResultList" items="${matchFResultlist}">
-					<li>${matchFResultList.t_name }-${matchFResultList.m_home} : ${matchFResultList.m_away}-${matchFResultList.m_challenger }</li>
-
+					<tr class="foot" onclick="location.href='${pageContext.request.contextPath}/match/scoreDetail.do?m_seq=${matchFResultList.m_seq }'"  >
+						<td>${matchFResultList.m_date}</td>
+						<td>${matchFResultList.t_name }-${matchFResultList.m_home}</td>
+						<td>VS</td>
+						<td>${matchFResultList.m_away}-${matchFResultList.m_challenger }</td>
+					</tr>
 			</c:forEach>
 		</c:if>
 		<c:if test="${matchFResultCount==0 }">
-			<li>최근 축구경기결과가 없습니다.</li>
+			<tr class="foot"><td colspan="4">최근 축구경기결과가 없습니다.</td></tr>
 		</c:if>
-		</ul> 
-</div>
-<div id="matchView" class="full" >
-		<h4>최근경기결과</h4>
-		<ul style="background:blue; height:100px;">
-			<c:if test="${matchBKResultCount>0 }">
-				<c:forEach var="matchBKResultlist" items="${matchBKResultlist}">
-						<li>${matchBKResultlist.t_name }-${matchBKResultlist.m_home} : ${matchBKResultlist.m_away}-${matchBKResultlist.m_challenger }</li>
-					
-				</c:forEach>
-			</c:if>
-			<c:if test="${matchBKResultCount==0 }">
-				<li>최근 농구경기결과가 없습니다.</li>
-			</c:if>
-		</ul>
-</div>
-<div id="matchView" class="full" >
-		<h4>최근경기결과</h4>
-		<ul style="background: yellow; height:100px;"> 
+		<c:if test="${matchBKResultCount>0 }">
+			<c:forEach var="matchBKResultlist" items="${matchBKResultlist}">
+					<tr class="basket" onclick="location.href='${pageContext.request.contextPath}/match/scoreDetail.do?m_seq=${matchBKResultlist.m_seq }'" style="display: none;" >
+						<td>${matchBKResultlist.m_date}</td>
+						<td>${matchBKResultlist.t_name }-${matchBKResultlist.m_home}</td>
+						<td>VS</td>
+						<td>${matchBKResultlist.m_away}-${matchBKResultlist.m_challenger }</td>
+					</tr>
+			</c:forEach>
+		</c:if>
+		<c:if test="${matchBKResultCount==0 }">
+			<tr class="basket" style="display: none;"><td colspan="4">최근 농구경기결과가 없습니다.</td></tr>
+		</c:if>
+
 		<c:if test="${matchBResultCount>0 }">
 			<c:forEach var="matchBResultList" items="${matchBResultlist}">
-					<li>${matchBResultList.t_name }-${matchBResultList.m_home} : ${matchBResultList.m_away}-${matchBResultList.m_challenger }</li>
+					<tr class="base" onclick="location.href='${pageContext.request.contextPath}/match/scoreDetail.do?m_seq=${matchBResultList.m_seq }'"  style="display: none;">
+						<td>${matchBResultList.m_date}</td>
+						<td>${matchBResultList.t_name }-${matchBResultList.m_home}</td>
+						<td>VS</td>
+						<td>${matchBResultList.m_away}-${matchBResultList.m_challenger }</td>
 			</c:forEach>
 		</c:if>
 		<c:if test="${matchBResultCount==0 }">
-			<li>최근 야구경기결과가 없습니다.</li>
+			<tr class="base" style="display: none;"><td colspan="4">최근 야구경기결과가 없습니다.</td></tr>
 		</c:if>
-		</ul> 
+	</table>
 </div> 

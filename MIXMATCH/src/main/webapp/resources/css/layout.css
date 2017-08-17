@@ -469,3 +469,50 @@ a#bookmark:hover {
 #rankView tr {
 	border-bottom: 1px solid #BDBDBD;
 }
+
+/* 최근경기결과 */
+#matchView {
+	position: relative;
+	padding: 10px;
+	margin-top: 20px;
+	left: 10%;
+	width: 80%;
+	height: 350px;
+	border: 1px solid #BDBDBD;
+}
+#matchView a {
+	color: #333333;
+}
+#matchView a:hover {
+	font-weight: bold;
+	text-decoration: none;
+	color: #25c9e4;
+}
+#matchView ul {
+	width: 90%;
+	list-style: none;
+	text-align: left;
+	margin:0 auto;
+}
+#matchView ul li {
+	display: inline;
+	font-size: 14px;
+	line-height: 30px;
+	margin-right: 10px;
+}
+#matchView ul li:hover {
+	color: #25c9e4;
+	font-weight: bold;
+}
+#matchView table {
+	margin: 0 auto;	
+	width: 80%;
+	height: 200px;
+}
+#matchView th {
+	height: 30px;
+	text-align: center;
+}
+#matchView tr {
+	border-bottom: 1px solid #BDBDBD;
+}
