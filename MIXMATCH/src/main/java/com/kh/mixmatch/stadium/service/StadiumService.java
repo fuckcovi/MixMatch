@@ -32,6 +32,8 @@ public interface StadiumService {
 	public int booklistCount(String t_name);
 	public void updateCheckBooking(Integer b_seq);
 	
+	public void deleteBookingList(Integer s_seq);
+	
 	@Transactional(readOnly=true)
 	public List<BookingCommand> listBooking(Map<String, Object> map);	// 해당구장 예약 리스트
 	@Transactional(readOnly=true)

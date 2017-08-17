@@ -94,5 +94,11 @@ public class StadiumServiceImpl implements StadiumService{
 		stadiumMapper.updateCheckBooking(b_seq);
 		
 	}
+
+	@Override
+	public void deleteBookingList(Integer s_seq) {
+		// TODO Auto-generated method stub
+		stadiumMapper.deleteBookingList(s_seq);
+	}
 	
 }

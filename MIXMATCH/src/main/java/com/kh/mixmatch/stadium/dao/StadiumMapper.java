@@ -33,7 +33,8 @@ public interface StadiumMapper {
 	@Delete("DELETE FROM g_booking WHERE b_seq=#{b_seq}")
 	public void deleteBooking(Integer b_seq);
 	public BookingCommand selectBooking(Integer b_seq);
-	
+	@Delete("DELETE FROM g_booking WHERE s_seq=#{s_seq}")	// 해당 구장의 예약리스트 삭제
+	public void deleteBookingList(Integer s_seq);
 	
 	// 해당 예약 확인 
 	@Update("UPDATE g_booking SET b_check=2 WHERE b_seq=#{b_seq}")

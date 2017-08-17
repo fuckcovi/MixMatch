@@ -268,6 +268,7 @@ public class StadiumController {
 		if(!id.equals("admin")){
 			return "redirect:/stadium/stadium.do";
 		}
+		stadiumService.deleteBookingList(s_seq);
 		stadiumService.deleteStadium(s_seq);
 		return "redirect:/stadium/stadium.do";
 	}
