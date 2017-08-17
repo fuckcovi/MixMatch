@@ -167,7 +167,7 @@ public class NoticeController {
 	}
 	
 	// �̹��� ���
-	@RequestMapping("/noticeimageView.do")
+	@RequestMapping("/notice/noticeimageView.do")
 	public ModelAndView viewImage(@RequestParam int n_seq){
 		NoticeCommand notice = noticeService.noticeSelect(n_seq);
 		ModelAndView mav = new ModelAndView();
