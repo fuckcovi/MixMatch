@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <style type="text/css">
-	ul li{list-style: none;}
+	.menu li{list-style: none;}
 	input#gn_title{width:100%;height:50px;}
 	#gn_content{width:100%;height:250px;}
 </style>

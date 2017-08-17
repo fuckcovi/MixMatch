@@ -4,7 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/notice/notice.js"></script>
 <style type="text/css">
-	ul li{list-style: none;float:left;}
+	.menu li{list-style: none;float:left;}
 </style>
 <div class="page-main-style">
 	<h2>${notice.gn_title}</h2>

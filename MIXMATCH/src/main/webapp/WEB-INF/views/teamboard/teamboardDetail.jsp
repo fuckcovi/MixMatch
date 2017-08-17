@@ -4,11 +4,11 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/teamboard/teamboard.js"></script>
 <style type="text/css">
-	ul li{list-style: none;float:left;}
+	.menu li{list-style: none;float:left;}
 </style>
 <div class="page-main-style">
 	<h2>${teamboard.gt_title}</h2>
-	<ul>
+	<ul class="menu">
 		<li>번호 : ${teamboard.gt_seq}</li>
 		<li>조회수 : ${teamboard.gt_hit}</li>
 		<li>등록일 : ${teamboard.gt_regdate}</li><br>
