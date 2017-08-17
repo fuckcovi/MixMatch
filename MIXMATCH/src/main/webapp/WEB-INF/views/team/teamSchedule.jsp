@@ -38,8 +38,8 @@
 		<li class="scheduleListC btn" style="display:inline-block;width:150px;background-color:#e8d477;">확정일정</li>
 		<li class="scheduleListF btn" style="display:inline-block;width:150px;background-color:#e8d477;">종료일정</li>
 	</ul>
-	<div style="height:351px;">
-	<div class="scheduleListX" style="margin:0 auto;overflow-y: auto;">
+	<div style="height:351px;margin:0 auto;overflow-y: auto;">
+	<div class="scheduleListX" >
 		<div class="scheduleList xplan">
 			<table class="style">			 
 			<tr class="tablehead">

@@ -12,7 +12,7 @@
 	<h2><b>경기장 예약 확인</b></h2>
 	<div style="margin:0 auto;overflow-y: auto;">
 	<c:if test="${teamCountMaster>0 }">    
-		<ul style="list-style: none;margin: 0 auto;height:70px; width:750px;padding:0;"  id="teamBookList" >
+		<ul style="list-style: none;margin: 0 auto;overflow-y: auto;height:70px; width:780px;padding:0;"  id="teamBookList" >
 			<li style="float: left; width:150px;" value="allList">
 				<input type="button" class="btn"  style="width:150px;border:1px solid white;" value="전체보기">
 			</li>
@@ -28,7 +28,7 @@
 			<li class="bookListX btn" style="display:inline-block;width:150px;background-color:#e8d477;">예약준비</li>
 			<li class="bookListF btn" style="display:inline-block;width:150px;background-color:#e8d477;">예약확정</li>
 		</ul>
-		<div class="bookListX">
+		<div class="bookListX" style="overflow-y: auto;height:440px;">
 			<div class="bookList xplan">
 			<table class="style">			 
 			<tr class="tablehead">
@@ -56,7 +56,7 @@
 			</table>
 			</div>
 		</div>
-		<div class="bookListF" >
+		<div class="bookListF"  style="overflow-y: auto;height:440px;">
 			<div class="bookList fplan" style="display:none">
 				<table class="style">			
 				<tr class="tablehead">
