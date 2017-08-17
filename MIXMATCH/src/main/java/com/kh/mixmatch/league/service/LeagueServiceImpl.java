@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.mixmatch.league.dao.LeagueMapper;
 import com.kh.mixmatch.league.domain.LeagueCommand;
+import com.kh.mixmatch.league.domain.LeagueDtlCommand;
 
 @Service("leagueService")
 public class LeagueServiceImpl implements LeagueService {
@@ -44,6 +45,27 @@ public class LeagueServiceImpl implements LeagueService {
 	@Override
 	public void updateLeague(LeagueCommand league) {
 		leagueMapper.updateLeague(league);
+	}
+
+	@Override
+	public List<String> getTeamType(Map<String, Object> map) {
+		return leagueMapper.getTeamType(map);
+	}
+
+	@Override
+	public void insertLeagueDtl(LeagueDtlCommand leagueDtl) {
+		leagueMapper.insertLeagueDtl(leagueDtl);
+	}
+
+	@Override
+	public List<LeagueDtlCommand> selectLeagueDtl(Integer l_seq) {
+		return leagueMapper.selectLeagueDtl(l_seq);
+	}
+
+	@Override
+	public void updateChk(Integer ld_seq) {
+		leagueMapper.updateChk(ld_seq);
+		leagueMapper.updateTeamNum(ld_seq);
 	}
 
 }

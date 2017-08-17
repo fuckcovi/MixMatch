@@ -9,7 +9,7 @@
 	<hr class="match-hr"><br>
 	
 	<div class="match-form">
-		<table> 
+		<table class="detail-table"> 
 			<tr>
 				<td>
 					<c:if test="${!empty match.t_logo_name}">
@@ -21,41 +21,45 @@
 						<c:if test="${match.m_type eq '농구'}"><img src="${pageContext.request.contextPath}/resources/images/basketball.png" style="width:80px;height:80px;"></c:if>	
 					</c:if>
 				</td>
-				<td>${match.t_name}<br><input type="button" value="팀정보" class="team-btn" onclick="location.href='${pageContext.request.contextPath}//teamteamInfo.do?t_name=${match.t_name}'"></td>
+				<td>${match.t_name}<br><input type="button" value="팀정보" class="team-btn" onclick="location.href='${pageContext.request.contextPath}/team/teamInfo.do?t_name=${match.t_name}'"></td>
 				<td><img src="${pageContext.request.contextPath}/resources/images/versus.png" width="80"></td>
 				<td>없음</td>
 				<td><img src="${pageContext.request.contextPath}/resources/images/away_img.png" width="80"></td>
 			</tr>
-		</table>  
-		<table class="list"> 
-			<tr>
+		</table>
+		<br>  
+		<table class="list-table"> 
+			<tr height="40">
 				<td class="left-style">지역</td>
-				<td align="left"> ${match.m_area}</td>
+				<td align="left" style="padding-left:10px;"> ${match.m_area}</td>
 			</tr>
-			<tr>
+			<tr height="40">
 				<td class="left-style">날짜</td>
-				<td align="left"> ${match.m_date}</td>
+				<td align="left" style="padding-left:10px;"> ${match.m_date}</td>
 			</tr>
-			<tr>	
+			<tr height="40">	
 				<td class="left-style">시간</td>
-				<td align="left"> ${match.m_time}</td>
+				<td align="left" style="padding-left:10px;"> ${match.m_time}</td>
 			</tr>
-			<tr>
+			<tr height="40">
 				<td class="left-style">경기장</td>
-				<td align="left"> ${match.m_place}</td>
+				<td align="left" style="padding-left:10px;"> ${match.m_place}</td>
 			</tr>
-			<tr>
+			<tr height="40">
 				<td class="left-style">비용</td>
-				<td align="left"> ${match.m_cost}</td>
+				<td align="left" style="padding-left:10px;"> ${match.m_cost}</td>
 			</tr>
-			<tr height="60">
+			<tr height="80">
 				<td class="left-style">내용</td>
-				<td align="left"> ${match.m_content}</td>
+				<td align="left" style="padding-left:10px;"> ${match.m_content}</td>
 			</tr>
-		</table><br>
+		</table>
+		<br>
+		<c:if test="${fn:contains(t_name,match.t_name) || empty team}">
+			<span>매치신청할 수 없습니다.</span><br>
+		</c:if>
 		<c:if test="${!fn:contains(t_name,match.t_name) && !empty team}">
 			<form:form commandName="match" action="challengerUpdate.do" enctype="multipart/form-data" id="challenger_form">
-				<form:errors element="div" cssClass="error-color"/>
 				<form:hidden path="m_seq"/>
 				<form:hidden path="m_area"/>
 				<form:hidden path="m_date"/>
@@ -63,10 +67,11 @@
 				<form:hidden path="m_place"/>
 				<form:hidden path="m_cost"/>
 				<form:hidden path="m_content"/>
-				<form:select path="t_name" items="${team}"/>
-				<input type="submit" value="매치신청" id="match_btn" class="btn">			
+				<form:select path="t_name" items="${team}" cssClass="option-box"/>
+				<input type="submit" value="매치신청" id="match_btn" class="select-btn">			
 			</form:form>
-		</c:if><br>
+		</c:if>
+		<br>
 		<input type="button" value="목록으로" class="match-btn" onclick="location.href='matchBoard.do'">
 	</div>
 	<c:if test="${fn:contains(t_name,match.t_name)}">  

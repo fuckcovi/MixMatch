@@ -24,8 +24,8 @@
 .team-btn {
 	width: 55px;
 	height: 25px;
-	background: #FAED7D;
-	border: 1px solid #f9cc4b;
+	background: #FFD8D8;
+	border: 1px solid #F15F5F;
 	font-size: 12px;
 }
 .select-btn {
@@ -42,7 +42,7 @@
 	color: #BDBDBD;
 	border:0;
 }
-.match-table {
+.match-table, .detail-table {
 	width: 80%;
 	margin: 0 auto;
 }
@@ -66,4 +66,44 @@
 	color: #333333;
 	font-weight: bold;
 	text-decoration: none;
+}
+.list-table, .insert-table {
+	width: 50%;
+	margin: 0 auto;
+}
+.list-table tr {
+	border: 3px solid #fff;
+	background: #EAEAEA;
+}
+.left-style {
+	background: #C6C6C6;
+}
+.option-box {
+	width: 160px;
+	height: 30px;
+	padding-left: 5px;
+}
+.insert-table tr {
+	border-top: 1px solid #BDBDBD;
+	border-bottom: 1px solid #BDBDBD;
+}
+.insert-table th {
+	width: 100px;
+	padding: 10px;
+	background: #EAEAEA;
+}
+.insert-table td {
+}
+.detail-list {
+	width: 500px;
+	text-align: center;
+	border-top: 1px solid #BDBDBD;
+	border-bottom: 1px solid #BDBDBD;
+	border-collapse: collapse;
+}
+.detail-list tr {
+	height: 40px;
+}
+.detail-list th {
+	text-align: center;
 }

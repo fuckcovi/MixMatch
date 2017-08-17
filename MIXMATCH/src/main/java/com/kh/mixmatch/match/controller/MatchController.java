@@ -24,6 +24,8 @@ import com.kh.mixmatch.match.domain.MatchCommand;
 import com.kh.mixmatch.match.domain.TotoCommand;
 import com.kh.mixmatch.match.service.MatchService;
 import com.kh.mixmatch.match.service.TotoService;
+import com.kh.mixmatch.member.domain.MemberCommand;
+import com.kh.mixmatch.member.service.MemberService;
 import com.kh.mixmatch.team.domain.TeamCommand;
 
 @Controller
@@ -35,7 +37,13 @@ public class MatchController {
 	private MatchService matchService;
 	@Resource
 	private TotoService totoService;
+	@Resource
+	private MemberService memberService;
 	
+	@ModelAttribute("memberCommand")
+	public MemberCommand initCommand(){
+		return new MemberCommand();
+	}
 	@ModelAttribute("matchCommand")
 	public MatchCommand initMatchCommand() {
 		return new MatchCommand();
@@ -254,7 +262,7 @@ public class MatchController {
 		}
 		
 		if (result.hasErrors()) {
-			return "matchInsert";
+			return "matchBoard";
 		}
 		
 		// 매치등록
@@ -275,6 +283,8 @@ public class MatchController {
 			log.debug("<<매치수정폼 m_seq>> : " + m_seq);
 			log.debug("<<매치수정폼 t_name>> : " + t_name);
 		}
+		
+		List<TeamCommand> teamCommand = matchService.getTeamType2(id);
 		
 		ArrayList<String> type = new ArrayList<String>();
 		type.add("축구");
@@ -303,6 +313,7 @@ public class MatchController {
 		MatchCommand matchCommand = matchService.selectMatch(m_seq);
 		model.addAttribute("match", matchCommand);
 		model.addAttribute("teamList", t_name);
+		model.addAttribute("team", teamCommand);
 		model.addAttribute("type", type);
 		model.addAttribute("area", area);
 		
@@ -320,6 +331,10 @@ public class MatchController {
 		if (result.hasErrors()) {
 			return "matchUpdate";
 		}
+		
+		String[] array = matchCommand.getT_name().split(":");
+		matchCommand.setT_name(array[0]);
+		matchCommand.setM_type(array[1]);
 		
 		// 매치수정
 		matchService.updateMatch(matchCommand);
@@ -376,7 +391,7 @@ public class MatchController {
 	// 결과등록
 	@RequestMapping(value="/match/scoreUpdate.do", method=RequestMethod.POST)
 	public String updateScoreSubmit(@ModelAttribute("match") @Valid MatchCommand matchCommand,
-									BindingResult result, HttpServletRequest request) {
+									BindingResult result, HttpServletRequest request, HttpSession session) {
 		if (log.isDebugEnabled()) {
 			log.debug("<<결과등록 matchCommand>> : " + matchCommand);
 		}
@@ -418,11 +433,12 @@ public class MatchController {
 			// 이긴팀과 점수를 맞춘 멤버가 베팅한 포인트 가져오기
 			ArrayList<Integer> allPoint = totoService.totoAllPoint(map);
 			System.out.println("allPoint" + allPoint);
-			// 배당률 가져오기
-			double t_rate = totoService.totoRate(map);
-			System.out.println("t_rate=" + t_rate);
 					
-			if (teamList != null) {
+			if (!teamList.isEmpty()) {
+				// 배당률 가져오기
+				Double t_rate = totoService.totoRate(map);
+				System.out.println("t_rate=" + t_rate);
+				
 				for (int i = 0; i < teamList.size(); i++) {
 					int point = (int) (teamPoint.get(i) * t_rate);
 					Map<String, Object> teamMap = new HashMap<String, Object>();
@@ -435,7 +451,11 @@ public class MatchController {
 				}
 			}
 						
-			if (allList != null) {
+			if (!allList.isEmpty()) {
+				// 배당률 가져오기
+				Double t_rate = totoService.totoRate(map);
+				System.out.println("t_rate=" + t_rate);
+				
 				for (int i = 0; i < allList.size(); i++) {
 					int point = (int) (allPoint.get(i) * t_rate * 2);
 					Map<String, Object> allMap = new HashMap<String, Object>();
@@ -479,11 +499,12 @@ public class MatchController {
 			// 이긴팀과 점수를 맞춘 멤버가 베팅한 포인트 가져오기
 			ArrayList<Integer> allPoint = totoService.totoAllPoint(map);
 			System.out.println("allPoint" + allPoint);
-			// 배당률 가져오기
-			double t_rate = totoService.totoRate(map);
-			System.out.println("t_rate=" + t_rate);
 			
-			if (teamList != null) {
+			if (!teamList.isEmpty()) {
+				// 배당률 가져오기
+				Double t_rate = totoService.totoRate(map);
+				System.out.println("t_rate=" + t_rate);
+				
 				for (int i = 0; i < teamList.size(); i++) {
 					int point = (int) (teamPoint.get(i) * t_rate);
 					Map<String, Object> teamMap = new HashMap<String, Object>();
@@ -496,7 +517,11 @@ public class MatchController {
 				}
 			}
 			
-			if (allList != null) {
+			if (!allList.isEmpty()) {
+				// 배당률 가져오기
+				Double t_rate = totoService.totoRate(map);
+				System.out.println("t_rate=" + t_rate);
+				
 				for (int i = 0; i < allList.size(); i++) {
 					int point = (int) (allPoint.get(i) * t_rate * 2);
 					Map<String, Object> allMap = new HashMap<String, Object>();
@@ -509,6 +534,10 @@ public class MatchController {
 				}	
 			}
 		}
+		
+		String user_id = (String) session.getAttribute("user_id");
+		MemberCommand member = memberService.selectMember(user_id);
+		session.setAttribute("user_point", member.getPoint());
 		
 		return "redirect:/match/scoreBoard.do";
 	}

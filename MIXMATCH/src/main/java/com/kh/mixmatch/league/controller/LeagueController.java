@@ -19,7 +19,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.mixmatch.league.domain.LeagueCommand;
+import com.kh.mixmatch.league.domain.LeagueDtlCommand;
 import com.kh.mixmatch.league.service.LeagueService;
+import com.kh.mixmatch.match.domain.MatchCommand;
+import com.kh.mixmatch.match.service.MatchService;
 import com.kh.mixmatch.util.PagingUtil;
 
 @Controller
@@ -30,11 +33,18 @@ public class LeagueController {
 	private int rowCount = 10;
 	private int pageCount = 10;
 	
-	@Resource LeagueService leagueService;
+	@Resource 
+	private LeagueService leagueService;
+	@Resource
+	private MatchService matchService;
 	
 	@ModelAttribute("leagueCommand")
 	public LeagueCommand initLeagueCommand() {
 		return new LeagueCommand();
+	}
+	@ModelAttribute("matchCommand")
+	public MatchCommand initMatchCommand() {
+		return new MatchCommand();
 	}
 	
 	@RequestMapping("/league/leagueList.do")
@@ -140,6 +150,7 @@ public class LeagueController {
 	@RequestMapping("/league/leagueDetail.do")
 	public ModelAndView leagueDetailForm(@RequestParam("l_seq") int l_seq, HttpSession session) {
 		String user_id = (String) session.getAttribute("user_id");
+		List<String> t_name = matchService.getTeamList(user_id);
 		
 		if (log.isDebugEnabled()) {
 			log.debug("<<리그 상세보기 l_seq>> : " + l_seq);
@@ -148,10 +159,26 @@ public class LeagueController {
 		
 		LeagueCommand leagueCommand = leagueService.selectLeague(l_seq);
 		
+		// 팀목록 받아오기
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", user_id);
+		map.put("l_seq", l_seq);
+		
+		List<String> teamCommand = leagueService.getTeamType(map);
+		
+		LeagueDtlCommand leagueDtlCommand = new LeagueDtlCommand();
+		
+		// 참가신청한 팀 목록
+		List<LeagueDtlCommand> leagueDtl = leagueService.selectLeagueDtl(l_seq);
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("leagueDetail");
 		mav.addObject("league", leagueCommand);
 		mav.addObject("user_id", user_id);
+		mav.addObject("team", teamCommand);
+		mav.addObject("t_name", t_name);
+		mav.addObject("leagueDtl", leagueDtlCommand);
+		mav.addObject("list", leagueDtl);
 		
 		return mav;
 	}
@@ -212,7 +239,7 @@ public class LeagueController {
 	// 리그수정
 	@RequestMapping(value="/league/leagueUpdate.do", method=RequestMethod.POST)
 	public String leagueUpdateSubmit(@ModelAttribute("league") LeagueCommand leagueCommand,
-									 BindingResult result) {
+									 BindingResult result, HttpServletRequest request) {
 		if (log.isDebugEnabled()) {
 			log.debug("<<리그수정 leagueCommand>> : " + leagueCommand);
 		}
@@ -222,6 +249,34 @@ public class LeagueController {
 		}
 		
 		leagueService.updateLeague(leagueCommand); 
+		
+		return "redirect:/league/leagueList.do";
+	}
+	
+	// 팀 참가신청
+	@RequestMapping("/league/leagueDtlInsert.do")
+	public String leagueDtlInsertSubmit(@ModelAttribute("leagueDtl") LeagueDtlCommand leagueDtlCommand,
+										BindingResult result, HttpServletRequest request) {
+		if (log.isDebugEnabled()) {
+			log.debug("<<팀 참가신청 leagueDtlCommand>> : " + leagueDtlCommand);
+		}
+		
+		if (result.hasErrors()) {
+			return "leagueList";
+		}
+		
+		// 참가신청
+		leagueService.insertLeagueDtl(leagueDtlCommand);
+		
+		return "redirect:/league/leagueList.do";
+	}
+	
+	// 팀 참가승인
+	@RequestMapping("/league/leagueDtlCheck.do")
+	public String leagueDtlCheck(@RequestParam("ld_seq") int ld_seq) {
+		// 참가승인
+		// 참가팀수 증가
+		leagueService.updateChk(ld_seq);
 		
 		return "redirect:/league/leagueList.do";
 	}

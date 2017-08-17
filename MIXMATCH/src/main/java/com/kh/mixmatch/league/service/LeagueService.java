@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.kh.mixmatch.league.domain.LeagueCommand;
+import com.kh.mixmatch.league.domain.LeagueDtlCommand;
 
 @Transactional
 public interface LeagueService {
@@ -18,5 +19,10 @@ public interface LeagueService {
 	public LeagueCommand selectLeague(Integer l_seq);
 	public void deleteLeague(Integer l_seq);
 	public void updateLeague(LeagueCommand league);
+
+	public List<String> getTeamType(Map<String, Object> map);
+	public void insertLeagueDtl(LeagueDtlCommand leagueDtl);
+	public List<LeagueDtlCommand> selectLeagueDtl(Integer l_seq);
+	public void updateChk(Integer ld_seq);
 	
 }

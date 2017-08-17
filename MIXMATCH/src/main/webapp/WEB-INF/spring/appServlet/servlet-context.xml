@@ -139,6 +139,8 @@
 			<mvc:mapping path="/mypage/main.do"/>
 			<mvc:mapping path="/teamboard/teamboard.do"/>
 			<mvc:mapping path="/match/matchDetail.do"/>
+			<mvc:mapping path="/match/scoreDetail.do"/>
+			<mvc:mapping path="/league/leagueDetail.do"/>
 			<mvc:mapping path="/stadium/stadiumDetail.do"/>
 			<mvc:mapping path="/stadium/stadiumConfirm.do"/>
 			<mvc:mapping path="/point/pointShopCart.do"/>

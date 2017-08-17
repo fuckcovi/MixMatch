@@ -5,11 +5,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/match/match.js"></script>
-<div class="page-main-style">
-	<h2>베팅하기</h2>
-	<hr class="style"><br>
-	<div class="detail-style"><br><br>
-		<table class="versus"> 
+<div class="match-div">
+	<h3 style="text-align:left;font-weight:bold;">베팅하기</h3>
+	<hr class="match-hr"><br>
+	
+	<div class="match-form">
+		<table class="detail-table"> 
 			<tr>
 			 	<td>
 					<c:if test="${!empty t_name.t_logo_name}">
@@ -20,9 +21,9 @@
 						<c:if test="${match.m_type eq '야구'}"><img src="${pageContext.request.contextPath}/resources/images/baseball.png" style="width:80px;height:80px;"></c:if>
 						<c:if test="${match.m_type eq '농구'}"><img src="${pageContext.request.contextPath}/resources/images/basketball.png" style="width:80px;height:80px;"></c:if>
 					</c:if>
-				<td><span style="font-size:25px;color:blue;font-weight:bold;">?</span><br>${match.t_name}<br><input type="button" value="팀정보" class="btn-team-info" onclick="location.href='${pageContext.request.contextPath}/teamInfo.do?t_name=${match.t_name}'"></td>
+				<td><span style="font-size:25px;color:blue;font-weight:bold;">?</span><br>${match.t_name}<br><input type="button" value="팀정보" class="team-btn" onclick="location.href='${pageContext.request.contextPath}/team/teamInfo.do?t_name=${match.t_name}'"></td>
 				<td><img src="${pageContext.request.contextPath}/resources/images/versus.png" width="80"></td>
-				<td><span style="font-size:25px;color:red;font-weight:bold;">?</span><br>${match.m_challenger}<br><input type="button" value="팀정보" class="btn-team-info" onclick="location.href='${pageContext.request.contextPath}/teamInfo.do?t_name=${match.m_challenger}'"></td>
+				<td><span style="font-size:25px;color:red;font-weight:bold;">?</span><br>${match.m_challenger}<br><input type="button" value="팀정보" class="team-btn" onclick="location.href='${pageContext.request.contextPath}/team	/teamInfo.do?t_name=${match.m_challenger}'"></td>
 				<td>
 					<c:if test="${!empty m_challenger.t_logo_name}">
 						<img src="matchImageView.do?t_name=${match.m_challenger}" width="80">
@@ -103,56 +104,58 @@
 				<input type="hidden" id="t2_rate" value="${1/(away/(home+away))}">
 			</c:if></c:if>배</td>
 			</tr>
-		</table><br>
+		</table>
+		<br>
 		
 		<form:form commandName="toto" action="totoInsert.do" enctype="multipart/form-data" id="toto_form">
-		<form:hidden path="m_seq" value="${match.m_seq}"/>
-		<form:hidden path="id" value="${user_id}"/>
+			<form:hidden path="m_seq" value="${match.m_seq}"/>
+			<form:hidden path="id" value="${user_id}"/>
 		
-		<div style="float:left;width:100%;">	
-		<c:if test="${!fn:contains(myteam,match.t_name) && !fn:contains(myteam,match.m_challenger) && !empty user_id}">
-			예상승리팀: <select id="t_winteam" name="t_winteam" class="select_box">
-				<option value="${match.t_name}">${match.t_name}</option>
-				<option value="${match.m_challenger}">${match.m_challenger}</option>
-			</select><br>
-			<c:if test="${t_winteam.value eq match.t_name}"><form:hidden path="t_rate" value="10"/></c:if>
-			예상점수: <input type="number" name="t_score" id="t_score" class="select_box"><br>
-			베팅포인트: 
-			<input type="number" name="t_point" id="t_point" class="select_box" min="10" max="${point}">
-			<input type="hidden" id="final_rate" name="t_rate">
-			<br><br><input type="submit" id="btn" value="베팅하기" class="btn">
-		</c:if>
-		<c:if test="${fn:contains(myteam,match.t_name) || fn:contains(myteam,match.m_challenger)}">
-			<span>본인이 속한 팀에는 베팅할 수 없습니다.</span><br><br>
-		</c:if>
-		<c:if test="${empty user_id}">
-			<span>베팅하려면 로그인하세요.<br><br></span>
-			<input type="button" value="로그인" class="btn" onclick="location.href='${pageContext.request.contextPath}/login.do'">
-		</c:if>
-		<input type="button" value="목록으로" class="btn" onclick="location.href='sportsToto.do'">
-		</div>
+			<c:if test="${!fn:contains(myteam,match.t_name) && !fn:contains(myteam,match.m_challenger) && !empty user_id}">
+				예상승리팀: <select id="t_winteam" name="t_winteam" class="option-box">
+					<option value="${match.t_name}">${match.t_name}</option>
+					<option value="${match.m_challenger}">${match.m_challenger}</option>
+				</select><br>
+				<c:if test="${t_winteam.value eq match.t_name}"><form:hidden path="t_rate" value="10"/></c:if>
+				예상 점수 : <input type="number" name="t_score" id="t_score" class="option-box" value="0"><br>
+				베팅포인트: 
+				<input type="number" name="t_point" id="t_point" class="option-box"  value="100" min="100" max="${point}" step="100">
+				<input type="hidden" id="final_rate" name="t_rate">
+				<br><br><input type="submit" id="betting-btn" value="베팅하기" class="match-btn">
+			</c:if>
+			<c:if test="${fn:contains(myteam,match.t_name) || fn:contains(myteam,match.m_challenger)}">
+				<span>본인이 속한 팀에는 베팅할 수 없습니다.</span><br><br>
+			</c:if>
+			<input type="button" value="목록으로" class="match-btn" onclick="location.href='sportsToto.do'">
 		</form:form>
 	</div>
-	<br><hr class="style">
+	<br><hr>
 	<div align="center">
-	<h3>현재 베팅목록</h3>
-	<table border="1" style="width:400px;text-align:center;border-collapse:collapse;">
-		<tr>
-			<th>아이디</th>
-			<th>예상승리팀</th>
-			<th>예상점수</th>
-			<th>베팅포인트</th>
-			<th>배당률</th>
-		</tr>
-		<c:forEach var="list" items="${list}">
-			<tr>
-				<td>${list.id}</td>
-				<td>${list.t_winteam}</td>
-				<td>${list.t_score}</td>
-				<td>${list.t_point}</td>
-				<td>${list.t_rate}</td>
+		<h4 style="font-weight:bold;">&lt; 베팅한 회원 &gt;</h4>
+		<table class="detail-list">
+			<tr style="background:#EAEAEA;">
+				<th>아이디</th>
+				<th>예상승리팀</th>
+				<th>예상점수</th>
+				<th>베팅포인트</th>
+				<th>배당률</th>
 			</tr>
-		</c:forEach>
-	</table>
+			<c:if test="${!empty list}">
+				<c:forEach var="list" items="${list}">
+					<tr>
+						<td>${list.id}</td>
+						<td>${list.t_winteam}</td>
+						<td>${list.t_score}</td>
+						<td>${list.t_point}</td>
+						<td>${list.t_rate}</td>
+					</tr>
+				</c:forEach>
+			</c:if>
+			<c:if test="${empty list}">
+				<tr>
+					<td colspan="5">베팅한 회원이 없습니다.</td>
+				</tr>
+			</c:if>
+		</table>
 	</div>
 </div>
