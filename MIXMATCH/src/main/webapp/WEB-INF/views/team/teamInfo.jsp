@@ -12,6 +12,19 @@
 	<h2>팀정보</h2>
 	<hr class="style"><br>
 	<table class="style">
+		<c:if test="${team.id eq 'DEL-TEAM' }">
+			<tr>
+				<th>팀명</th>
+				<th>종목</th>
+				<th colspan="4">삭제된팀입니다</th>
+			</tr>
+			<tr>
+				<td>${team.t_name}</td>
+				<td>${team.t_type}</td>
+				<td>삭제됨</td>
+			</tr>
+		</c:if>
+		<c:if test="${team.id ne 'DEL-TEAM' }">
 		<tr>
 			<th>팀명</th>
 			<th>종목</th>
@@ -28,6 +41,7 @@
 			<td>${team.t_address}</td>
 			<td>${count}</td>
 		</tr>
+		</c:if>
 	</table>
 	 
 	<h4>&lt;&lt;최근경기결과&gt;&gt;</h4>
@@ -63,6 +77,7 @@
 		<div>최근경기결과 없음</div>
 	</c:if>
 	<br>
+	<c:if test="${team.id ne 'DEL-TEAM' }">
 	<form:form commandName="teamMemCommand" action="${pageContext.request.contextPath }/team/teamMemJoin.do" id="teamMemJoin">
 		<input type="hidden" value="${team.t_name}" id="t_name" name="t_name">
 		<input type="hidden" value="${user_id}" id="id" name="id">
@@ -71,6 +86,7 @@
 			<input type="button" value="가입철회" class="btn" onclick="location.href='${pageContext.request.contextPath }/team/cancelRegi.do?t_name=${team.t_name}'">
 		</c:if>
 	</form:form>
+	</c:if>
 	<br><hr class="style">
 	<c:if test="${team.id == user_id}">
 		<input type="button" value="팀수정" class="btn" onclick="location.href='${pageContext.request.contextPath }/team/teamUpdate.do?t_name=${team.t_name}'" style="float:right;margin-right:42px;">

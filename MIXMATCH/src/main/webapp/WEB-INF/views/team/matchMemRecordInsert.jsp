@@ -11,6 +11,9 @@
 		width:100%;
 	}
 	#modifyform input{float:left;}
+	.style th{
+		text-align: center;
+	}
 </style>
 <div class="page-main-style">
 	<h2>매치 개인 기록 입력</h2>

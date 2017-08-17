@@ -44,21 +44,19 @@
 			</form:select>
 			<form:errors path="t_address" cssClass="error-color"/>
 		</li>
-		<li>
-			<label for="t_logo_upload">팀로고</label>
-			<input type="file" name="t_logo_upload" id="t_logo_upload">
-		</li>
+		
 		<li id="profileImage">
+			<label for="t_logo_upload">팀로고</label>
 			<div id="baseballImages">
 			<img style="max-width:50px;max-height:50px;" src="${pageContext.request.contextPath}/resources/images/baseball.png" id="prifile_pick_base_1">
-			<img style="max-width:50px;max-height:50px;" src="${pageContext.request.contextPath}/resources/images/baseball_logo.png">
+			<%-- <img style="max-width:50px;max-height:50px;" src="${pageContext.request.contextPath}/resources/images/baseball_logo.png">
 			<img style="max-width:50px;max-height:50px;" src="${pageContext.request.contextPath}/resources/images/baseball_logo2.jpg">
 			<img style="max-width:50px;max-height:50px;" src="${pageContext.request.contextPath}/resources/images/baseball_logo2.PNG">
 			<img style="max-width:50px;max-height:50px;" src="${pageContext.request.contextPath}/resources/images/baseball_logo3.gif">
-			</div>
+			 --%></div>
 			<div id="basketballImages" style="display:none;">
 			<img style="max-width:50px;max-height:50px;" src="${pageContext.request.contextPath}/resources/images/basketball.png">
-			<img style="max-width:50px;max-height:50px;" src="${pageContext.request.contextPath}/resources/images/basketball_logo.jpg">
+		<%-- 	<img style="max-width:50px;max-height:50px;" src="${pageContext.request.contextPath}/resources/images/basketball_logo.jpg">
 			<img style="max-width:50px;max-height:50px;" src="${pageContext.request.contextPath}/resources/images/basketball_logo2.png">
 			<img style="max-width:50px;max-height:50px;" src="${pageContext.request.contextPath}/resources/images/basketball_logo3.png">
 			<img style="max-width:50px;max-height:50px;" src="${pageContext.request.contextPath}/resources/images/basketball_logo4.PNG">
@@ -67,14 +65,18 @@
 			<img style="max-width:50px;max-height:50px;" src="${pageContext.request.contextPath}/resources/images/basketball_logo7.png">
 			<img style="max-width:50px;max-height:50px;" src="${pageContext.request.contextPath}/resources/images/basketball_logo8.jpg">
 			<img style="max-width:50px;max-height:50px;" src="${pageContext.request.contextPath}/resources/images/basketball_logo9.jpg">
-			</div>
+			 --%></div>
 			<div id="footballImages" style="display:none;">
 			<img style="max-width:50px;max-height:50px;" src="${pageContext.request.contextPath}/resources/images/football.png">
-			<img style="max-width:50px;max-height:50px;" src="${pageContext.request.contextPath}/resources/images/football_logo.jpg">
+			<%-- <img style="max-width:50px;max-height:50px;" src="${pageContext.request.contextPath}/resources/images/football_logo.jpg">
 			<img style="max-width:50px;max-height:50px;" src="${pageContext.request.contextPath}/resources/images/football_logo2.jpg">
 			<img style="max-width:50px;max-height:50px;" src="${pageContext.request.contextPath}/resources/images/football_logo3.PNG">
 			<img style="max-width:50px;max-height:50px;" src="${pageContext.request.contextPath}/resources/images/football_logo4.jpg">
-			</div>
+			 --%></div>
+		<span>팀로고 미설정 시 기본이미지</span>
+		</li>
+		<li>
+			<input type="file" name="t_logo_upload" id="t_logo_upload">
 		</li>
 	</ul>
 	<div class="align-center">

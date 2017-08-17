@@ -51,24 +51,24 @@
 	
 		<c:if test="${count>0}">
 			<c:forEach var="list" items="${list}">
-			<div style="width:30%;height:250px;margin:10px 10px 10px 10px; display:inline-block;" id="${list.t_type}">
+			<div style="width:200px;height:250px;margin:10px 10px 10px 10px; display:inline-block;" id="${list.t_type}">
 				<c:if test="${fn:endsWith(list.t_logo_name, '.jpg') || 
 							fn:endsWith(list.t_logo_name, '.png') || 
 							fn:endsWith(list.t_logo_name, '.gif') || 
 							fn:endsWith(list.t_logo_name, '.JPG') || 
 							fn:endsWith(list.t_logo_name, '.PNG') || 
 							fn:endsWith(list.t_logo_name, '.GIF')}">
-					<img src="${pageContext.request.contextPath}/team/imageView.do?t_name=${list.t_name}" style="width:100%;height:200px;">
+					<img src="${pageContext.request.contextPath}/team/imageView.do?t_name=${list.t_name}" style="width:200px;height:200px;">
 				</c:if>
 				<c:if test="${empty list.t_logo_name }">
 				<c:if test="${list.t_type eq '야구' }">
-					<img src="${pageContext.request.contextPath}/resources/images/baseball.png" style="width:100%;height:200px;">
+					<img src="${pageContext.request.contextPath}/resources/images/baseball.png" style="width:200px;height:200px;">
 				</c:if>
 				<c:if test="${list.t_type eq '농구' }">
-					<img src="${pageContext.request.contextPath}/resources/images/basketball.png" style="width:100%;height:200px;">
+					<img src="${pageContext.request.contextPath}/resources/images/basketball.png" style="width:200px;height:200px;">
 				</c:if>
 				<c:if test="${list.t_type eq '축구' }">
-					<img src="${pageContext.request.contextPath}/resources/images/football.png" style="width:100%;height:200px;">
+					<img src="${pageContext.request.contextPath}/resources/images/football.png" style="width:200px;height:200px;">
 				</c:if>
 				</c:if>
 				<a href="${pageContext.request.contextPath}/team/teamInfo.do?t_name=${list.t_name}">${list.t_name}</a> | ${list.t_address}

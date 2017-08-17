@@ -8,24 +8,39 @@
 	<select id="matchList" parameterType="map" resultType="matchCommand">
 		SELECT m.*,t.t_logo,t.t_logo_name FROM  g_match m, (SELECT * FROM g_team)t 
 		<where>
-			m.t_name = t.t_name AND m_type = #{type}
+			m.t_name = t.t_name AND m_type = #{type} AND 	t.id!='DEL-TEAM'
 		</where>
 		ORDER BY m_seq DESC
+	<!-- 	SELECT a.*,t.t_logo,t.t_logo_name FROM  (SELECT m.*,tt.id a_id FROM g_match m , g_team tt WHERE m.m_challenger=tt.t_name)a, (SELECT * FROM g_team)t 
+		WHERE
+			a.t_name = t.t_name AND
+            m_type =  #{type} AND 	t.id!='DEL-TEAM' AND a_id!='DEL-TEAM'  -->
 	</select>	
 	
 	<select id="getRowCount" parameterType="map" resultType="integer">
-		SELECT count(*) FROM g_match
+		<!-- SELECT count(*) FROM g_match m, (SELECT * FROM g_team)t 
 		<where>
+			m.t_name = t.t_name AND
+			 -->
 			<if test="board == 'match'">
+			SELECT count(*) FROM g_match m, (SELECT * FROM g_team)t WHERE m.t_name=t.t_name AND
 				m_challenger is null AND m_type = #{type}
+				AND t.id!='DEL-TEAM' 
 			</if>
 			<if test="board == 'score'">
-				m_challenger is not null AND m_type = #{type}
+			
+			SELECT count(*) FROM (SELECT a.*, tt.id a_id FROM g_team tt, (SELECT m.*, t.id h_id FROM g_match m, (SELECT * FROM g_team)t 
+		WHERE
+			m.t_name = t.t_name AND
+		
+				m_challenger is not null AND m_type = #{type})a  WHERE tt.t_name=a.m_challenger) WHERE a_id != 'DEL-TEAM' AND h_id!='DEL-TEAM'
 			</if>
 			<if test="board == 'toto'">
-				m_challenger is not null AND m_home = -1 AND m_type = #{type}
+			SELECT count(*) FROM g_match m, (SELECT * FROM g_team)t WHERE m.t_name=t.t_name AND
+				m_challenger is not null AND m_home = -1 AND m_type = #{type} 
 			</if>
-		</where>
+			
+		<!-- </where> -->
 	</select>
 	
 </mapper>

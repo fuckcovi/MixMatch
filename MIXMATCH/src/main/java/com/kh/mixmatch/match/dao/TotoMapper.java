@@ -13,7 +13,7 @@ import com.kh.mixmatch.match.domain.TotoCommand;
 
 public interface TotoMapper {
 
-	@Select("SELECT * FROM g_toto WHERE m_seq=#{m_seq}")
+	@Select("SELECT * FROM g_toto WHERE m_seq=#{m_seq} ")
 	public List<TotoCommand> totoList(int m_seq);
 	// 포인트 가져오기
 	@Select("SELECT point FROM g_member WHERE id=#{id}")
