@@ -123,10 +123,11 @@ $(document).ready(function() {
 			</div>
 		</li>
 		<li>
-			<a href="#">
-			
+		<div id="point" style="height:100px;">
+			<a href="${pageContext.request.contextPath}/point/pointHome.do">
+				<img src="${pageContext.request.contextPath}/resources/images/shopba.jpg" width="80">
 			</a>
-			<div>포인트샵</div> 
+			</div>
 		</li>
 		<li>
 			<c:if test="${!empty user_id }">
