@@ -24,11 +24,12 @@
 		SELECT COUNT(*) FROM g_team 
 					<where>
 						<if test="keyword != '' and keyfield =='teamname'">
-							t_name like '%' || #{keyword} || '%'
+							(t_name like '%' || #{keyword} || '%' ) AND 
 						</if>
 						<if test="keyword != '' and keyfield =='teamtype'">
-							t_type like '%' || #{keyword} || '%'
+							(t_type like '%' || #{keyword} || '%')AND 
 						</if>
+						id!='DEL-TEAM'
 					</where>
 	</select>
 	
@@ -37,8 +38,9 @@
 		(SELECT b.* FROM g_team b 
 					<where>
 						<if test="keyword != ''">
-							b.t_type=#{keyword}
+							b.t_type=#{keyword} AND 
 						</if>
+						b.id!='DEL-TEAM'
 					</where> 
 					ORDER BY b.t_regdate DESC)a) 
 					<![CDATA[ WHERE rnum>=#{start} AND rnum<=#{end} ]]>

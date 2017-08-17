@@ -95,5 +95,11 @@ public class TeamServiceImpl implements TeamService {
 		// TODO Auto-generated method stub
 		return teamMapper.MainmatchCountFinish(map);
 	}
+
+	@Override
+	public void updateDelTeam(TeamCommand team) {
+		// TODO Auto-generated method stub
+		teamMapper.updateDelTeam(team);
+	}
 	
 }

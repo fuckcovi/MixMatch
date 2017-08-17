@@ -36,7 +36,9 @@
 			<td>
 				<form:select path="id">
 			<c:forEach var="homelist" items="${homelist}">
+			<c:if test="${homelist.t_mem_auth ==1 }">
 				<form:option value="${homelist.id}">${homelist.name}</form:option>
+			</c:if>
 			</c:forEach>
 				</form:select>
 			</td>
@@ -68,7 +70,9 @@
 			<td>
 				<form:select path="id">
 			<c:forEach var="awaylist" items="${awaylist}">
+			<c:if test="${awaylist.t_mem_auth ==1 }">
 				<form:option value="${awaylist.id}">${awaylist.name}</form:option>
+			</c:if>
 			</c:forEach>
 				</form:select>
 			</td>
@@ -128,7 +132,9 @@
 			<td>
 				<form:select path="id">
 			<c:forEach var="homelist" items="${homelist}">
+			<c:if test="${awaylist.t_mem_auth ==1 }">
 				<form:option value="${homelist.id}">${homelist.name}</form:option>
+			</c:if>
 			</c:forEach>
 				</form:select>
 			</td>
@@ -164,7 +170,9 @@
 			<td>
 				<form:select path="id">
 			<c:forEach var="awaylist" items="${awaylist}">
+			<c:if test="${awaylist.t_mem_auth ==1 }">
 				<form:option value="${awaylist.id}">${awaylist.name}</form:option>
+			</c:if>
 			</c:forEach>
 				</form:select>
 			</td>
@@ -235,7 +243,9 @@ list-bscore="${list.b_score}" list-bassist="${list.b_assist}" list-bsteel="${lis
 			<td>
 				<form:select path="id">
 			<c:forEach var="homelist" items="${homelist}">
+			<c:if test="${homelist.t_mem_auth ==1 }">
 				<form:option value="${homelist.id}">${homelist.name}</form:option>
+			</c:if>
 			</c:forEach>
 				</form:select>
 			</td>
@@ -277,7 +287,9 @@ list-bscore="${list.b_score}" list-bassist="${list.b_assist}" list-bsteel="${lis
 			<td>
 				<form:select path="id">
 			<c:forEach var="awaylist" items="${awaylist}">
+			<c:if test="${awaylist.t_mem_auth ==1 }">
 				<form:option value="${awaylist.id}">${awaylist.name}</form:option>
+			</c:if>
 			</c:forEach>
 				</form:select>
 			</td>

@@ -50,7 +50,15 @@
 				</c:if>
 				</c:if>
 				</td>
-				<td><a href="${pageContext.request.contextPath}/team/teamInfo.do?t_name=${list.t_name}">${list.t_name}</a></td>
+				<td>
+				<c:if test="${list.id ne 'DEL-TEAM' }">
+					<a href="${pageContext.request.contextPath}/team/teamInfo.do?t_name=${list.t_name}">
+				</c:if>
+				${list.t_name}
+				<c:if test="${list.id ne 'DEL-TEAM' }">
+				</a>
+				</c:if>
+				</td>
 				<td>${list.t_address}</td>
 				<td>${list.t_win}</td>
 				<td>${list.t_draw}</td>

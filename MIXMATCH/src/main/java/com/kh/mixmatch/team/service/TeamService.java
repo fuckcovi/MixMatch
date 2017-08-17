@@ -23,7 +23,7 @@ public interface TeamService {
 	public void updateTeam(TeamCommand team);
 	
 	public void deleteTeam(String tname);
-	
+	public void updateDelTeam(TeamCommand team);
 	@Transactional(readOnly=true)
 	public List<TeamCommand> listRank(Map<String, Object> map);
 	@Transactional(readOnly=true)

@@ -27,6 +27,8 @@ public interface TeamMapper {
 	public void updateTeam(TeamCommand team);
 	@Delete("DELETE FROM g_team WHERE t_name=#{t_name}")
 	public void deleteTeam(String tname);
+	@Update("UPDATE g_team SET t_regdate=#{t_regdate},id=#{id} WHERE t_name=#{t_name}")
+	public void updateDelTeam(TeamCommand team);
 	
 	public List<TeamCommand> listRank(Map<String, Object> map);
 	

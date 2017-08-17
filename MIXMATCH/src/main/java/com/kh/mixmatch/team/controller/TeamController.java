@@ -1,5 +1,6 @@
 package com.kh.mixmatch.team.controller;
 
+import java.sql.Date;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -255,7 +256,11 @@ public class TeamController {
 			throw new Exception("팀마스터가 아니면 팀을 삭제하실 수 없습니다.");
 		}
 		teamMemService.deleteTeam(t_name);
-		teamService.deleteTeam(t_name);
+		/*teamService.deleteTeam(t_name);*/
+		Date date = new Date(11/11/11);
+		team.setT_regdate(date);
+		team.setId("DEL-TEAM");
+		teamService.updateDelTeam(team);
 		return "redirect:/team/team.do";
 	}
 	
@@ -298,9 +303,11 @@ public class TeamController {
 		map.put("t_name",t_name);
 		teamMemService.updateTeamMem(map);
 		List<TeamMemCommand> tMemList = teamMemService.listTeamMem(map);
+		TeamCommand team = teamService.selectTeam(t_name);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("teamMemView");
 		mav.addObject("tMemList",tMemList);
+		mav.addObject("team", team);
 		return mav;
 	}
 	
@@ -311,9 +318,11 @@ public class TeamController {
 		map.put("t_name",t_name);
 		teamMemService.deleteTeamMem(map);
 		List<TeamMemCommand> tMemList = teamMemService.listTeamMem(map);
+		TeamCommand team = teamService.selectTeam(t_name);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("teamMemView");
 		mav.addObject("tMemList",tMemList);
+		mav.addObject("team", team);
 		return mav;
 	}
 	

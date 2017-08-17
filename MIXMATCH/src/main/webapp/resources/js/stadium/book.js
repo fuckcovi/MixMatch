@@ -15,13 +15,13 @@ $(document).ready(function(){
 			$("#footballImages").hide();
 		}
 	});*/
-	$(".bookListX").click(function(){
-		$(".bookListX div").show();
-		$(".bookListF div").hide();
+	$(".bookListXbtn").click(function(){
+		$(".bookListX").show();
+		$(".bookListF").hide();
 	});
-	$(".bookListF").click(function(){
-		$(".bookListX div").hide();
-		$(".bookListF div").show();
+	$(".bookListFbtn").click(function(){
+		$(".bookListX").hide();
+		$(".bookListF").show();
 	});
 	
 	
