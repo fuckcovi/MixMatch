@@ -272,7 +272,44 @@ function controller(target) {
 		});
 	 });
  }); 
- </script> 
+ </script>
+ <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=725f2c7f2b3fcc396032b404e5f4e242&libraries=services"></script>
+<script>
+$(document).ready(function(){
+	add($("#s_address2").attr("address"));
+	function add(address){
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	    mapOption = {
+	        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+	        level: 3 // 지도의 확대 레벨
+	  	};  
+		// 지도를 생성합니다    
+		var map = new daum.maps.Map(mapContainer, mapOption); 
+		// 주소-좌표 변환 객체를 생성합니다
+		var geocoder = new daum.maps.services.Geocoder();
+		// 주소로 좌표를 검색합니다
+		geocoder.addressSearch(address, function(result, status) {
+			    // 정상적으로 검색이 완료됐으면 
+			     if (status === daum.maps.services.Status.OK) {
+			        var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+			        // 결과값으로 받은 위치를 마커로 표시합니다
+			        var marker = new daum.maps.Marker({
+			            map: map,
+			            position: coords
+			        });
+			        // 인포윈도우로 장소에 대한 설명을 표시합니다
+			        var infowindow = new daum.maps.InfoWindow({
+			            content: '<div style="width:150px;text-align:center;padding:6px 0;">'+$("#s_name").attr("s_name")+'</div>'
+			        });
+			        infowindow.open(map, marker);
+			        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+			        map.setCenter(coords);
+			     }
+		});   
+	}
+
+});
+</script>
  <div class="page-main-style">
 <div>
 	<h2><b>경기장 상세보기</b></h2> 
@@ -309,14 +346,15 @@ function controller(target) {
 				</c:if>
 				</c:if>
 			</td>
-			<td>${stadium.s_name}</td>
+			<td id="s_name" s_name="${stadium.s_name }">${stadium.s_name}</td>
 			<td>${stadium.s_type }</td>
 			<td>${stadium.s_address1}</td>
 			<td>${stadium.s_regdate}</td>
 		</tr>
 		<tr style="border-top:1px dashed #BDBDBD;">
+			<td ><div id="map" style="width:200px;height:150px;"></div></td>
 			<td style="font-size:large;"><b>상세주소</b></td>
-			<td rowspan="4">${stadium.s_address2}</td>
+			<td colspan="3" id="s_address2" address="${stadium.s_address2}">${stadium.s_address2}</td>
 		</tr>
 		
 	</table>
