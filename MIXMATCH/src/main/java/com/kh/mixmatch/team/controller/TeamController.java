@@ -812,4 +812,10 @@ public class TeamController {
 		return mav;
 	}
 	
+	@RequestMapping("/team/matchNavi.do")
+	public ModelAndView matchNavi(@RequestParam int m_seq){
+		
+		return null;
+	}
+	
 }

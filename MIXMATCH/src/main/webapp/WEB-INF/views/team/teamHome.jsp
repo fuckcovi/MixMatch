@@ -16,7 +16,7 @@
 		<h3>&lt;&lt;소속팀&gt;&gt;</h3>
 		<div style="margin:0 auto;overflow-y: auto;width:600px; height:120px;">  
 			<c:forEach var="joinList" items="${joinList}">
-				<div>
+				<div style="font-size:medium;">
 					<c:if test="${joinList.t_mem_auth > 0}">
 						<a href="${pageContext.request.contextPath}/team/teamInfo.do?t_name=${joinList.t_name}">${joinList.t_name}</a> | 
 						<a href="${pageContext.request.contextPath}/team/teamRank.do?t_name=${joinList.t_name}">우리팀랭킹</a> | 
@@ -27,7 +27,7 @@
 			</div>
 			<hr size="1" width="85%">
 			<h4>&lt;&lt;가입신청 중인 팀&gt;&gt;</h4> 
-			<div style="overflow-y: auto; height:50px; width:600px; margin:0 auto;">  
+			<div style="overflow-y: auto; height:50px; width:600px; margin:0 auto; font-size:medium;">  
 			<c:forEach var="joinList" items="${joinList}">
 				<c:if test="${joinList.t_mem_auth ==0}"> 
 					<div><a href="${pageContext.request.contextPath}/team/teamInfo.do?t_name=${joinList.t_name}">${joinList.t_name}</a></div>

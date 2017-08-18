@@ -6,16 +6,19 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/team/team.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/layout222.css" rel="stylesheet">
 <style type="text/css">
-	.style th{text-align: center;}
+	.style th{text-align: center;width:150px;}
 	#result{
 	width:300px;}
+	.style th.matchaddress{
+		width:500px;
+	}
 </style>
 <div class="page-main-style">
 	<h2>팀일정결과</h2>
 	<hr class="style"><br>
 	<c:if test="${count==0 }">
 		<div>
-			소속 팀도 없는데 일정이 있을리가 
+			소속된 팀이 없어서 일정도 없습니다.
 		</div>
 	</c:if>
 	<c:if test="${count>0 }">
@@ -44,7 +47,7 @@
 			<table class="style">			 
 			<tr class="tablehead">
 				<th>경기일자</th>
-				<th>경기장소</th>
+				<th class="matchaddress">경기장소</th>
 				<th>경기시간</th>
 				<th>매칭신청팀</th>
 			</tr>
@@ -71,7 +74,7 @@
 			<table class="style">			
 			<tr class="tablehead">
 				<th>경기일자</th>
-				<th>경기장소</th>
+				<th class="matchaddress">경기장소</th>
 				<th>경기시간</th>
 				<th>홈팀</th>
 				<th>어웨이팀</th>
@@ -85,7 +88,11 @@
 						<c:set var="seq" value="${seq},[${matchlist.m_seq}]"/>
 						<tr class="${matchlist.t_name} ${matchlist.m_challenger} plan">
 							<td>${matchlist.m_date}</td>
-							<td>${matchlist.m_place}</td>
+							<td>
+								${matchlist.m_place}
+								<%-- <br>
+								<input type="button" class="btn" value="경기장길찾기" id="matchNavigation" style="width:50%;" onclick="location.href='${pageContext.request.contextPath}/team/matchNavi.do?m_seq=${matchlist.m_seq}'"> --%>
+							</td>
 							<td>${matchlist.m_time}</td>
 							<td>${matchlist.t_name}</td>
 							<td>${matchlist.m_challenger}</td>

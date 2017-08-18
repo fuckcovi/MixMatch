@@ -354,7 +354,7 @@ $(document).ready(function(){
 			<td>${stadium.s_regdate}</td>
 		</tr>
 		<tr style="border-top:1px dashed #BDBDBD;">
-			<td ><div id="map" style="width:200px;height:150px;"></div></td>
+			<td ><div id="map" style="width:400px;height:300px;border:1px solid white; border-radius:5em;"></div></td>
 			<td style="font-size:large;"><b>상세주소</b></td>
 			<td colspan="3" id="s_address2" address="${stadium.s_address2}">${stadium.s_address2}</td>
 		</tr>
