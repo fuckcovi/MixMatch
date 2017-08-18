@@ -47,7 +47,7 @@
 	<input type="button" value="농구" class="btn" id="typeBasket" onclick="location.href='${pageContext.request.contextPath}/team/team.do?t_type=농구'">
 	
 	
-	<div  style="height: 300px;">
+	<div  style="height: 300px;width:670px;margin:0 auto;">
 	
 		<c:if test="${count>0}">
 			<c:forEach var="list" items="${list}">

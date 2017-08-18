@@ -5,8 +5,11 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/pointshop.css">
 <div class="page-main-style">
     <h2><span id="use">${user_id}</span>님의 구매내역</h2>
-    <c:if test="${cartCount >0 }">
-        <form class="type07">
+    <c:if test="${cartCount == 0 }">
+    	<div class="align-center">구매내역이 없습니다.</div>
+    </c:if>
+    <c:if test="${cartCount > 0 }">
+    	<form class="type07">
             <table border="1" class="type07">
                 <tr>
                 	<th>ID</th>
@@ -27,11 +30,7 @@
                 </tr>
                 </c:forEach>
             </table>
-        </form>  
+        </form> 
     </c:if>
-    <c:if test="${cartCount==0 }">
-    	구매내역이 없습니다.
-    </c:if>
-    <br>
-    <button onclick="location.href='pointHome.do'">쇼핑하기</button>
+    <button class="btn btn-info" onclick="location.href='pointHome.do'">쇼핑하기</button>
 </div>    

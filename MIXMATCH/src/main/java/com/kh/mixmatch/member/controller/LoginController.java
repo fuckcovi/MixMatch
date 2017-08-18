@@ -1,6 +1,8 @@
 package com.kh.mixmatch.member.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -33,7 +35,7 @@ private Logger log = Logger.getLogger(this.getClass());
 	}
 	
 	@RequestMapping(value="/login.do",method=RequestMethod.POST)
-	public String loginAction(@ModelAttribute("memberCommand")@Valid MemberCommand memberCommand, BindingResult result, HttpSession session){
+	public String loginAction(@ModelAttribute("memberCommand")@Valid MemberCommand memberCommand, BindingResult result, HttpSession session, HttpServletResponse response){
 		
 		if(log.isDebugEnabled()){
 			log.debug("<<memberCommand>> : " + memberCommand);
@@ -53,6 +55,7 @@ private Logger log = Logger.getLogger(this.getClass());
 			}
 			  
 			if(check && member.getStatus().equals("Y")){
+				
 				session.setAttribute("user_id", member.getId());
 				session.setAttribute("auth", member.getAuth());
 				session.setAttribute("status", member.getStatus());

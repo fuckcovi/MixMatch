@@ -298,14 +298,21 @@ a#bookmark:hover {
 	border-left: 1px solid #BDBDBD;
 	transition: 0.4s;
 	z-index: 999;
+	text-align: center;
 }
-#sideMenu div{
-	height:100px;
+#sidenav ul {
+	height:100%;
+	list-style:none;
+	padding:30px 20px 30px 20px;
 }
-#sideMenu ul{
-	margin:0 auto;
-	padding:0 0 0 0;
-	list-style: none;
+#sidenav ul li {
+	height:23%;
+	padding-top:30px;
+	border-top:1px solid #BDBDBD;
+	border-bottom:1px solid #BDBDBD;
+}
+#sideMenu {
+	height:100%;
 }
 /* 위,아래 이동*/
 #up-btn {

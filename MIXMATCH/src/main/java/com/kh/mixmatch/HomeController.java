@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.mixmatch.board.domain.BoardCommand;
+import com.kh.mixmatch.board.service.BoardService;
 import com.kh.mixmatch.match.domain.MatchCommand;
 import com.kh.mixmatch.match.service.MatchService;
 import com.kh.mixmatch.member.domain.MemberCommand;
@@ -38,6 +40,8 @@ public class HomeController {
 	private MemberService memberService;
 	@Resource
 	private TeamMemService teamMemService;
+	@Resource
+	private BoardService boardService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
@@ -57,7 +61,26 @@ public class HomeController {
 			map.put("end", 5);
 			noticeList = noticeService.noticeList(map);
 		}
-		
+
+		//자유게시판 //
+		Map<String, Object> boardmap = new HashMap<String, Object>();
+		// map에 아무것도 전달해주지 않으면서 단순 공지사항 글 수 개져옴
+		int boardCount = boardService.getRowCount(boardmap);
+		List<BoardCommand> boardList = null;
+		if(boardCount>0){
+			// 최근 글 5개만 리스트생성
+			boardmap.put("start", 1);
+			boardmap.put("end", 5);
+			boardList = boardService.list(boardmap);
+		}else{
+			boardList = new ArrayList<BoardCommand>();
+		}
+		if(boardList.size()<5){
+			BoardCommand board = new BoardCommand();
+			for(int i=boardList.size()+1;i<=5;i++){
+				boardList.add(board);
+			}
+		}
 	// 야구팀랭킹	- 승리 1~5위 리스트
 		Map<String, Object> bmap = new HashMap<String, Object>();
 		bmap.put("keyword","야구");
@@ -70,6 +93,8 @@ public class HomeController {
 		if(baseTeamCount > 0){
 			bmap.put("order", "t_win");
 			baseTeamList = teamService.listRank(bmap);
+		}else{
+			baseTeamList = new ArrayList<TeamCommand>();
 		}
 		if(baseTeamList.size()<5){
 			TeamCommand team = new TeamCommand();
@@ -89,6 +114,8 @@ public class HomeController {
 		if(footTeamCount > 0){
 			fmap.put("order", "t_win");
 			footTeamList = teamService.listRank(fmap);
+		}else{
+			footTeamList = new ArrayList<TeamCommand>();
 		}
 		if(footTeamList.size()<5){
 			TeamCommand team = new TeamCommand();
@@ -108,6 +135,8 @@ public class HomeController {
 		if(basketTeamCount > 0){
 			bkmap.put("order", "t_win");
 			basketTeamList = teamService.listRank(bkmap);
+		}else{
+			basketTeamList = new ArrayList<TeamCommand>();
 		}
 		if(basketTeamList.size()<5){
 			TeamCommand team = new TeamCommand();
@@ -127,6 +156,8 @@ public class HomeController {
 		List<MatchCommand> matchBResultlist = null;
 		if (matchBResultCount > 0) {
 			matchBResultlist = teamService.matchListFinish(matchBmap);
+		}else{
+			matchBResultlist = new ArrayList<MatchCommand>();
 		}
 		if(matchBResultlist.size() <5){
 			MatchCommand match = new MatchCommand();
@@ -145,6 +176,8 @@ public class HomeController {
 		List<MatchCommand> matchBKResultlist = null;
 		if (matchBKResultCount > 0) {
 			matchBKResultlist = teamService.matchListFinish(matchBKmap);
+		}else{
+			matchBKResultlist = new ArrayList<MatchCommand>();
 		}
 		if(matchBKResultlist.size() <5){
 			MatchCommand match = new MatchCommand();
@@ -163,6 +196,8 @@ public class HomeController {
 		List<MatchCommand> matchFResultlist = null;
 		if (matchFResultCount > 0) {
 			matchFResultlist = teamService.matchListFinish(matchFmap);
+		}else{
+			matchFResultlist = new ArrayList<MatchCommand>();
 		}
 		if(matchFResultlist.size() <5){
 			MatchCommand match = new MatchCommand();
@@ -170,6 +205,7 @@ public class HomeController {
 				matchFResultlist.add(match);
 			}
 		}
+		
 	// 사이드바 - 마이페이지
 		String user_id = (String)session.getAttribute("user_id");
 		MemberCommand member = null;
@@ -191,6 +227,8 @@ public class HomeController {
 		mav.setViewName("home");
 		mav.addObject("noticeCount",noticeCount);
 		mav.addObject("noticeList",noticeList);
+		mav.addObject("boardCount",boardCount);
+		mav.addObject("boardList",boardList);
 		mav.addObject("baseTeamCount",baseTeamCount);
 		mav.addObject("baseTeamList",baseTeamList);
 		mav.addObject("basketTeamCount",basketTeamCount);

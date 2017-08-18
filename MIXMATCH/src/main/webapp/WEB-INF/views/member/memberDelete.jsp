@@ -20,8 +20,8 @@ form div{
 			<form:errors path="pw" cssClass="error-color"/>		
 		</div>
 		<div class="align-center">
-			<input type="submit" value="회원삭제">
-			<input type="button" value="내정보 보기" onclick="location.href='detail.do'">
+			<input type="submit" class="btn btn-danger" value="회원삭제">
+			<input type="button" class="btn btn-info" value="내정보 보기" onclick="location.href='detail.do'">
 		</div>
 	</form:form>
 </div>

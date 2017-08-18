@@ -87,6 +87,23 @@ public class TeamController {
 			joinList = teamMemService.list(map2);
 		}
 		
+		
+		// 사이드 팀 메뉴
+		Map<String, Object> teammap = new HashMap<String, Object>();	
+		teammap.put("id", user_id);
+		int joinCountSide =0;
+		if(user_id != null){	// 로그인한 상태면 마이페이지에 뜸
+			MemberCommand member = memberService.selectMember(user_id);
+			joinCountSide = teamMemService.getRowMemCount(user_id);
+		}
+		
+		List<TeamMemCommand> joinListSide = null;
+		if(joinCountSide>0){
+			joinListSide = teamMemService.listConfirmTeam(teammap);
+		}
+		session.setAttribute("joinCountSide", joinCountSide);
+		session.setAttribute("joinListSide", joinListSide);
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("teamHome");
 		mav.addObject("count", count);

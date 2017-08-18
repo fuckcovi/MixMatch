@@ -4,14 +4,14 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
 <style type="text/css">
 	#search_form{width:500px;height:50px;margin:0 auto;}
-	.search{list-style:none;}
+	.search{list-style:none;} 
 	.search li{float:left; margin:10px 10px 10px 10px;}
 </style>
 <div class="page-main-style">
 	<h2>팀게시판</h2>
 	<div class="align-center" style="min-height:50px; width:100%;"> 
 		<c:if test="${teamcount==0 }">
-			소속된 팀이 없어서 팀게시판 이용이 불가합니다. 
+			<div>소속된 팀이 없어서 팀게시판 이용이 불가합니다.</div> 
 		</c:if>
 		<c:if test="${teamcount>0 }">
 		<ul style="list-style: none;margin: 0 auto;height:70px; width:750px;padding:0;" id="teamboardList" >

@@ -74,29 +74,30 @@ public class TeamBoardController {
 			
 		
 		
-		
-		// 총 글의 갯수 또는 검색된 글의 갯수
-		int count = teamBoardService.getTbRowCount(map);
-		if(log.isDebugEnabled()){
-			log.debug("<<<count>> : "+count );
+			
+			// 총 글의 갯수 또는 검색된 글의 갯수
+			int count = teamBoardService.getTbRowCount(map);
+			if(log.isDebugEnabled()){
+				log.debug("<<<count>> : "+count );
+			}
+			PagingUtil page = new PagingUtil(currentPage, count, rowCount, pageCount, "teamboard.do");
+			map.put("start", page.getStartCount());
+			map.put("end", page.getEndCount());
+			List<TeamBoardCommand> list = null;
+			
+			if(count>0){
+				list = teamBoardService.teamboardList(map);
+			}
+			
+			
+			
+			/*mav.setViewName("teamboard");*/
+			mav.addObject("pagingHtml",page.getPagingHtml());
+			mav.addObject("count",count);
+			mav.addObject("list",list);
+			
 		}
-		PagingUtil page = new PagingUtil(currentPage, count, rowCount, pageCount, "teamboard.do");
-		map.put("start", page.getStartCount());
-		map.put("end", page.getEndCount());
-		List<TeamBoardCommand> list = null;
-		
-		if(count>0){
-			list = teamBoardService.teamboardList(map);
-		}
-		
-		
-		
 		mav.setViewName("teamboard");
-		mav.addObject("pagingHtml",page.getPagingHtml());
-		mav.addObject("count",count);
-		mav.addObject("list",list);
-		
-		}
 		mav.addObject("teamcount",teamcount);
 		mav.addObject("teamlist",teamlist);
 		return mav; 

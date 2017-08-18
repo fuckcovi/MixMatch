@@ -59,7 +59,7 @@ public interface TeamMemMapper {
 	public int getMemRecordCount(Map<String,Object> map);
 	public int getRowTeamMemRecordCount(Map<String, Object> map);
 
-	@Select("SELECT COUNT(*) FROM g_member")
+	@Select("SELECT COUNT(*) FROM g_member WHERE id!='admin'AND id!='DEL-TEAM'")
 	public int getMemCount();
 	
 	public List<MemberCommand> getMemList(Map<String, Object> map);

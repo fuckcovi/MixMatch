@@ -122,24 +122,26 @@ $(document).ready(function(){
 			<th width="100">날짜</th>
 			<th width="100">조회수</th>
 		</tr>
-		<tr>
-			<td>글번호</td>
-			<td>제목</td>
-			<td>날짜</td>
-			<td>조회수</td>
-		</tr>
-		<tr>
-			<td>글번호</td>
-			<td>제목</td>
-			<td>날짜</td>
-			<td>조회수</td>
-		</tr>
-		<tr>
-			<td>글번호</td>
-			<td>제목</td>
-			<td>날짜</td>
-			<td>조회수</td>
-		</tr>	
+		<c:if test="${boardCount>0 }">
+			<c:forEach var="boardList" items="${boardList}">
+				<c:if test="${!empty boardList.gb_title}">
+					<tr class="board" onclick="location.href='${pageContext.request.contextPath}/board/detail.do?gb_seq=${boardList.gb_seq}'">
+						<td>${boardList.gb_seq}</td>
+						<td>${boardList.gb_title}</td>
+						<td>${boardList.gb_regdate}</td>
+						<td>${boardList.gb_hit}</td>
+					</tr>
+				</c:if>
+				<c:if test="${empty boardList.gb_title }">
+					<tr class="board" >
+						<td colspan="4" style="color:#bdbdbd;">등록된 게시글 부족</td>
+					</tr> 
+				</c:if>	
+			</c:forEach>			
+		</c:if>
+		<c:if test="${boardCount==0 }">
+			<tr class="board"><td colspan="4">등록된 게시글이 없습니다.</td></tr>
+		</c:if>
 	</table>
 </div>
 <br>

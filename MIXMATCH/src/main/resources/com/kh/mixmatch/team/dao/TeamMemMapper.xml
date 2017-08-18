@@ -16,7 +16,7 @@
 	
 	<select id="getMemList" parameterType="map" resultType="memberCommand">
 		SELECT * FROM (SELECT a.*, rownum rnum, rownum pointStatus FROM
-		(SELECT * FROM g_member ORDER BY point DESC)a )
+		(SELECT * FROM g_member WHERE id!='DEL-TEAM' AND id!='admin' ORDER BY point DESC)a )
 					
 					<![CDATA[ WHERE rnum>=#{start} AND rnum<=#{end} ]]>
 	</select>

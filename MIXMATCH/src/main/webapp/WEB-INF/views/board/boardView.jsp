@@ -3,9 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>    
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/board/board.reply.js"></script>
+<style>
+form div{
+	width: 25%; 
+	margin: 0 auto; 
+	margin-bottom: 20px;
+}
+</style>
 <div class="page-main-style">
 	<h2>${board.gb_title}</h2>
-	<ul>
+	<ul style="list-style: none;">
 		<li>번호 : ${board.gb_seq}</li>
 		<li>작성자 : ${board.id}</li>
 		<li>조회수 : ${board.gb_hit}</li>
@@ -31,12 +38,12 @@
 	<hr size="1" width="100%">
 	<div class="align-right">
 		<c:if test="${!empty user_id && user_id == board.id}">
-		<input type="button" value="수정"
+		<input type="button" class="btn btn-success" value="수정"
 		    onclick="location.href='update.do?gb_seq=${board.gb_seq}'">
-		<input type="button" value="삭제"
+		<input type="button" class="btn btn-warning" value="삭제"
 		    onclick="location.href='delete.do?gb_seq=${board.gb_seq}'">
 		</c:if>
-		<input type="button" value="목록"
+		<input type="button" class="btn btn-info" value="목록"
 		    onclick="location.href='list.do'">    
 	</div>
 	<div id="reply_div">
@@ -48,7 +55,7 @@
 			                 value="${user_id}" id="user_id">
 			<textarea rows="3" cols="50"
 			   name="gbre_content" id="gbre_content"
-			   class="rep-content"
+			   class="rep-content" style="resize: none;"
 			   <c:if test="${empty user_id}">disabled="disabled"</c:if>
 			   ><c:if test="${empty user_id}">로그인해야 작성할 수 있습니다.</c:if></textarea>  
 			<c:if test="${!empty user_id}">
@@ -56,7 +63,7 @@
 					<span class="letter-count">300/300</span>
 				</div>
 				<div id="re_second" class="align-right">
-					<input type="submit" value="전송">
+					<input type="submit" class="btn btn-success" value="댓글">
 				</div>
 			</c:if>                                   
 		</form>

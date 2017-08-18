@@ -45,15 +45,6 @@ $(document).ready(function() {
 	}
 });
 </script>
-<style type="text/css">
-	#sideul li{
-		height:130px;
-		border:1px solid #BDBDBD;
-	}
-	#sideul li form input{
-		width:80px;
-	}
-</style>
 <div id="up-btn" title="맨 위로">
 	<span class="glyphicon glyphicon-chevron-up"></span>
 </div>
@@ -61,10 +52,10 @@ $(document).ready(function() {
 	<span class="glyphicon glyphicon-chevron-down"></span>
 </div>
 <nav id="sidenav">
-<div class="align-center" id="sideMenu" style="background:white;">
-	<ul id="sideul">
+	<ul>
 		<li>
 			<c:if test="${!empty user_id }">
+			<strong>${user_id}님 로그인</strong><br>
 			<a href="${pageContext.request.contextPath}/mypage/main.do?id=${user_id}" >
 				<c:if test="${fn:endsWith(member.profile_name, '.jpg') || fn:endsWith(member.profile_name, '.png') || fn:endsWith(member.profile_name, '.gif') || fn:endsWith(member.profile_name, '.JPG') || fn:endsWith(member.profile_name, '.PNG') || fn:endsWith(member.profile_name, '.GIF')}">
 					<img src="${pageContext.request.contextPath}/imageViewSide.do?id=${member.id}" style="width:100px;height:100px;">
@@ -78,14 +69,14 @@ $(document).ready(function() {
 			<c:if test="${empty user_id}">
 			
 			<form action="${pageContext.request.contextPath}/login.do" method="post"><br>
-				<label for="id">ID</label><input type="text" id="id" name="id" ><br>
+				<label for="id">ID</label><input type="text" title="id" id="id" name="id" ><br>
 				<label for="pw">PW</label><input type="password" id="pw" name="pw"><br><br>
 				<input type="submit" value="로그인" class="btn">
 			</form>
 			</c:if>
 		</li>
 		<li> 
-			<div  >
+			<div>
 			<c:if test="${joinCountSide==0 }">
 			<br><br>가입신청한 팀이 없습니다. 자신의 팀을 생성하거나 이미 등록된 팀에 가입신청하세요.<br>
 			<a href="${pageContext.request.contextPath}/team/team.do">팀생성</a>
@@ -101,7 +92,7 @@ $(document).ready(function() {
 				</c:forEach>
 			</select>
 			<br>
-			<c:forEach var="joinListSide" items="${joinListSide}">
+			<c:forEach var="joinListSide" items="${joinListSide}" varStatus="status">
 				<a href="${pageContext.request.contextPath }/team/teamInfo.do?t_name=${joinListSide.t_name}" id="myteamLogo">
 					<c:if test="${fn:endsWith(joinListSide.t_logo_name, '.jpg') || fn:endsWith(joinListSide.t_logo_name, '.png') || fn:endsWith(joinListSide.t_logo_name, '.gif') || fn:endsWith(joinListSide.t_logo_name, '.JPG') || fn:endsWith(joinListSide.t_logo_name, '.PNG') || fn:endsWith(joinListSide.t_logo_name, '.GIF')}">
 						<img id="${joinListSide.t_name }" src="${pageContext.request.contextPath}/imageViewTside.do?t_name=${joinListSide.t_name}" style="width:100px;height:100px;display: none;">
@@ -124,8 +115,9 @@ $(document).ready(function() {
 		</li>
 		<li>
 		<div id="point" style="height:100px;">
+			포인트몰<br>
 			<a href="${pageContext.request.contextPath}/point/pointHome.do">
-				<img src="${pageContext.request.contextPath}/resources/images/shopba.jpg" width="80">
+				<img src="${pageContext.request.contextPath}/resources/images/shopba.png" width="80">
 			</a>
 			</div>
 		</li>
@@ -139,7 +131,6 @@ $(document).ready(function() {
 			</c:if>
 		</li>
 	</ul>
-</div>
 </nav>
 <div>
 	<span class="glyphicon glyphicon-chevron-left" id="side-button"></span>

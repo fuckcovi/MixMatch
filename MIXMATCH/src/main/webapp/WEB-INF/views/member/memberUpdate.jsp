@@ -13,6 +13,36 @@ form div{
 	margin: 0 auto; 
 	margin-bottom: 20px;
 }
+.file_input label {
+    position:relative;
+    cursor:pointer;
+    display:inline-block;
+    vertical-align:middle;
+    overflow:hidden;
+    width:70px;
+    height:30px;
+    background:#777;
+    color:#fff;
+    text-align:center;
+    line-height:30px;
+}
+.file_input label input {
+    position:absolute;
+    width:0;
+    height:0;
+    overflow:hidden;
+}
+.file_input input[type=text] {
+    vertical-align:middle;
+    display:inline-block;
+    width:120px;
+    height:28px;
+    line-height:28px;
+    font-size:11px;
+    padding:0;
+    border:0;
+    border:1px solid #777;
+}
 </style>
 <div class="page-main-style">
 	<h1>회원수정</h1>
@@ -51,11 +81,22 @@ form div{
 		</div>
 		<div class="form-group">
 			<label for="profile_upload">프로필 사진</label>
-			<input type="file" name="profile_upload" id="profile_upload">
+			<div class="file_input" style="width: 100%;">
+			    <label>
+			        File
+			        <input type="file" name="profile_upload" id="profile_upload" onchange="javascript:document.getElementById('file_route').value=this.value">
+			    </label>
+			    <input type="text" readonly="readonly" title="File Route" id="file_route">
+			</div>
+			<c:if test="${!empty memberCommand.profile_name}">
+            <br><span>(${memberCommand.profile_name }) 파일이 등록되어 있습니다.<br>
+                    다시 업로드하면 기존 파일은 삭제됩니다.</span>
+            </c:if>
+			
 		</div>
 		<div class="align-center">
-			<input type="submit" value="회원수정">
-			<input type="button" value="내정보 보기" onclick="location.href='detail.do'">
+			<input type="submit" class="btn btn-success" value="회원수정">
+			<input type="button" class="btn btn-info" value="내정보 보기" onclick="location.href='detail.do'">
 		</div>
 	</form:form>
 </div>
