@@ -7,7 +7,7 @@
 <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/team/teamList.js"></script> --%>
 <div class="page-main-style">
 	<h2>팀홈</h2>
-	<hr class="style">
+	<hr style=" border: 2px dashed #BDBDBD;">
 	<div>
 		<c:if test="${joinCount==0 }">
 			가입신청한 팀이 없습니다. 자신의 팀을 생성하거나 이미 등록된 팀에 가입신청하세요.
@@ -15,15 +15,22 @@
 		<c:if test="${joinCount>0 }">
 		<h3>&lt;&lt;소속팀&gt;&gt;</h3>
 		<div style="margin:0 auto;overflow-y: auto;width:600px; height:120px;">  
-			<c:forEach var="joinList" items="${joinList}">
+		<table style="width:100%;"> 
+			<c:forEach var="joinList" items="${joinList}" >
+			 
 				<div style="font-size:medium;">
-					<c:if test="${joinList.t_mem_auth > 0}">
-						<a href="${pageContext.request.contextPath}/team/teamInfo.do?t_name=${joinList.t_name}">${joinList.t_name}</a> | 
-						<a href="${pageContext.request.contextPath}/team/teamRank.do?t_name=${joinList.t_name}">우리팀랭킹</a> | 
-						<a href="${pageContext.request.contextPath}/team/teamMem.do?t_name=${joinList.t_name}">팀원관리</a>
+					<c:if test="${joinList.t_mem_auth > 0}"> 
+						<tr style="border-bottom: 1px solid #bdbdbd; height:50px;" >
+						<td style="width:33%;"><a href="${pageContext.request.contextPath}/team/teamInfo.do?t_name=${joinList.t_name}">${joinList.t_name}</a></td>
+						<td style="color:#bdbdbd;">|</td> 
+						<td style="width:33%;"><a href="${pageContext.request.contextPath}/team/teamRank.do?t_name=${joinList.t_name}">우리팀랭킹</a></td>
+						<td style="color:#bdbdbd;">|</td> 
+						<td style="width:33%;"><a href="${pageContext.request.contextPath}/team/teamMem.do?t_name=${joinList.t_name}">팀원관리</a></td></tr>
+						
 					</c:if>
 				</div>
 			</c:forEach>
+			</table>
 			</div>
 			<hr size="1" width="85%">
 			<h4>&lt;&lt;가입신청 중인 팀&gt;&gt;</h4> 

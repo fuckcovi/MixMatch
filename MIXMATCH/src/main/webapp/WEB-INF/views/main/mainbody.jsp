@@ -56,7 +56,7 @@ $(document).ready(function(){
 		<span class="glyphicon glyphicon-volume-up"></span>
 	</div>
 	<div class="notice">
-		<ul class="rolling">
+		<ul class="rolling"> 
 			<c:if test="${noticeCount>0 }">
 			<c:forEach var="noticeList" items="${noticeList}">
 				<li><a href="${pageContext.request.contextPath}/notice/noticeDetail.do?gn_seq=${noticeList.gn_seq}">${noticeList.gn_title }</a></li>
@@ -264,47 +264,53 @@ $(document).ready(function(){
 			<th>경기일자</th>
 			<th>홈팀</th>
 			<th></th>
+			<th></th>
+			<th></th>
 			<th>원정팀</th>
 		</tr>
-		<c:if test="${matchFResultCount>0 }">
+		<c:if test="${matchFResultCount>0 }"> 
 			<c:forEach var="matchFResultList" items="${matchFResultlist}">
 				<c:if test="${!empty matchFResultList.t_name}">
 					<tr class="foot" onclick="location.href='${pageContext.request.contextPath}/match/scoreDetail.do?m_seq=${matchFResultList.m_seq }'"  >
 						<td>${matchFResultList.m_date}</td>
-						<td>${matchFResultList.t_name }-${matchFResultList.m_home}</td>
+						<td>${matchFResultList.t_name }</td>
+						<td><b style="font-size: large;color: red;">${matchFResultList.m_home}</b></td>
 						<td>VS</td>
-						<td>${matchFResultList.m_away}-${matchFResultList.m_challenger }</td>
+						<td><b style="font-size: large;color: red;">${matchFResultList.m_away}</b></td>
+						<td>${matchFResultList.m_challenger }</td>
 					</tr>
 				</c:if>
 				<c:if test="${empty matchFResultList.t_name }">
 					<tr class="foot">
-						<td colspan="4" style="color:#bdbdbd;">매치결과부족</td>
+						<td colspan="6" style="color:#bdbdbd;">매치결과부족</td>
 					</tr>
 				</c:if>
 			</c:forEach>
 		</c:if>
 		<c:if test="${matchFResultCount==0 }">
-			<tr class="foot"><td colspan="4">최근 축구경기결과가 없습니다.</td></tr>
+			<tr class="foot"><td colspan="6">최근 축구경기결과가 없습니다.</td></tr>
 		</c:if>
 		<c:if test="${matchBKResultCount>0 }">
 			<c:forEach var="matchBKResultlist" items="${matchBKResultlist}">
 				<c:if test="${!empty matchBKResultlist.t_name}">
 					<tr class="basket" onclick="location.href='${pageContext.request.contextPath}/match/scoreDetail.do?m_seq=${matchBKResultlist.m_seq }'" style="display: none;" >
 						<td>${matchBKResultlist.m_date}</td>
-						<td>${matchBKResultlist.t_name }-${matchBKResultlist.m_home}</td>
+						<td>${matchBKResultlist.t_name }</td>
+						<td><b style="font-size: large;color: red;">${matchBKResultlist.m_home}</b></td>
 						<td>VS</td>
-						<td>${matchBKResultlist.m_away}-${matchBKResultlist.m_challenger }</td>
+						<td><b style="font-size: large;color: red;">${matchBKResultlist.m_away}</b></td>
+						<td>${matchBKResultlist.m_challenger }</td>
 					</tr>
 				</c:if>
 				<c:if test="${empty matchBKResultlist.t_name }">
 					<tr class="basket" style="display: none;">
-						<td colspan="4" style="color:#bdbdbd;">매치결과부족</td>
+						<td colspan="6" style="color:#bdbdbd;">매치결과부족</td>
 					</tr>
 				</c:if>
 			</c:forEach>
 		</c:if>
 		<c:if test="${matchBKResultCount==0 }">
-			<tr class="basket" style="display: none;"><td colspan="4">최근 농구경기결과가 없습니다.</td></tr>
+			<tr class="basket" style="display: none;"><td colspan="6">최근 농구경기결과가 없습니다.</td></tr>
 		</c:if>
 
 		<c:if test="${matchBResultCount>0 }">
@@ -312,20 +318,22 @@ $(document).ready(function(){
 			<c:if test="${!empty matchBResultList.t_name}">
 					<tr class="base" onclick="location.href='${pageContext.request.contextPath}/match/scoreDetail.do?m_seq=${matchBResultList.m_seq }'"  style="display: none;">
 						<td>${matchBResultList.m_date}</td>
-						<td>${matchBResultList.t_name }-${matchBResultList.m_home}</td>
+						<td>${matchBResultList.t_name }</td>
+						<td><b style="font-size: large;color: red;">${matchBResultList.m_home}</b></td>
 						<td>VS</td>
-						<td>${matchBResultList.m_away}-${matchBResultList.m_challenger }</td>
+						<td><b style="font-size: large;color: red;">${matchBResultList.m_away}</b></td>
+						<td>${matchBResultList.m_challenger }</td>
 					</tr>
 			</c:if>
 			<c:if test="${empty matchBResultList.t_name }">
 				<tr class="base" style="display: none;">
-					<td colspan="4" style="color:#bdbdbd;">매치결과부족</td>
+					<td colspan="6" style="color:#bdbdbd;">매치결과부족</td>
 				</tr>
 			</c:if>
 			</c:forEach>
 		</c:if>
 		<c:if test="${matchBResultCount==0 }">
-			<tr class="base" style="display: none;"><td colspan="4">최근 야구경기결과가 없습니다.</td></tr>
+			<tr class="base" style="display: none;"><td colspan="6">최근 야구경기결과가 없습니다.</td></tr>
 		</c:if>
 	</table>
 </div> 
