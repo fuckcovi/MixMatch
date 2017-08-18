@@ -22,8 +22,8 @@ form div{
 			<form:errors path="pw" cssClass="error-color"/>		
 		</div>
 		<div class="align-center">
-			<input type="submit" class="btn btn-success" value="로그인">
-			<input type="button" class="btn btn-default" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/home.do'">
+			<input type="submit" class="btn" value="로그인">
+			<input type="button" class="btn" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/home.do'">
 		</div>
 	</form:form>
 </div>

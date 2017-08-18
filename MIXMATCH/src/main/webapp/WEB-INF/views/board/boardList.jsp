@@ -24,7 +24,7 @@ table th{text-align: center;}
 				<input type="text" name="keyword" id="keyword">
 			</li>
 			<li>
-				<input type="submit" value="찾기">
+				<input type="submit" class="btn" value="찾기">
 			</li>
 		</ul>
 	</form>
@@ -54,7 +54,7 @@ table th{text-align: center;}
 	<div class="align-center">${pagingHtml}</div>
 	</c:if>
 	<div class="align-right">
-		<input type="button" class="btn btn-success" value="글쓰기" onclick="location.href='write.do'">
+		<input type="button" class="btn" value="글쓰기" onclick="location.href='write.do'">
 	</div>
 </div>
 

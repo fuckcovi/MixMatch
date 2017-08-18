@@ -25,7 +25,7 @@
 		</c:if>
 	</div>
 	<div class="align-right">
-		<input type="button" value="글쓰기"  onclick="location.href='${pageContext.request.contextPath}/teamboard/teamboardInsert.do'" >
+		<input type="button" class="btn" value="글쓰기"  onclick="location.href='${pageContext.request.contextPath}/teamboard/teamboardInsert.do'" >
 	</div>
 	<div>
 	<c:if test="${count==0 }">
@@ -68,7 +68,7 @@
 				<input type="text" name="keyword" id="keyword">
 			</li>
 			<li>
-				<input type="submit" value="찾기">
+				<input type="submit" class="btn"value="찾기">
 			</li>
 		</ul>
 	</form>

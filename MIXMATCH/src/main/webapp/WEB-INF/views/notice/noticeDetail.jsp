@@ -11,7 +11,7 @@
 	<ul class="menu">
 		<li>번호 : ${notice.gn_seq}</li>
 		<li>조회수 : ${notice.gn_hit}</li>
-		<li>등록일 : ${notice.gn_regdate}</li><br>
+		<li>등록일 : ${notice.gn_regdate}</li>
 		<c:if test="${!empty notice.gn_filename}">
 			<li>첨부파일 : <a href="noticefile.do?gn_seq=${notice.gn_seq}">${notice.gn_filename}</a></li>	
 		</c:if>
@@ -31,7 +31,7 @@
 	<div class="align-center">
 		<c:if test="${!empty user_id && user_id==notice.id }">
 			<input type="button" class="btn" value="수정" onclick="location.href='noticeUpdate.do?gn_seq=${notice.gn_seq}'">
-			<input type="button"class="btn"  value="삭제" onclick="location.href='notiecDelete.do?gn_seq=${notice.gn_seq}'">
+			<input type="button"class="btn"  value="삭제" onclick="location.href='noticeDelete.do?gn_seq=${notice.gn_seq}'">
 		</c:if>
 		<input type="button" class="btn" value="목록" onclick="location.href='notice.do'">
 	</div>

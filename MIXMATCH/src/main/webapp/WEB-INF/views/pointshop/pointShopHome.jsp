@@ -44,13 +44,13 @@
 				<input type="text" name="keyword" id="keyword">
 			</li>
 			<li>
-				<input type="submit" class="btn btn-info" value="상품찾기">
+				<input type="submit" class="btn" value="상품찾기">
 			</li>
 		</ul>
 	</form>
 	<c:if test="${user_id == 'admin' }">
 	<div class="align-right">
-    	<input type="button" class="btn btn-default" value="상품등록" onclick="location.href='${pageContext.request.contextPath}/point/pointWrite.do'">
+    	<input type="button" class="btn" value="상품등록" onclick="location.href='${pageContext.request.contextPath}/point/pointWrite.do'">
     </div>
 	</c:if>
     <!-- 상품목록 -->

@@ -95,8 +95,8 @@ form div{
 			
 		</div>
 		<div class="align-center">
-			<input type="submit" class="btn btn-success" value="회원수정">
-			<input type="button" class="btn btn-info" value="내정보 보기" onclick="location.href='detail.do'">
+			<input type="submit" class="btn" value="회원수정">
+			<input type="button" class="btn" value="내정보 보기" onclick="location.href='detail.do'">
 		</div>
 	</form:form>
 </div>

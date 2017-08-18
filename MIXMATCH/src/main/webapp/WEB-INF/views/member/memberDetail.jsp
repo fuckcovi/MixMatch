@@ -58,8 +58,8 @@ form div{
 	</form>
 	<hr size="1" width="100%"/>
 	<p class="align-center">
-		<input type="button" class="btn btn-info" value="비밀번호 수정" onclick="location.href='pwUpdate.do'">
-		<input type="button" class="btn btn-info" value="회원정보 수정" onclick="location.href='pwCheck.do'">
-		<input type="button" class="btn btn-danger" value="회원 탈퇴" onclick="location.href='delete.do'">
+		<input type="button" class="btn" value="비밀번호 수정" onclick="location.href='pwUpdate.do'">
+		<input type="button" class="btn" value="회원정보 수정" onclick="location.href='pwCheck.do'">
+		<input type="button" class="btn" value="회원 탈퇴" onclick="location.href='delete.do'">
 	</p>
 </div>

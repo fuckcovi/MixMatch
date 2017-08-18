@@ -5,7 +5,36 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
 <style type="text/css">
 	ul{list-style: none;}
-	
+.file_input label {
+    position:relative;
+    cursor:pointer;
+    display:inline-block;
+    vertical-align:middle;
+    overflow:hidden;
+    width:70px;
+    height:30px;
+    background:#777;
+    color:#fff;
+    text-align:center;
+    line-height:30px;
+}
+.file_input label input {
+    position:absolute;
+    width:0;
+    height:0;
+    overflow:hidden;
+}
+.file_input input[type=text] {
+    vertical-align:middle;
+    display:inline-block;
+    width:120px;
+    height:28px;
+    line-height:28px;
+    font-size:11px;
+    padding:0;
+    border:0;
+    border:1px solid #777;
+}
 </style>
 <link href="${pageContext.request.contextPath}/resources/css/layout222.css" rel="stylesheet">
 <div class="page-main-style">
@@ -44,7 +73,14 @@
 		</li>
 		<li>
 			<label for="t_logo_upload">팀로고</label>
-			<input type="file" name="t_logo_upload" id="t_logo_upload" >
+			<!-- <input type="file" name="t_logo_upload" id="t_logo_upload" > -->
+			<div class="file_input" style="width: 100%;">
+			    <label>
+			        File
+			        <input type="file" name="t_logo_upload" id="t_logo_upload" onchange="javascript:document.getElementById('file_route').value=this.value">
+			    </label>
+			    <input type="text" readonly="readonly" title="File Route" id="file_route">
+			</div>
 			<c:if test="${!empty teamCommand.t_logo_name}">
 				<br>
 				<span>(${teamCommand.t_logo_name}이 등록되어있습니다. 재업로드하면 기존 파일은 삭제됩니다.)</span>

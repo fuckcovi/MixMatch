@@ -75,8 +75,8 @@ form div{
 		</div>
 		
 		<div class="align-center">
-			<input type="submit" class="btn btn-success" value="수정">
-			<input type="button" class="btn btn-info" value="목록"
+			<input type="submit" class="btn" value="수정">
+			<input type="button" class="btn" value="목록"
 			           onclick="location.href='list.do'">
 		</div>
 	</form:form>

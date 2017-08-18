@@ -85,8 +85,8 @@ form div{
 			<form:errors path="p_file" cssClass="error-color"/>
 		</div>
 		<div class="align-center">
-			<input type="submit" class="btn btn-success" value="등록">
-			<input type="button" class="btn btn-info" value="홈으로" onclick="location.href='pointHome.do'">
+			<input type="submit" class="btn" value="등록">
+			<input type="button" class="btn" value="홈으로" onclick="location.href='pointHome.do'">
 		</div>
 	</form:form>
 </div>

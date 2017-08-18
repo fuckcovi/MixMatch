@@ -28,11 +28,11 @@
 				<input type="text" name="keyword" id="keyword" style="height:30px;">
 			</li>
 			<li>
-				<input type="submit" value="찾기" style="height:30px;">
+				<input type="submit" class="btn" value="찾기" style="height:30px;">
 			</li>
 			<c:if test="${user_id == 'admin'}">
 			<li> 
-				<input type="button" value="글쓰기"  onclick="location.href='noticeInsert.do'" style="height:30px;">
+				<input type="button" class="btn" value="글쓰기"  onclick="location.href='noticeInsert.do'" style="height:30px;">
 			</li>
 			</c:if>
 		</ul> 

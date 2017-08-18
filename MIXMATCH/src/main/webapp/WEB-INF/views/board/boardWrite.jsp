@@ -67,8 +67,8 @@ form div{
 			<form:errors path="gb_upload" cssClass="error-color"/>
 		</div>
 		<div class="align-center">
-			<input type="submit" value="글쓰기">
-			<input type="button" value="목록" onclick="location.href='list.do'">
+			<input type="submit" class="btn" value="글쓰기">
+			<input type="button" class="btn" value="목록" onclick="location.href='list.do'">
 		</div>
 	</form:form>
 </div>

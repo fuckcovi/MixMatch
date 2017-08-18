@@ -11,7 +11,7 @@
 	<ul class="menu">
 		<li>번호 : ${teamboard.gt_seq}</li>
 		<li>조회수 : ${teamboard.gt_hit}</li>
-		<li>등록일 : ${teamboard.gt_regdate}</li><br>
+		<li>등록일 : ${teamboard.gt_regdate}</li>
 		<c:if test="${!empty teamboard.gt_filename}">
 			<li>첨부파일 : <a href="${pageContext.request.contextPath}/teamboard/teamboardfile.do?gt_seq=${teamboard.gt_seq}">${teamboard.gt_filename}</a></li>	
 		</c:if>

@@ -32,5 +32,5 @@
             </table>
         </form> 
     </c:if>
-    <button class="btn btn-info" onclick="location.href='pointHome.do'">쇼핑하기</button>
+    <button class="btn" onclick="location.href='pointHome.do'">쇼핑하기</button>
 </div>    

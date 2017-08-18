@@ -6,6 +6,38 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mypageLayout.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/mypage/mypage.reply.js"></script>
+<style>
+.file_input label {
+    position:relative;
+    cursor:pointer;
+    display:inline-block;
+    vertical-align:middle;
+    overflow:hidden;
+    width:70px;
+    height:30px;
+    background:#777;
+    color:#fff;
+    text-align:center;
+    line-height:30px;
+}
+.file_input label input {
+    position:absolute;
+    width:0;
+    height:0;
+    overflow:hidden;
+}
+.file_input input[type=text] {
+    vertical-align:middle;
+    display:inline-block;
+    width:120px;
+    height:28px;
+    line-height:28px;
+    font-size:11px;
+    padding:0;
+    border:0;
+    border:1px solid #777;
+}
+</style>
 <div class="container">
 
 <!-- ===============MyPage왼쪽 프로필부분=============== -->
@@ -108,6 +140,13 @@
 				<label for="h_content"></label>
 				<form:textarea path="h_content"   placeholder="내용을 입력하세요" />
 				<div class="post-file">
+					<!-- <div class="file_input" style="width: 100%;">
+					    <label>
+					        File
+					        <input type="file" name="uploadfile" id="uploadfile" onchange="javascript:document.getElementById('file_route').value=this.value">
+					    </label>
+					    <input type="text" readonly="readonly" title="File Route" id="file_route">
+					</div> -->
 					<label for="uploadfile"></label>
 					<input type="file" name="uploadfile" id="uploadfile">
 					<form:select path="h_show">

@@ -57,10 +57,10 @@
 	        	</td>
 	    	</tr>
 	    </table>
-	    <input type="button" class="btn btn-info" value="상품목록" onclick="location.href='pointHome.do'">
+	    <input type="button" class="btn" value="상품목록" onclick="location.href='pointHome.do'">
 	    <c:if test="${user_id == 'admin'}">
-	         <input type="button" class="btn btn-warning" id="update" value="상품수정" onclick="location.href='${pageContext.request.contextPath}/point/PointUpdate.do?p_seq=${product.p_seq}'">
-	   		 <input type="button" class="btn btn-warning" id="delete" value="상품삭제" onclick="location.href='${pageContext.request.contextPath}/point/delete.do?p_seq=${product.p_seq}'">		
+	         <input type="button" class="btn" id="update" value="상품수정" onclick="location.href='${pageContext.request.contextPath}/point/PointUpdate.do?p_seq=${product.p_seq}'">
+	   		 <input type="button" class="btn" id="delete" value="상품삭제" onclick="location.href='${pageContext.request.contextPath}/point/delete.do?p_seq=${product.p_seq}'">		
 	 	</c:if>
     </div>
 </div>

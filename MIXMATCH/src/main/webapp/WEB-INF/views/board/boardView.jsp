@@ -38,9 +38,9 @@ form div{
 	<hr size="1" width="100%">
 	<div class="align-right">
 		<c:if test="${!empty user_id && user_id == board.id}">
-		<input type="button" class="btn btn-success" value="수정"
+		<input type="button" class="btn" value="수정"
 		    onclick="location.href='update.do?gb_seq=${board.gb_seq}'">
-		<input type="button" class="btn btn-warning" value="삭제"
+		<input type="button" class="btn" value="삭제"
 		    onclick="location.href='delete.do?gb_seq=${board.gb_seq}'">
 		</c:if>
 		<input type="button" class="btn btn-info" value="목록"
