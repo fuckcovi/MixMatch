@@ -42,5 +42,8 @@ public interface LeagueMapper {
 	// 참가팀수 증가
 	@Update("UPDATE g_league SET l_team=l_team+1 WHERE l_seq=(SELECT l_seq FROM g_league_detail WHERE ld_seq=#{ld_seq})")
 	public void updateTeamNum(Integer ld_seq);
+	// 참가팀 리스트
+	@Select("SELECT t_name FROM g_league_detail WHERE l_seq=#{l_seq}")
+	public List<String> leagueTeamList(Integer l_seq);
 	
 }

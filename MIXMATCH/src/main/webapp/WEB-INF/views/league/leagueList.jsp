@@ -47,6 +47,7 @@
 				</c:forEach>	
 			</c:if>
 		</table>
+		<%-- <div>${pagingHtml}</div> --%>
 	</div>
 	<c:if test="${!empty user_id}">
 			<div>

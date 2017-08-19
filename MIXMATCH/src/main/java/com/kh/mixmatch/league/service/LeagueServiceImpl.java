@@ -73,4 +73,9 @@ public class LeagueServiceImpl implements LeagueService {
 		return leagueMapper.selectL_seq(ld_seq);
 	}
 
+	@Override
+	public List<String> leagueTeamList(Integer l_seq) {
+		return leagueMapper.leagueTeamList(l_seq);
+	}
+
 }

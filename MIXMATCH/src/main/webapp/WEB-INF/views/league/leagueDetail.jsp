@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/league/league.js"></script> 
 <div class="match-div">
 	<h3 style="text-align:left;font-weight:bold;">리그정보</h3>
@@ -73,13 +74,16 @@
 									참가중
 								</c:if>
 								<c:if test="${list.ld_check eq 'N'}">
-									<c:if test="${user_id eq league.id && league.l_number > league.l_team}">
+									<c:if test="${!fn:contains(teamList, list.t_name) && user_id eq league.id && league.l_number > league.l_team}">
 										<input type="button" value="승인" onclick="location.href='leagueDtlCheck.do?ld_seq=${list.ld_seq}'">
+									</c:if>
+									<c:if test="${fn:contains(teamList, list.t_name)}">
+										<span style="color:red;">중복신청</span>
 									</c:if>
 									<c:if test="${user_id eq league.id && league.l_number <= league.l_team}">
 										<span style="color:red;">정원초과</span>
 									</c:if>
-									<c:if test="${user_id ne league.id}">
+									<c:if test="${!fn:contains(teamList, list.t_name) && user_id ne league.id}">
 										<span style="color:#BDBDBD;">참가신청중</span>
 									</c:if>
 								</c:if>

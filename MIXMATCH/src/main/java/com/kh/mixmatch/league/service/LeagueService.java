@@ -25,5 +25,6 @@ public interface LeagueService {
 	public List<LeagueDtlCommand> selectLeagueDtl(Integer l_seq);
 	public void updateChk(Integer ld_seq);
 	public String selectL_seq(Integer ld_seq);
+	public List<String> leagueTeamList(Integer l_seq);
 	
 }

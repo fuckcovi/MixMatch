@@ -172,6 +172,9 @@ public class LeagueController {
 		// 참가신청한 팀 목록
 		List<LeagueDtlCommand> leagueDtl = leagueService.selectLeagueDtl(l_seq);
 		
+		// 참가신청한 팀 리스트
+		List<String> teamList = leagueService.leagueTeamList(l_seq);
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("leagueDetail");
 		mav.addObject("league", leagueCommand);
@@ -180,6 +183,7 @@ public class LeagueController {
 		mav.addObject("t_name", t_name);
 		mav.addObject("leagueDtl", leagueDtlCommand);
 		mav.addObject("list", leagueDtl);
+		mav.addObject("teamList", teamList);
 		
 		return mav;
 	}
