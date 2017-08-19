@@ -68,4 +68,9 @@ public class LeagueServiceImpl implements LeagueService {
 		leagueMapper.updateTeamNum(ld_seq);
 	}
 
+	@Override
+	public String selectL_seq(Integer ld_seq) {
+		return leagueMapper.selectL_seq(ld_seq);
+	}
+
 }

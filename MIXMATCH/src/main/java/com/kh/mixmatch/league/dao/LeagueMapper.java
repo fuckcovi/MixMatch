@@ -36,6 +36,9 @@ public interface LeagueMapper {
 	// 팀 참가승인
 	@Update("UPDATE g_league_detail SET ld_check='Y' WHERE ld_seq=#{ld_seq}")
 	public void updateChk(Integer ld_seq);
+	// 참가승인 l_seq 받아오기
+	@Select("SELECT l_seq FROM g_league_detail WHERE ld_seq=#{ld_seq}")
+	public String selectL_seq(Integer ld_seq);
 	// 참가팀수 증가
 	@Update("UPDATE g_league SET l_team=l_team+1 WHERE l_seq=(SELECT l_seq FROM g_league_detail WHERE ld_seq=#{ld_seq})")
 	public void updateTeamNum(Integer ld_seq);

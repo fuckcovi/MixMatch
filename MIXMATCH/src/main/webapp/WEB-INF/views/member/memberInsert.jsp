@@ -84,10 +84,10 @@ form label{
 		<div class="form-group form-inline">
 			<label for="favor">관심종목</label>
 			<select name="favor" id="favor">
-				<option value="none" selected="selected">없음</option>
-				<option value="soccer">축구</option>
-				<option value="baseball">야구</option>
-				<option value="basketball">농구</option>
+				<option value="없음" selected="selected">없음</option>
+				<option value="축구">축구</option>
+				<option value="야구">야구</option>
+				<option value="농구">농구</option>
 			</select>
 		</div>
 		<div class="form-group form-inline">

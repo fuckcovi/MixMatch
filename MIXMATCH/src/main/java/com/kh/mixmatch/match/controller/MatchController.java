@@ -268,7 +268,7 @@ public class MatchController {
 		// 매치등록
 		matchService.updateChallenger(matchCommand);
 		
-		return "redirect:/match/matchBoard.do";
+		return "redirect:/match/scoreBoard.do";
 	}
 	
 	// 매치수정폼

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.mixmatch.league.domain.LeagueCommand;
 import com.kh.mixmatch.league.domain.LeagueDtlCommand;
@@ -256,7 +257,7 @@ public class LeagueController {
 	// 팀 참가신청
 	@RequestMapping("/league/leagueDtlInsert.do")
 	public String leagueDtlInsertSubmit(@ModelAttribute("leagueDtl") LeagueDtlCommand leagueDtlCommand,
-										BindingResult result, HttpServletRequest request) {
+										BindingResult result, HttpServletRequest request, RedirectAttributes redirect) {
 		if (log.isDebugEnabled()) {
 			log.debug("<<팀 참가신청 leagueDtlCommand>> : " + leagueDtlCommand);
 		}
@@ -268,17 +269,29 @@ public class LeagueController {
 		// 참가신청
 		leagueService.insertLeagueDtl(leagueDtlCommand);
 		
-		return "redirect:/league/leagueList.do";
+		// 리다이렉트시 파라미터 전달
+		redirect.addAttribute("l_seq", leagueDtlCommand.getL_seq());
+		
+		return "redirect:/league/leagueDetailRe.do";
 	}
 	
 	// 팀 참가승인
 	@RequestMapping("/league/leagueDtlCheck.do")
-	public String leagueDtlCheck(@RequestParam("ld_seq") int ld_seq) {
+	public String leagueDtlCheck(@RequestParam("ld_seq") int ld_seq, RedirectAttributes redirect) {
 		// 참가승인
 		// 참가팀수 증가
 		leagueService.updateChk(ld_seq);
 		
-		return "redirect:/league/leagueList.do";
+		// 리다이렉트시 파라미터 전달
+		redirect.addAttribute("l_seq", leagueService.selectL_seq(ld_seq));
+		
+		return "redirect:/league/leagueDetailRe.do";
+	}
+	
+	// 리그 상세보기 폼 리다이렉트
+	@RequestMapping("league/leagueDetailRe.do")
+	public String leagueDetailRedirect(@RequestParam("l_seq") int l_seq) {
+		return "redirect:/league/leagueDetail.do?l_seq="+l_seq;
 	}
 	
 }

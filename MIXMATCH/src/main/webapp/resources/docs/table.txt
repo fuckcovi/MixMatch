@@ -75,7 +75,6 @@ CREATE TABLE G_TOTO(
 );
 CREATE SEQUENCE G_TOTO_SEQ;
 
-
 ----------------------- 기록 ---------------------------------------------
 CREATE TABLE G_FOOTBALL (
     F_SEQ NUMBER PRIMARY KEY,
@@ -131,7 +130,6 @@ CREATE TABLE G_BASEBALL (
 );
 CREATE SEQUENCE F_BASEBALL_SEQ;
 
-
 ----------------------- 미니홈피 ---------------------------------------------
 CREATE TABLE G_HOME(
 	H_SEQ NUMBER NOT NULL PRIMARY KEY,
@@ -183,7 +181,7 @@ CREATE TABLE g_pointshop_cart
     p_price    NUMBER          NULL, 
     p_date     DATE            NOT NULL,
     CONSTRAINT G_POINTSHOP_CART_PK PRIMARY KEY (p_seq)
-)
+);
 
 CREATE SEQUENCE g_pointshop_cart_SEQ
 START WITH 1
@@ -309,7 +307,6 @@ create table g_league_detail (
   constraint g_league_detail_fk2 foreign key (t_name) references g_team (t_name)
 );
 create sequence g_league_detail_seq;
-
 
 --------------------- 경기장예약 ------------
 CREATE TABLE G_STADIUM (

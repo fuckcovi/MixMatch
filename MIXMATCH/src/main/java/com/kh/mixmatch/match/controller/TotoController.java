@@ -17,11 +17,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.mixmatch.match.domain.MatchCommand;
 import com.kh.mixmatch.match.domain.TotoCommand;
 import com.kh.mixmatch.match.service.MatchService;
 import com.kh.mixmatch.match.service.TotoService;
+import com.kh.mixmatch.member.domain.MemberCommand;
+import com.kh.mixmatch.member.service.MemberService;
 import com.kh.mixmatch.team.domain.TeamCommand;
 
 @Controller
@@ -33,6 +36,13 @@ public class TotoController {
 	private MatchService matchService;
 	@Resource
 	private TotoService totoService;
+	@Resource
+	private MemberService memberService;
+	
+	@ModelAttribute("memberCommand")
+	public MemberCommand initCommand(){
+		return new MemberCommand();
+	}
 	
 	@ModelAttribute("matchCommand")
 	public MatchCommand initMatchCommand() {
@@ -124,8 +134,8 @@ public class TotoController {
 	
 	// 베팅하기
 	@RequestMapping("/match/totoInsert.do")
-	public String insertTotoSubmit(@ModelAttribute("toto") @Valid TotoCommand totoCommand,
-								   BindingResult result, HttpServletRequest request) {
+	public String insertTotoSubmit(@ModelAttribute("toto") @Valid TotoCommand totoCommand, HttpSession session,
+								   BindingResult result, HttpServletRequest request, RedirectAttributes redirect) {
 		if (log.isDebugEnabled()) {
 			log.debug("<<베팅하기 totoCommand>> : " + totoCommand);
 		}
@@ -143,7 +153,21 @@ public class TotoController {
 		map.put("point", totoCommand.getT_point());
 		totoService.downPoint(map);
 		
-		return "redirect:/match/totoInsert.do";
+		// 세션에 포인트 전달
+		String user_id = (String) session.getAttribute("user_id");
+		MemberCommand member = memberService.selectMember(user_id);
+		session.setAttribute("user_point", member.getPoint());
+
+		// 리다이렉트시 파라미터 전달
+		redirect.addAttribute("m_seq", totoCommand.getM_seq());
+		
+		return "redirect:/match/totoInsertRe.do";
+	}
+	
+	// 베팅하기 리다이렉트
+	@RequestMapping("/match/totoInsertRe.do")
+	public String insertTotoRedirect(@RequestParam("m_seq") int m_seq) {
+		return "redirect:/match/totoDetail.do?m_seq="+m_seq;
 	}
 	
 }
