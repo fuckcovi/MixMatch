@@ -22,7 +22,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.mixmatch.board.service.BoardService;
-
+import com.kh.mixmatch.member.domain.MemberCommand;
+import com.kh.mixmatch.member.service.MemberService;
 import com.kh.mixmatch.board.domain.BoardCommand;
 import com.kh.mixmatch.util.PagingUtil;
 
@@ -38,6 +39,13 @@ public class BoardController {
 	
 	@Resource
 	private BoardService boardService;
+	@Resource
+	private MemberService memberService;
+	
+	@ModelAttribute("memberCommand")
+	public MemberCommand initCommand(){
+		return new MemberCommand();
+	}
 	
 	@RequestMapping("/board/list.do")
 	public ModelAndView boardListProcess(@RequestParam(value="pageNum",defaultValue="1")
@@ -100,7 +108,8 @@ public class BoardController {
 	public String boardWriteSubmit(@ModelAttribute("command")
 	                     @Valid BoardCommand boardCommand,
 	                     BindingResult result,
-	                     HttpServletRequest request){
+	                     HttpServletRequest request,
+	                     HttpSession session){
 		
 		if(log.isDebugEnabled()){
 			log.debug("<<boardCommand>> : " + boardCommand);
@@ -116,6 +125,14 @@ public class BoardController {
 		
 		//글쓰기
 		boardService.insert(boardCommand);
+		
+		//포인트 증가
+		String id = (String) session.getAttribute("user_id");
+		boardService.updatePoint(id);
+		
+		// 세션에 전달
+		MemberCommand member = memberService.selectMember(id);
+		session.setAttribute("user_point", member.getPoint());
 		
 		return "redirect:/board/list.do";
 	}
@@ -297,6 +314,11 @@ public class BoardController {
 			//로그인 됨, 댓글 등록
 			boardService.insertReply(boardReplyCommand);
 			map.put("result", "success");
+			
+			// 포인트 증가
+			boardService.updatePointRe(user_id);
+			MemberCommand member = memberService.selectMember(user_id);
+			session.setAttribute("user_point", member.getPoint());
 		}
 		return map;
 	}

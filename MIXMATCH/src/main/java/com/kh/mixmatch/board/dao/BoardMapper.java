@@ -39,4 +39,11 @@ public interface BoardMapper {
 	//부모글 삭제시 댓글이 존재하면 부모글 삭제전 댓글 삭제
 	@Delete("DELETE FROM g_board_re WHERE gb_seq=#{gb_seq}")
 	public void deleteReplyBySeq(Integer gb_seq);
+	
+	//글쓰기 시 포인트 증가
+	@Update("UPDATE g_member SET point=point+50 WHERE id=#{id}")
+	public void updatePoint(String id);
+	//댓글작성 시 포인트 증가
+	@Update("UPDATE g_member SET point=point+10 WHERE id=#{id}")
+	public void updatePointRe(String id);
 }

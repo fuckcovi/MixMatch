@@ -29,4 +29,9 @@ public interface BoardService {
 	public void insertReply(BoardReplyCommand boardReply);
 	public void updateReply(BoardReplyCommand boardReply);
 	public void deleteReply(Integer gbre_no);
+	
+	//글쓰기 시 포인트 증가
+	public void updatePoint(String id);
+	//댓글작성 시 포인트 증가
+	public void updatePointRe(String id);
 }

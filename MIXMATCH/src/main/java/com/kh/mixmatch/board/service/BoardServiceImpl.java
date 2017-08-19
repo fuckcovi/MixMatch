@@ -80,4 +80,14 @@ public class BoardServiceImpl implements BoardService{
 		boardMapper.deleteReply(gbre_no);
 	}
 
+	@Override
+	public void updatePoint(String id) {
+		boardMapper.updatePoint(id);
+	}
+
+	@Override
+	public void updatePointRe(String id) {
+		boardMapper.updatePointRe(id);
+	}
+
 }
