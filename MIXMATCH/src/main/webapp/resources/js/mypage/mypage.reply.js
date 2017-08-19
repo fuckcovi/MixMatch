@@ -43,7 +43,7 @@ $(document).ready(function(){
 				postModifyUI +='      </div>';
 				postModifyUI +=' </form>'
 				
-			//이전에 이미 수정하는 댓글이 있을 경우 수정버튼을 클릭하면 숨김 .mregister_form을 환원시키고 수정폼을 초기화함	
+			//이전에 이미 수정하는 글이 있을 경우 수정버튼을 클릭하면 숨김 .mregister_form을 환원시키고 수정폼을 초기화함	
 			initModifyForm();
 			$('#'+post_num+' .modify_delete_button').hide();	
 			

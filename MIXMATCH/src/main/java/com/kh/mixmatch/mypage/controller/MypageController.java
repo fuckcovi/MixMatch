@@ -44,7 +44,7 @@ public class MypageController {
 	private MemberService memberService;
 	
 	
-	//MyPage 메인(로그인 되어있는 유저ID넘겨줘)
+	//MyPage 메인
 	@RequestMapping(value="/mypage/main.do",method=RequestMethod.GET)
 	public ModelAndView process(@RequestParam(value="pageNum", defaultValue="1")int currentPage, HttpSession session, @RequestParam(value="id", required=false)String id){	
 		
@@ -120,16 +120,6 @@ public class MypageController {
 		
 		String user_id = (String) session.getAttribute("user_id");
 		
-		System.out.println("<<h_seq>> : " + mypageCommand2.getH_seq());
-		System.out.println("<<id>> : " + mypageCommand2.getId());
-		System.out.println("<<h_show>> : " + mypageCommand2.getH_show());
-		System.out.println("<<h_content>> : " + mypageCommand2.getH_content());
-		
-		//h_content만 체크
-		if (result.hasFieldErrors("h_content")) {		//별도로 자바빈을 만든게 아니라 mypageCommand를 활용하여 한개의 필드만 체크
-			//return form();
-		}
-		
 		if (user_id == null) {
 			//로그인이 안 되어있는 경우
 			map.put("result", "logout");
@@ -138,10 +128,6 @@ public class MypageController {
 			//글 수정
 			mypageService.update(mypageCommand2);
 			map.put("result", "success");
-			
-			if (log.isDebugEnabled()) {
-				log.debug("<<----------------map>> : " + map);
-			}
 			
 		}else{
 			//로그인 아이디와 작성자 아이디 불일치
