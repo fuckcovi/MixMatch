@@ -274,9 +274,9 @@ $(document).ready(function(){
 					<tr class="foot" onclick="location.href='${pageContext.request.contextPath}/match/scoreDetail.do?m_seq=${matchFResultList.m_seq }'"  >
 						<td>${matchFResultList.m_date}</td>
 						<td>${matchFResultList.t_name }</td>
-						<td><b style="font-size: large;color: red;">${matchFResultList.m_home}</b></td>
+						<td><b style="font-size: large;color: #FF4848;">${matchFResultList.m_home}</b></td>
 						<td>VS</td>
-						<td><b style="font-size: large;color: red;">${matchFResultList.m_away}</b></td>
+						<td><b style="font-size: large;color: #016bdc;">${matchFResultList.m_away}</b></td>
 						<td>${matchFResultList.m_challenger }</td>
 					</tr>
 				</c:if>
