@@ -159,26 +159,26 @@ public class PointShopController {
 		
 		if(memberCommand.getAuth().toUpperCase().equals("BRONZE")){
 			if(!p_grade.toUpperCase().equals("BRONZE")){
-				mapJson.put("grade", "��� ����.");
+				mapJson.put("grade", "grade error.");
 			}
 		}else if(memberCommand.getAuth().toUpperCase().equals("SILVER")){
 			if(!p_grade.toUpperCase().equals("BRONZE") || !p_grade.toUpperCase().equals("SILVER")){
-				mapJson.put("grade", "��� ����.");
+				mapJson.put("grade", "grade error.");
 			}
 		}else if(memberCommand.getAuth().toUpperCase().equals("GOLD")){
 			if(p_grade.toUpperCase().equals("DIAMOND") || p_grade.toUpperCase().equals("PLATINUM")){
-				mapJson.put("grade", "��� ����.");
+				mapJson.put("grade", "grade error.");
 			}
 		}else if(memberCommand.getAuth().toUpperCase().equals("PLATINUM")){
 			if(p_grade.toUpperCase().equals("DIAMOND")){
-				mapJson.put("grade", "��� ����.");
+				mapJson.put("grade", "grade error.");
 			}
 		}
 		
 		int total_price = p_price * amount;
 		
 		if(total_price > memberCommand.getPoint()){
-			mapJson.put("point", "����Ʈ ����.");
+			mapJson.put("point", "point error.");
 		}else{
 			Map<String,Object> map = new HashMap<String, Object>();
 			

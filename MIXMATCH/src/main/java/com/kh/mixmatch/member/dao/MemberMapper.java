@@ -29,4 +29,11 @@ public interface MemberMapper {
 	public void platinumUpdate();
 	@Update("UPDATE g_member SET auth='Diamond' WHERE point >= 40000 ")
 	public void diamondUpdate();
+	
+	//상위 1위회원 검색
+	@Select("SELECT * FROM(SELECT * FROM g_member ORDER BY point DESC) WHERE rownum <= 1")
+	public MemberCommand todayMember();
+	//상위 1위회원에게 포인트 추가 적립
+	@Update("UPDATE g_member SET point = point+500 WHERE id=#{id}")
+	public void todayMemberPointUpdate(String id);
 }

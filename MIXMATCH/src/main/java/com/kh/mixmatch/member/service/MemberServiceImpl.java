@@ -57,5 +57,15 @@ public class MemberServiceImpl implements MemberService {
 	public void diamondUpdate() {
 		memberMapper.diamondUpdate();
 	}
+
+	@Override
+	public MemberCommand todayMember() {
+		return memberMapper.todayMember();
+	}
+
+	@Override
+	public void todayMemberPointUpdate(String id) {
+		memberMapper.todayMemberPointUpdate(id);
+	}
 	
 }
