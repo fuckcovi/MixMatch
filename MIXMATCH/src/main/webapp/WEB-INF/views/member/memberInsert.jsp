@@ -4,7 +4,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/member/confirmId.js"></script>
 <style>
 form div{
-	width: 25%; 
+	width: 50%; 
 	margin: 0 auto; 
 	margin-bottom: 20px;
 }
@@ -51,7 +51,7 @@ form label{
 		<div class="form-group form-inline">
 			<label for="id">아이디</label>
 			<form:input path="id" cssClass="form-control" style="width: 120px;"/>
-			<input type="button" class="btn btn-warning" style="width: 80px;" id="confirmId" value="중복체크">
+			<input type="button" class="btn" style="width: 80px;" id="confirmId" value="중복체크">
 			<span id="message_id"></span>
 			<img src="${pageContext.request.contextPath }/resources/images/ajax-loader.gif" id="loading" width="16" height="16" style="display: none;">
 			<form:errors path="id" cssClass="error-color"/>
