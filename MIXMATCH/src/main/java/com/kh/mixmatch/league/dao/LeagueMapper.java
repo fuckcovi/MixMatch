@@ -25,7 +25,7 @@ public interface LeagueMapper {
 	public void updateLeague(LeagueCommand league);
 	
 	// 종목별 팀 가져오기
-	@Select("SELECT t_name FROM g_team WHERE id IN(SELECT id FROM g_team_member WHERE id=#{id} AND t_type IN(SELECT l_type FROM g_league WHERE l_seq=#{l_seq}))")
+	@Select("SELECT t_name FROM g_team WHERE id IN(SELECT id FROM g_team_member WHERE id=#{id} AND t_type IN(SELECT l_type FROM g_league WHERE l_seq=#{l_seq})) AND t_name NOT IN (SELECT t_name FROM g_league_detail WHERE l_seq=#{l_seq})")
 	public List<String> getTeamType(Map<String, Object> map);
 	// 팀 참가신청
 	@Insert("INSERT INTO g_league_detail (ld_seq,l_seq,t_name) VALUES (g_league_detail_seq.nextval,#{l_seq},#{t_name})")
@@ -42,8 +42,5 @@ public interface LeagueMapper {
 	// 참가팀수 증가
 	@Update("UPDATE g_league SET l_team=l_team+1 WHERE l_seq=(SELECT l_seq FROM g_league_detail WHERE ld_seq=#{ld_seq})")
 	public void updateTeamNum(Integer ld_seq);
-	// 참가팀 리스트
-	@Select("SELECT t_name FROM g_league_detail WHERE l_seq=#{l_seq}")
-	public List<String> leagueTeamList(Integer l_seq);
 	
 }
