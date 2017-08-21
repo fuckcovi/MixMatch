@@ -65,6 +65,6 @@ public interface TeamMemMapper {
 	public List<MemberCommand> getMemList(Map<String, Object> map);
 	
 	// 해당아이디가 소속된 팀 리스트
-	@Select("SELECT t_name FROM g_team_member WHERE id='admin' and T_Mem_Auth=1")
+	@Select("SELECT t_name FROM g_team_member WHERE id=#{id} and T_Mem_Auth=1")
 	public List<String> getTeamMemList(String user_id);
 }

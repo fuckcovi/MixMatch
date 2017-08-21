@@ -401,6 +401,10 @@ public class TeamController {
 		mav.addObject("teamList",teamList);
 		mav.addObject("count",count);
 		mav.addObject("matchList",matchList);
+		System.out.println("팀리스트 : " + teamList);
+		System.out.println("승인확정된 마이팀리스트 : " + list);
+		System.out.println("카운트 : " + count);
+		System.out.println("매치리스트 : " + matchList);
 		return mav;
 	}
 	
