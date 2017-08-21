@@ -8,7 +8,7 @@
 	}
 	#search_form{height:50px;margin:0 auto;display: inline-block;}
 	.search{list-style:none;} 
-	.search li{float:left;}
+	.search li{float:left; margin-left:10px;}
 	.style #title{
 	 width:600px;
 	}
