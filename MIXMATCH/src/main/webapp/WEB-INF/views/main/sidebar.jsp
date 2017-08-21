@@ -40,7 +40,7 @@ $(document).ready(function() {
 		onPopupWindow();
 	});
 	function onPopupWindow(){  
-	    chat = window.open("${pageContext.request.contextPath}/chat.do", "_blank", "top=300, left=500, width=400, height=400");
+	    chat = window.open("${pageContext.request.contextPath}/chat.do", "_blank", "top=300, left=500, width=350, height=380,resizable=0, menubar=0, status=0, location=0, toolbar=0 ");
 	    open=1;
 	}
 });

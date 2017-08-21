@@ -160,18 +160,30 @@ public class PointShopController {
 		if(memberCommand.getAuth().toUpperCase().equals("BRONZE")){
 			if(!p_grade.toUpperCase().equals("BRONZE")){
 				mapJson.put("grade", "grade error.");
+				MemberCommand member = memberService.selectMember(user_id);
+				session.setAttribute("user_point", member.getPoint());
+				return mapJson;
 			}
 		}else if(memberCommand.getAuth().toUpperCase().equals("SILVER")){
 			if(!p_grade.toUpperCase().equals("BRONZE") || !p_grade.toUpperCase().equals("SILVER")){
 				mapJson.put("grade", "grade error.");
+				MemberCommand member = memberService.selectMember(user_id);
+				session.setAttribute("user_point", member.getPoint());
+				return mapJson;
 			}
 		}else if(memberCommand.getAuth().toUpperCase().equals("GOLD")){
 			if(p_grade.toUpperCase().equals("DIAMOND") || p_grade.toUpperCase().equals("PLATINUM")){
 				mapJson.put("grade", "grade error.");
+				MemberCommand member = memberService.selectMember(user_id);
+				session.setAttribute("user_point", member.getPoint());
+				return mapJson;
 			}
 		}else if(memberCommand.getAuth().toUpperCase().equals("PLATINUM")){
 			if(p_grade.toUpperCase().equals("DIAMOND")){
 				mapJson.put("grade", "grade error.");
+				MemberCommand member = memberService.selectMember(user_id);
+				session.setAttribute("user_point", member.getPoint());
+				return mapJson;
 			}
 		}
 		
@@ -179,6 +191,9 @@ public class PointShopController {
 		
 		if(total_price > memberCommand.getPoint()){
 			mapJson.put("point", "point error.");
+			MemberCommand member = memberService.selectMember(user_id);
+			session.setAttribute("user_point", member.getPoint());
+			return mapJson;
 		}else{
 			Map<String,Object> map = new HashMap<String, Object>();
 			

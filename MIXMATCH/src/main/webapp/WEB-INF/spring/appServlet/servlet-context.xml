@@ -137,6 +137,7 @@
 			<mvc:mapping path="/team/teamSchedule.do"/>
 			<mvc:mapping path="/team/teamRecord.do"/>
 			<mvc:mapping path="/mypage/main.do"/>
+			<mvc:mapping path="/chat.do"/>
 			<mvc:mapping path="/teamboard/teamboard.do"/>
 			<mvc:mapping path="/match/matchDetail.do"/>
 			<mvc:mapping path="/match/scoreDetail.do"/>

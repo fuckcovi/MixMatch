@@ -2,8 +2,9 @@
     pageEncoding="UTF-8"%>
 <style type="text/css">
 	#chatArea{
-	width:300px; height:100px; overflow-y:auto;border:1px solid black; margin:0 auto;}
+	width:300px; height:100px; overflow-y:auto;border:1px solid #bdbdbd; border-radius:20px; margin:0 auto;}
 </style>
+<link href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 	var wsocket;
@@ -65,6 +66,7 @@
 	}
 	
 	$(document).ready(function(){
+		connect();
 		$("#message").keypress(function(event){
 			var keycode = (event.keyCode ? event.keyCode:event.which);
 			if(keycode == "13"){	// 엔터를 누른 경우 보내기
@@ -76,14 +78,14 @@
 		$("#sendBtn").click(function(){
 			send();
 		});
-		$("#enterBtn").click(function(){
+		/* $("#enterBtn").click(function(){
 			if($("#nickname").val()==""){
 				alert("이름을 입력하세요");
 				$("#nickname").focus();
 				return;
 			}
 			connect();
-		});
+		}); */
 		$("#exitBtn").click(function(){
 			if($("#nickname").val()==""){
 				alert("이름을 입력하세요");
@@ -91,19 +93,24 @@
 				return;
 			}
 			disconnect();
+			window.close();
 		});
 	});
 	
 </script>
-<body>
-	이름 : <input type="text" id="nickname">
-	<input type="button" id="enterBtn" value="입장">
-	<input type="button" id="exitBtn" value="나가기">
-	<h1>대화 영역</h1>
+<body style="margin:0 auto;float:center;">
+	<h3 style="float:center;">믹스채팅</h3><br>
+	<label>접속아이디 : </label>
+	<input type="text" id="nickname" value="${user_id}" style="width:100px;" readonly="readonly" >
+	<!-- <input type="button" id="enterBtn" class="btn" value="입장"> -->
+	<input type="button" id="exitBtn"  class="btn" value="종료">
+	 <br>
+	 <hr noshade="noshade">
+	 <br>
 	<div id="chatArea">
 		<div id="chatMessageArea"></div>
 	</div>
 	<br>
-	<input type="text" id="message" disabled>
-	<input type="button" id="sendBtn" value="전송" disabled>
+	<input type="text" id="message" style="width:65%;" disabled>
+	<input type="button" id="sendBtn" class="btn" value="전송" disabled>
 </body>
