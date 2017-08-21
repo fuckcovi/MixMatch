@@ -4,7 +4,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/board/board.js"></script>
 <style type="text/css">
 #search_form{width:500px;height:50px;margin:0 auto;}
-.search{list-style:none;}
+.search{list-style:none;} 
 .search li{float:left; margin:10px 10px 10px 10px;}
 table th{text-align: center;}
 </style>

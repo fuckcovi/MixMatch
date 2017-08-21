@@ -135,7 +135,7 @@
 			<td>
 				<form:select path="id">
 			<c:forEach var="homelist" items="${homelist}">
-			<c:if test="${awaylist.t_mem_auth ==1 }">
+			<c:if test="${homelist.t_mem_auth ==1 }">
 				<form:option value="${homelist.id}">${homelist.name}</form:option>
 			</c:if>
 			</c:forEach>

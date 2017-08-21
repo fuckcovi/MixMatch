@@ -2,7 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
+<link href="${pageContext.request.contextPath}/resources/css/layout222.css" rel="stylesheet">
 <style type="text/css">
+	.style th{
+		text-align: center;
+	}
 	#search_form{width:500px;height:50px;margin:0 auto;}
 	.search{list-style:none;} 
 	.search li{float:left; margin:10px 10px 10px 10px;}
@@ -17,9 +21,9 @@
 		<ul style="list-style: none;margin: 0 auto;height:70px; width:750px;padding:0;" id="teamboardList" >
 			
 			<c:forEach var="list" items="${teamlist}">
-				<li style="float: left; width:150px;" value="${list.t_name}">
-					<input type="button" class="btn" value="${list.t_name}" onclick="location.href='${pageContext.request.contextPath}/teamboard/teamboard.do?t_name=${list.t_name}'">
-				</li>
+				<li style="float: left; width:150px; border:1px solid white;" value="${list.t_name}">
+					<input type="button" style=" width:150px;" class="btn" value="${list.t_name}" onclick="location.href='${pageContext.request.contextPath}/teamboard/teamboard.do?t_name=${list.t_name}'">
+				</li> 
 			</c:forEach>
 		</ul>
 		</c:if>
@@ -32,7 +36,7 @@
 		<div class="align-center">등록된 팀게시글이 없습니다.</div>
 	</c:if>
 	<c:if test="${count>0 }">
-		<table>
+		<table class="style"> 
 			<tr>
 				<th>번호</th>
 				<th>팀명</th>

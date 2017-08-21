@@ -56,7 +56,9 @@
 			</tr>
 		</table>
 		<br>
-		<input type="button" value="개인기록+" class="match-btn" onclick="location.href='${pageContext.request.contextPath}/team/matchMemRecordInsert.do?m_seq=${match.m_seq}'">
+		<c:if test="${user_id eq master}">
+		<input type="button" value="개인기록+" class="match-btn" onclick="location.href='${pageContext.request.contextPath}/team/matchMemRecordInsert.do?m_seq=${match.m_seq}'" >
+		</c:if>
 		<input type="button" value="목록으로" class="match-btn" onclick="location.href='scoreBoard.do'">
 	</div>
 	<br><hr>

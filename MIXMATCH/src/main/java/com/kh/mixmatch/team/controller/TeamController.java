@@ -128,7 +128,9 @@ public class TeamController {
 					match.remove(i);
 				}
 			}
+			matchCount = match.size();
 		}
+		
 		String id = (String)session.getAttribute("user_id");
 		boolean tCheck = false;
 
@@ -740,7 +742,7 @@ public class TeamController {
 		map.put("keyfield","teamtype");
 		int count = teamService.getTeamCount(map);
 		
-		TeamPagingUtil page = new TeamPagingUtil(currentPage, count, totalProwCount, totalPpageCount, "totalBasketRank.do");
+		TeamPagingUtil page = new TeamPagingUtil(currentPage, count, totalProwCount, totalPpageCount, "totalBasketRank.do?order="+order);
 		map.put("start", page.getStartCount());
 		map.put("end",page.getEndCount());
 		
@@ -788,7 +790,7 @@ public class TeamController {
 		map.put("keyfield","teamtype");
 		int count = teamService.getTeamCount(map);
 		
-		TeamPagingUtil page = new TeamPagingUtil(currentPage, count, totalProwCount, totalPpageCount, "totalFootRank.do");
+		TeamPagingUtil page = new TeamPagingUtil(currentPage, count, totalProwCount, totalPpageCount, "totalFootRank.do?order="+order);
 		map.put("start", page.getStartCount());
 		map.put("end",page.getEndCount());
 		
