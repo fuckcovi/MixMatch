@@ -362,10 +362,11 @@ public class MatchController {
 	
 	// 점수보기
 	@RequestMapping("/match/scoreDetail.do")
-	public ModelAndView scoreDetailForm(@RequestParam("m_seq") int m_seq) {
+	public ModelAndView scoreDetailForm(@RequestParam("m_seq") int m_seq,HttpSession session) {
 		if (log.isDebugEnabled()) {
 			log.debug("<<점수보기 m_seq>> : " + m_seq);
 		}
+		
 		
 		// 글번호(m_seq)와 일치하는 레코드 선택
 		MatchCommand match = matchService.selectMatch(m_seq);
@@ -380,6 +381,8 @@ public class MatchController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("scoreDetail");
 		mav.addObject("match", match);
+		mav.addObject("user_id",session.getAttribute("user_id"));
+		mav.addObject("master", t_name.getId());	// 팀마스터 아이디
 		mav.addObject("t_name", t_name.getT_logo_name());
 		mav.addObject("m_challenger", m_challenger.getT_logo_name());
 		mav.addObject("list", list);

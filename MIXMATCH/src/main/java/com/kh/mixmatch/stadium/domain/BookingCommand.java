@@ -7,7 +7,15 @@ public class BookingCommand {
 	private String b_time;
 	private int b_check;
 	private String t_name;
+	private String s_name;
 	
+	
+	public String getS_name() {
+		return s_name;
+	}
+	public void setS_name(String s_name) {
+		this.s_name = s_name;
+	}
 	public String getT_name() {
 		return t_name;
 	}

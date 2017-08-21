@@ -40,7 +40,7 @@ public interface StadiumMapper {
 	@Update("UPDATE g_booking SET b_check=2 WHERE b_seq=#{b_seq}")
 	public void updateCheckBooking(Integer b_seq);
 	// 팀마스터인 팀의 경기장 예약 리스트
-	@Select("SELECT b.* FROM g_booking b ,(SELECT * FROM g_team WHERE id=#{id})m where b.t_name=m.t_name")
+	@Select("SELECT b.*,s.s_name s_name FROM g_booking b ,(SELECT * FROM g_team WHERE id=#{id})m, g_stadium s where b.t_name=m.t_name AND b.s_seq=s.s_seq")
 	public List<BookingCommand> listBookingTeam(String id);
 	@Select("SELECT COUNT(*) FROM g_booking WHERE t_name=#{t_name}")
 	public int booklistCount(String t_name);

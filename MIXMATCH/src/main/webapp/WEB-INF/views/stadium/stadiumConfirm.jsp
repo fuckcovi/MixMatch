@@ -42,7 +42,7 @@
 					<c:if test="${booklist.b_check==1 && (booklist.t_name == teamlist.t_name )}">
 						<tr class="${booklist.t_name} plan">
 							<td>${booklist.b_regdate}</td>
-							<td>${booklist.s_seq}</td>
+							<td>${booklist.s_name}</td>
 							<td>${booklist.b_time}</td>
 							<td>${booklist.t_name}</td>
 							<td><input class="btn" type="button" id="stadiumBookF" onclick="location.href='${pageContext.request.contextPath }/stadium/stadiumBookC.do?b_seq=${booklist.b_seq}'" value="예약취소"><input type="button" id="stadiumBookF" onclick="location.href='${pageContext.request.contextPath }/stadium/stadiumBookF.do?b_seq=${booklist.b_seq}'" value="예약확정" class="btn"></td>
@@ -71,7 +71,7 @@
 						<c:if test="${booklist.b_check==2 && (booklist.t_name == teamlist.t_name) }">
 							<tr class="${booklist.t_name} plan">
 								<td>${booklist.b_regdate}</td>
-								<td>${booklist.b_seq}</td>
+								<td>${booklist.s_name}</td>
 								<td>${booklist.b_time}</td>
 								<td>${booklist.t_name}</td>
 							</tr>
