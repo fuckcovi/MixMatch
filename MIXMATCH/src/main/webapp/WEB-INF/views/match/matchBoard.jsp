@@ -59,6 +59,7 @@
 				</c:forEach>	
 			</c:if>
 		</table>
+		<div>${pagingHtml}</div>
 	</div>
 	<c:if test="${!empty t_name}">
 		<input type="button" value="매치등록" id="insert_btn" class="match-btn" style="margin-top:20px;" onClick="location.href='matchInsert.do'">

@@ -50,24 +50,19 @@ public class LeagueController {
 	
 	@RequestMapping("/league/leagueList.do")
 	public ModelAndView leagueListForm(@RequestParam(value="pageNum",defaultValue="1") int currentPage,
-									   @RequestParam(value="keyword",defaultValue="") String keyword,
 									   @RequestParam(value="type",defaultValue="축구") String type) {				
 		Map<String , Object> map = new HashMap<String, Object>();
 		map.put("type", type);
-		map.put("keyword", keyword);
-		
 		
 		int count = leagueService.getRowCount(map);
 		
 		if (log.isDebugEnabled()) {
 			log.debug("<<type>> : " + type);
 			log.debug("<<pageNum>> : " + currentPage);
-			log.debug("<<keyword>> : " + keyword);
 			log.debug("<<count>> : " + count);
 		}
 		
-		PagingUtil page = new PagingUtil(null, keyword, currentPage, count, rowCount, pageCount, "leagueList.do");
-		
+		PagingUtil page = new PagingUtil(null, null, currentPage, count, rowCount, pageCount, "leagueList.do");
 		map.put("start", page.getStartCount());
 		map.put("end", page.getEndCount());
 		

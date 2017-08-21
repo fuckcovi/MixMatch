@@ -48,5 +48,6 @@
 				</c:forEach>	
 			</c:if> 
 		</table>  
+		<div>${pagingHtml}</div>
 	</div>
 </div>

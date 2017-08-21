@@ -6,21 +6,20 @@
 <mapper namespace="com.kh.mixmatch.league.dao.LeagueMapper">
 
 	<select id="leagueList" parameterType="map" resultType="leagueCommand">
-		SELECT * FROM g_league
+		SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT l.* FROM g_league l
 		<where>
-			l_type=#{type}
+			l.l_type=#{type}
 		</where>
+		ORDER BY l.l_seq DESC)a)
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>		
 	</select>
 	
 	<select id="getRowCount" parameterType="map" resultType="integer">
 		SELECT count(*) FROM g_league
 		<where>
-        	<if test="keyword != ''">
-        		title like '%' || #{keyword} || '%' AND l_type=#{type}
-        	</if>
-        	<if test="keyword == ''">
-        		l_type=#{type}
-        	</if>
+        	l_type=#{type}
         </where>
 	</select>
 	

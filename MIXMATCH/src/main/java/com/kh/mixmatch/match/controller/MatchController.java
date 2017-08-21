@@ -27,11 +27,15 @@ import com.kh.mixmatch.match.service.TotoService;
 import com.kh.mixmatch.member.domain.MemberCommand;
 import com.kh.mixmatch.member.service.MemberService;
 import com.kh.mixmatch.team.domain.TeamCommand;
+import com.kh.mixmatch.util.PagingUtil;
 
 @Controller
 public class MatchController {
 
 	private Logger log = Logger.getLogger(this.getClass());
+	
+	private int rowCount = 10;
+	private int pageCount = 10;
 	
 	@Resource
 	private MatchService matchService;
@@ -56,7 +60,8 @@ public class MatchController {
 	
 	// 매치보드
 	@RequestMapping("/match/matchBoard.do")
-	public ModelAndView matchBoardForm(@RequestParam(value="type", defaultValue="축구") String type,
+	public ModelAndView matchBoardForm(@RequestParam(value="pageNum",defaultValue="1") int currentPage,
+									   @RequestParam(value="type", defaultValue="축구") String type,
 									   HttpSession session) {				
 		// 종목 받아오기
 		String board = "match";
@@ -68,9 +73,15 @@ public class MatchController {
 		int count = matchService.getRowCount(map);
 		
 		if (log.isDebugEnabled()) {
-			log.debug("<<매치보드 type>> : " + type);		
+			log.debug("<<매치보드 type>> : " + type);	
+			log.debug("<<pageNum>> : " + currentPage);
 			log.debug("<<매치보드 count>> : " + count);
 		}
+		
+		PagingUtil page = new PagingUtil(null, null, currentPage, count, rowCount, pageCount, "matchBoard.do");
+		map.put("start", page.getStartCount());
+		map.put("end", page.getEndCount());
+		
 		
 		// 리스트에 저장
 		List<MatchCommand> list = null;
@@ -89,13 +100,15 @@ public class MatchController {
 		mav.addObject("list", list);
 		mav.addObject("type", type);
 		mav.addObject("t_name", t_name);
+		mav.addObject("pagingHtml", page.getPagingHtml());
 		
 		return mav;
 	}
 	
 	// 스코어보드
 	@RequestMapping("/match/scoreBoard.do")
-	public ModelAndView scoreBoardForm(@RequestParam(value="type", defaultValue="축구") String type,
+	public ModelAndView scoreBoardForm(@RequestParam(value="pageNum",defaultValue="1") int currentPage,
+									   @RequestParam(value="type", defaultValue="축구") String type,
 									   HttpSession session) {			
 		// 종목 받아오기
 		String board = "score";
@@ -110,6 +123,10 @@ public class MatchController {
 			log.debug("<<스코어보드 type>> : " + type);
 			log.debug("<<스코어보드 count>> : " + count);
 		}
+		
+		PagingUtil page = new PagingUtil(null, null, currentPage, count, rowCount, pageCount, "scoreBoard.do");
+		map.put("start", page.getStartCount());
+		map.put("end", page.getEndCount());
 		
 		// 리스트에 저장
 		List<MatchCommand> list = null;
@@ -128,6 +145,7 @@ public class MatchController {
 		mav.addObject("list", list);
 		mav.addObject("type", type);
 		mav.addObject("t_name", t_name);
+		mav.addObject("pagingHtml", page.getPagingHtml());
 		
 		return mav;
 	}
@@ -344,7 +362,7 @@ public class MatchController {
 	
 	// 점수보기
 	@RequestMapping("/match/scoreDetail.do")
-	public ModelAndView scoreDetailForm(@RequestParam("m_seq") int m_seq, HttpSession session) {
+	public ModelAndView scoreDetailForm(@RequestParam("m_seq") int m_seq) {
 		if (log.isDebugEnabled()) {
 			log.debug("<<점수보기 m_seq>> : " + m_seq);
 		}
@@ -362,11 +380,10 @@ public class MatchController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("scoreDetail");
 		mav.addObject("match", match);
-		mav.addObject("user_id", session.getAttribute("user_id"));
-		mav.addObject("master", t_name.getId());	// 매칭신청한 팀마스터 아이디 가져오기
 		mav.addObject("t_name", t_name.getT_logo_name());
 		mav.addObject("m_challenger", m_challenger.getT_logo_name());
 		mav.addObject("list", list);
+		
 		return mav;
 	}
 	

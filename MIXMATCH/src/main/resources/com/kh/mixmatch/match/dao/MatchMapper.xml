@@ -8,22 +8,27 @@
 	<select id="matchList" parameterType="map" resultType="matchCommand">
 		
 		<if test="board == 'match'">
-			SELECT m.*,t.t_logo,t.t_logo_name FROM  g_match m, (SELECT * FROM g_team)t 
+			SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT m.*,t.t_logo,t.t_logo_name FROM  g_match m, (SELECT * FROM g_team)t 
 			<where>
-				m.t_name = t.t_name AND m_type = #{type}
+				m.t_name = t.t_name AND m.m_type = #{type}
 			</where>
-			ORDER BY m_seq DESC
+			ORDER BY m.m_seq DESC)a)
 		</if>
 		<if test="board == 'score'">
-			SELECT * FROM (SELECT a.*, t2.id away_id FROM
-(SELECT m.*,t.id home_id FROM g_team t , g_match m WHERE t.t_name=m.t_name)a, g_team t2 
-WHERE a.m_challenger=t2.t_name)d WHERE d.home_id!='DEL-TEAM' AND d.away_id!='DEL-TEAM' AND m_type=#{type}
+			SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT * FROM (SELECT b.*, t2.id away_id FROM
+			(SELECT m.*,t.id home_id FROM g_team t , g_match m WHERE t.t_name=m.t_name)b, g_team t2 
+			WHERE b.m_challenger=t2.t_name)d WHERE d.home_id!='DEL-TEAM' AND d.away_id!='DEL-TEAM' AND m_type=#{type}
+			ORDER BY m_seq DESC)a)
 		</if>
 		<if test="board =='toto'">
-		SELECT * FROM (SELECT a.*, t2.id away_id FROM
-(SELECT m.*,t.id home_id FROM g_team t , g_match m WHERE t.t_name=m.t_name)a, g_team t2 
-WHERE a.m_challenger=t2.t_name)d WHERE d.home_id!='DEL-TEAM' AND d.away_id!='DEL-TEAM' AND m_type=#{type} AND m_home=-1
+			SELECT * FROM (SELECT a.*,rownum rnum FROM (SELECT * FROM (SELECT b.*, t2.id away_id FROM
+			(SELECT m.*,t.id home_id FROM g_team t , g_match m WHERE t.t_name=m.t_name)b, g_team t2 
+			WHERE b.m_challenger=t2.t_name)d WHERE d.home_id!='DEL-TEAM' AND d.away_id!='DEL-TEAM' AND m_type=#{type} AND m_home=-1
+			ORDER BY m_seq DESC)a)
 		</if>
+		<![CDATA[
+		WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>	
 	</select>	
 	
 	<select id="getRowCount" parameterType="map" resultType="integer">
