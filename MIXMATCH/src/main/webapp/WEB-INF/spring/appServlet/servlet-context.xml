@@ -124,7 +124,7 @@
 	<!--  로그인 여부 체크 인터셉터 -->
 	<mvc:interceptors> 
 		<mvc:interceptor>
-		
+			<mvc:mapping path="/board/detail.do"/>
 			<mvc:mapping path="/board/list.do"/>
 			<mvc:mapping path="/board/write.do"/>
 			<mvc:mapping path="/member/pwUpdate.do"/>
