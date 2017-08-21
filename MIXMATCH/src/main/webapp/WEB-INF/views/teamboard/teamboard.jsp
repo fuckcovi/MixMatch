@@ -7,9 +7,9 @@
 	.style th{
 		text-align: center;
 	}
-	#search_form{width:500px;height:50px;margin:0 auto;}
+	#search_form{height:50px;margin:0 auto;display: inline-block;}
 	.search{list-style:none;} 
-	.search li{float:left; margin:10px 10px 10px 10px;}
+	.search li{float:left; margin-left:10px;}
 </style>
 <div class="page-main-style">
 	<h2>팀게시판</h2>
@@ -61,7 +61,7 @@
 	<form action="${pageContext.request.contextPath}/teamboard/teamboard.do" id="search_form" method="get" >
 		<ul class="search">
 			<li>
-				<select name="keyfield">
+				<select name="keyfield"  style="height:30px;">
 					<option value="gt_title">제목</option>
 					<option value="gt_content">내용</option>
 					<option value="id">작성자</option>
@@ -69,10 +69,10 @@
 				</select>
 			</li> 
 			<li>
-				<input type="text" name="keyword" id="keyword">
+				<input type="text" name="keyword" id="keyword"  style="height:30px;">
 			</li>
 			<li>
-				<input type="submit" class="btn"value="찾기">
+				<input type="submit" class="btn"value="찾기"  style="height:30px;">
 			</li>
 		</ul>
 	</form>

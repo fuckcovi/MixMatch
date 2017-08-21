@@ -6,15 +6,12 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/pointshop/point.js"></script>
 <style type="text/css">
 #search_form{
-	width:500px;
-	height:50px;
-	margin:0 auto;}
+	height:50px;margin:0 auto;display: inline-block;}
 .search{
 	list-style:none;
 }
 .search li{
-	float:left; 
-	margin:10px 10px 10px 10px;
+	float:left; margin-left:10px;
 }
 .product_list {
 	text-align:left;
@@ -33,17 +30,17 @@
 	<form action="pointHome.do" id="search_form" method="get">
 		<ul class="search">
 			<li>
-				<select name="keyfield" id="keyfield">
+				<select name="keyfield" id="keyfield" style="height:30px;">
 					<option value="all">전체</option>
 					<option value="p_name">상품명</option>
 					<option value="p_grade">등급</option>
 				</select>
 			</li>
 			<li>
-				<input type="text" name="keyword" id="keyword">
+				<input type="text" name="keyword" id="keyword" style="height:30px;">
 			</li>
 			<li>
-				<input type="submit" class="btn" value="상품찾기">
+				<input type="submit" class="btn" value="상품찾기" style="height:30px;">
 			</li>
 		</ul>
 	</form>

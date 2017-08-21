@@ -3,9 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/board/board.js"></script>
 <style type="text/css">
-#search_form{width:500px;height:50px;margin:0 auto;}
+#search_form{height:50px;margin:0 auto;display: inline-block;margin-left:10px;}
 .search{list-style:none;} 
-.search li{float:left; margin:10px 10px 10px 10px;}
+.search li{float:left;}
 table th{text-align: center;}
 </style>
 <div class="page-main-style">
@@ -13,7 +13,7 @@ table th{text-align: center;}
 	<form action="list.do" id="search_form" method="get">
 		<ul class="search">
 			<li>
-				<select name="keyfield">
+				<select name="keyfield"  style="height:30px;">
 					<option value="title">제목</option>
 					<option value="id">ID</option>
 					<option value="content">내용</option>
@@ -21,10 +21,10 @@ table th{text-align: center;}
 				</select>
 			</li>
 			<li>
-				<input type="text" name="keyword" id="keyword">
+				<input type="text" name="keyword" id="keyword"  style="height:30px;">
 			</li>
 			<li>
-				<input type="submit" class="btn" value="찾기">
+				<input type="submit" class="btn" value="찾기"  style="height:30px;">
 			</li>
 		</ul>
 	</form>
