@@ -146,7 +146,7 @@
 			<mvc:mapping path="/point/pointShopCart.do"/>
 			<mvc:mapping path="/point/purchase.do"/>
 			<mvc:mapping path="/point/pointHome.do"/>
-			
+			<mvc:mapping path="/match/totoDetail.do"/>
 			<beans:bean class="com.kh.mixmatch.member.interceptor.LoginCheckInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>
