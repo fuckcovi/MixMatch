@@ -60,6 +60,7 @@
 	<ul class="product_list" style="">
 		<c:forEach var="product" items="${list}" varStatus="status">
 			<li>
+			<div style="border:1px solid #bdbdbd; border-radius:20px; height:400px;">
 				<a href="${pageContext.request.contextPath}/point/pointShopDetail.do?p_seq=${product.p_seq}">
            		<c:if test="${fn:endsWith(product.p_file_name,'.jpg') ||
 				 				fn:endsWith(product.p_file_name,'.JPG') ||
@@ -68,7 +69,7 @@
 				 			fn:endsWith(product.p_file_name,'.png') ||
 				 			fn:endsWith(product.p_file_name,'.PNG')}">
 					<div class="align-center">
-						<img src="imageView.do?p_seq=${product.p_seq}" style="max-width:250px">
+						<img src="imageView.do?p_seq=${product.p_seq}" style="width:250px;height:250px;">
 					</div>			
 				</c:if>
 				</a>
@@ -84,6 +85,7 @@
         		<div style="text-align: center;">
         			상품 가격 : <fmt:formatNumber value="${product.p_price}" pattern="###,###,###"/> p
         		</div>
+        	</div>
         	</li>
      	</c:forEach>
 	</ul>

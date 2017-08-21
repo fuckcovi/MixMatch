@@ -32,7 +32,7 @@ public class PointShopController {
 	
 	private Logger log = Logger.getLogger(this.getClass());
 	
-	private int rowCount = 5;
+	private int rowCount = 6;
 	private int pageCount = 5;
 	
 	@Resource
