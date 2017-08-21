@@ -10,7 +10,7 @@
 	<hr class="style"><br>
 	<c:if test="${count==0 }">
 		<div>
-			소속 팀도 없는데 기록이 있을리가 
+			소속팀이 없어서 기록도 없습니다.
 		</div>
 	</c:if>
 	<c:if test="${count>0 }"> 
