@@ -5,8 +5,13 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/team/confirmTname.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/team/teamLogo.js"></script>
-<link href="${pageContext.request.contextPath}/resources/css/layout222.css" rel="stylesheet">
+ <%-- <link href="${pageContext.request.contextPath}/resources/css/layout222.css" rel="stylesheet">  --%>
 <style>
+.style th{
+	background:#EAEAEA;
+	}
+	.input{
+	width:160px;height:25px;}
 .file_input label {
     position:relative;
     cursor:pointer;
@@ -44,27 +49,30 @@
 	<form:form id="teamRegister" class="style" commandName="teamCommand" action="${pageContext.request.contextPath}/team/teamRegister.do" enctype="multipart/form-data">
 	<form:errors element="div" cssClass="error-color"/>
 	<input type="hidden" id="id" name="id" value="${user_id}"><br><br>
-	<ul>
-		<li>
-			<label for="t_name">팀명</label>
-			<form:input path="t_name"/>
+	
+	<table class="insert-table">
+		<tr height="30">
+			<th><label for="t_name">팀명</label></th>
+			<td><form:input path="t_name" class="input"/>
 			<input type="button" id="confirmTname" class="btn" value="중복체크">
 			<span id="message_tname"></span>
 			<img src="${pageContext.request.contextPath}/resources/images/ajax-loader.gif" width="16" height="16" style="display:none">
 			<form:errors path="t_name" cssClass="error-color"/>
-		</li>
-		<li>
-			<label for="t_type">팀종목</label>
-			<form:select path="t_type"> 
+			</td>
+		</tr>
+			<th><label for="t_type">팀종목</label></th>
+			<td><form:select path="t_type" class="input"> 
 				<form:option value="야구" >야구</form:option>
 				<form:option value="축구">축구</form:option>
 				<form:option value="농구">농구</form:option>
 			</form:select>
 			<form:errors path="t_type" cssClass="error-color"/>
-		</li>
-		<li>
-			<label for="t_address">팀연고지</label>
-			<form:select path="t_address">
+			</td>
+		</tr>
+		<tr>
+			<th><label for="t_address">팀연고지</label></th>
+			<td>
+			<form:select path="t_address" class="input">
 				<form:option value="서울">서울</form:option>
 				<form:option value="경기도">경기도</form:option>
 				<form:option value="강원도">강원도</form:option>
@@ -75,10 +83,12 @@
 				<form:option value="해외">해외</form:option>
 			</form:select>
 			<form:errors path="t_address" cssClass="error-color"/>
-		</li>
-		
-		<li id="profileImage">
-			<label for="t_logo_upload">팀로고</label>
+		</td>
+		</tr>
+		<tr> 
+			<th>
+			<label for="t_logo_upload">팀로고</label></th>
+			<td>
 			<div id="baseballImages">
 			<img style="max-width:50px;max-height:50px;" src="${pageContext.request.contextPath}/resources/images/baseball.png" id="prifile_pick_base_1">
 			<%-- <img style="max-width:50px;max-height:50px;" src="${pageContext.request.contextPath}/resources/images/baseball_logo.png">
@@ -106,22 +116,29 @@
 			<img style="max-width:50px;max-height:50px;" src="${pageContext.request.contextPath}/resources/images/football_logo4.jpg">
 			 --%></div>
 		<span>팀로고 미설정 시 기본이미지</span>
-		</li>
-		<li>
+		</td>
+		</tr>
+		<tr>
 			<!-- <input type="file" name="t_logo_upload" id="t_logo_upload"> -->
+			<th>파일</th>
+			<td>
 			<div class="file_input" style="width: 100%;">
 		    <label>
 		        File
 		        <input type="file" name="t_logo_upload" id="t_logo_upload" onchange="javascript:document.getElementById('file_route').value=this.value">
 		    </label>
 		    <input type="text" readonly="readonly" title="File Route" id="file_route">
-		</div>
-		</li>
-	</ul>
+			</div>
+			</td>
+		</tr>		
+	</table>
+		
 	<div class="align-center">
+	<br>
 		<input type="submit" value="팀생성" class="btn">
 	</div>
 	<br><br>
 	</form:form>
 	<br><hr class="style">
+	
 </div>
