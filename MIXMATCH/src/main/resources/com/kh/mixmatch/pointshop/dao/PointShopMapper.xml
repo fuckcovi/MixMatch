@@ -18,7 +18,7 @@
 		g_point_product 
 		<where>
         	<if test="keyword != '' and keyfield == 'p_grade'">
-        		p_grade like '%' || #{keyword} || '%'
+        		p_grade like UPPER(#{keyword})
         	</if>
         	<if test="keyword != '' and keyfield == 'p_name'">
         		p_name like '%' || #{keyword} || '%'
@@ -47,7 +47,7 @@
 		FROM g_point_product 
 		<where>
         	<if test="keyword != '' and keyfield == 'p_grade'">
-        		p_grade like '%' || #{keyword} || '%'
+        		p_grade like UPPER(#{keyword})
         	</if>
         	<if test="keyword != '' and keyfield == 'p_name'">
         		p_name like '%' || #{keyword} || '%'

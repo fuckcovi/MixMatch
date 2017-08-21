@@ -33,11 +33,10 @@
 	<form action="pointHome.do" id="search_form" method="get">
 		<ul class="search">
 			<li>
-				<select name="keyfield">
-					<option value="p_grade">등급</option>
-					<option value="p_name">상품명</option>
-					<option value="p_price">상품가격</option>
+				<select name="keyfield" id="keyfield">
 					<option value="all">전체</option>
+					<option value="p_name">상품명</option>
+					<option value="p_grade">등급</option>
 				</select>
 			</li>
 			<li>
@@ -75,15 +74,15 @@
 				</a>
         		<hr size="1">
         		<div style="text-align: center;">
-        			${product.p_name}
+        			상품명 : ${product.p_name}
         		</div>
         		<br>
         		<div style="text-align: center;">
-        			${product.p_grade}
+        			구매가능 회원 등급 : ${product.p_grade}
         		</div>
         		<br>
         		<div style="text-align: center;">
-        			<fmt:formatNumber value="${product.p_price}" pattern="###,###,###"/> p
+        			상품 가격 : <fmt:formatNumber value="${product.p_price}" pattern="###,###,###"/> p
         		</div>
         	</li>
      	</c:forEach>
