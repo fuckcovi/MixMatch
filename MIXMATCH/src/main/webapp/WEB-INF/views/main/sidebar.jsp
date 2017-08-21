@@ -67,8 +67,7 @@ $(document).ready(function() {
 			</a>
 			</c:if>
 			<c:if test="${empty user_id}">
-			
-			<form action="${pageContext.request.contextPath}/login.do" method="post"><br>
+			<form action="${pageContext.request.contextPath}/login.do" method="post">
 				<label for="id">ID</label><input type="text" title="id" id="id" name="id" ><br>
 				<label for="pw">PW</label><input type="password" id="pw" name="pw"><br><br>
 				<input type="submit" value="로그인" class="btn">
@@ -78,8 +77,10 @@ $(document).ready(function() {
 		<li> 
 			<div>
 			<c:if test="${joinCountSide==0 }">
-			<br><br>가입신청한 팀이 없습니다. 자신의 팀을 생성하거나 이미 등록된 팀에 가입신청하세요.<br>
-			<a href="${pageContext.request.contextPath}/team/team.do">팀생성</a>
+			<b>팀생성</b><br> 
+			<a href="${pageContext.request.contextPath}/team/team.do">
+			<img src="${pageContext.request.contextPath}/resources/images/teamplus.png" style="width:100px;height:100px;">
+			</a>
 			</c:if>
 			<c:if test="${joinCountSide>0 }">  
 			<select id="myteam" name="myteam" style="width:100px;">
@@ -115,7 +116,7 @@ $(document).ready(function() {
 		</li>
 		<li>
 		<div id="point" style="height:100px;">
-			포인트몰<br>
+			<b>포인트몰</b><br> 
 			<a href="${pageContext.request.contextPath}/point/pointHome.do">
 				<img src="${pageContext.request.contextPath}/resources/images/shopba.png" width="80">
 			</a>
@@ -123,7 +124,9 @@ $(document).ready(function() {
 		</li>
 		<li>
 			<c:if test="${!empty user_id }">
-			<div id="chat" style="height:100px;">채팅<br><img src="${pageContext.request.contextPath}/resources/images/chat.png" width="80">		
+			<div id="chat" style="height:100px;">
+			<b>채팅</b><br>
+			<img src="${pageContext.request.contextPath}/resources/images/chat.png" width="80">		
 			</div>
 			</c:if>
 			<c:if test="${empty user_id}">

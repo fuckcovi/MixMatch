@@ -56,7 +56,7 @@ public class TeamController {
 	}
 	
 	private int rowCount = 3;
-	private int pageCount = 1;
+	private int pageCount = 5;
 
 	@RequestMapping("/team/team.do")
 	public ModelAndView process(@RequestParam(defaultValue="") String t_type,@RequestParam(value="pageNum",defaultValue="1") int currentPage,HttpSession session){
@@ -94,7 +94,7 @@ public class TeamController {
 		int joinCountSide =0;
 		if(user_id != null){	// 로그인한 상태면 마이페이지에 뜸
 			MemberCommand member = memberService.selectMember(user_id);
-			joinCountSide = teamMemService.getRowMemCount(user_id);
+			joinCountSide = teamMemService.getRowTeamCount(user_id);
 		}
 		
 		List<TeamMemCommand> joinListSide = null;
@@ -664,8 +664,8 @@ public class TeamController {
 		return mav;
 	}
 	
-	private int totalProwCount =3	;
-	private int totalPpageCount = 1;
+	private int totalProwCount =10	;
+	private int totalPpageCount = 5;
 	@RequestMapping("/team/totalRank.do")
 	public ModelAndView totalPointRank(@RequestParam(value="pageNum",defaultValue="1") int currentPage){
 		int count = teamMemService.getMemCount();

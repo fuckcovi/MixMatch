@@ -215,7 +215,7 @@ public class HomeController {
 		teammap.put("id", user_id);
 		if(user_id != null){	// 로그인한 상태면 마이페이지에 뜸
 			member = memberService.selectMember(user_id);
-			joinCountSide = teamMemService.getRowMemCount(user_id);
+			joinCountSide = teamMemService.getRowTeamCount(user_id);
 		}
 		
 		List<TeamMemCommand> joinListSide = null;
