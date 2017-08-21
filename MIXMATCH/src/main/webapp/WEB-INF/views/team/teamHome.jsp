@@ -47,7 +47,7 @@
 	
 	<hr class="style">
 	
-	<h3 style="color:red;">MixMatch등록팀현황</h3> 
+	<h3><b>등록팀현황</b></h3> 
 	<input type="button" value="전체보기" class="btn" id="typeAll" onclick="location.href='${pageContext.request.contextPath}/team/team.do?t_type='">
 	<input type="button" value="축구" class="btn" id="typeFoot" onclick="location.href='${pageContext.request.contextPath}/team/team.do?t_type=축구'">
 	<input type="button" value="야구" class="btn" id="typeBase" onclick="location.href='${pageContext.request.contextPath}/team/team.do?t_type=야구'">
@@ -82,6 +82,7 @@
 				<br>
 			</div>
 			</c:forEach>
+		<!-- <div><form action="team.do"><input type="text" id="tkeyword" name="tkeyword"><input type="submit" value="팀검색"></form></div> -->
 		<div class="align-center">${pagingHtml}</div>
 		</c:if>
 		<c:if test="${count==0}">
